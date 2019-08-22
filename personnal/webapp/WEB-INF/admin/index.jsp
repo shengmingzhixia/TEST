@@ -14,6 +14,7 @@
 <head>
     <base href="<%=basePath%>"/>
     <title>$</title>
+    <script src="js/jquery-1.7.2.js"></script>
 </head>
 <%
     if (request.getAttribute("insertDepart") != null) {
@@ -46,6 +47,15 @@
     }
 %>
 <body>
-管理员界面
+<div>
+    <button onclick="">应聘管理</button>
+    <button onclick="">部门职位</button>
+    <button onclick="">培训管理</button>
+    <button onclick="">员工管理</button>
+    <button onclick="">奖惩管理</button>
+    <button onclick="">薪资管理</button>
+    <button onclick="">工资异议</button>
+    <button onclick="">退出</button>
+</div>
 </body>
 </html>

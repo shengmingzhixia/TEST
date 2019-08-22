@@ -1,6 +1,4 @@
 package cgy.controller;
-
-import cgy.model.AllEntity;
 import cgy.model.Employee;
 import cgy.service.EmployeeService;
 import org.springframework.stereotype.Controller;
