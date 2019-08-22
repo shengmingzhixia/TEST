@@ -39,16 +39,6 @@
             <!--首页放行 和 搜索放行-->
             <mvc:exclude-mapping path="/good"/>
             <mvc:exclude-mapping path="/findGood"/>
-            <mvc:exclude-mapping path="/search"/>
-            <mvc:exclude-mapping path="/ok"/>
-            <mvc:exclude-mapping path="/good2"/>
-
-            <mvc:exclude-mapping path="/login"/>
-            <mvc:exclude-mapping path="/register"/>
-            <mvc:exclude-mapping path="/enterRegister"/>
-            <mvc:exclude-mapping path="/lookGoodComment"/>
-            <mvc:exclude-mapping path="/checkName"/>
-            <mvc:exclude-mapping path="/enterAdminIndex"/>
             <bean class="cgy.interceptor.CheckLoginInc"/>
         </mvc:interceptor>
     </mvc:interceptors>

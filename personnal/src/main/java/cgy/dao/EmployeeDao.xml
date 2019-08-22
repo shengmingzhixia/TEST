@@ -3,5 +3,10 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cgy.dao.EmployeeDao">
-
+    <select id="getE" resultType="cgy.model.Employee">
+        select *
+        from P_EMPLOYEE
+        where E_ACCOUNT = #{e_account}
+          and e_password = #{e_password}
+    </select>
 </mapper>
