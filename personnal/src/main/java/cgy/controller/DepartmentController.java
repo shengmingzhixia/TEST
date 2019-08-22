@@ -13,7 +13,8 @@ public class DepartmentController {
     @Resource
     private DepartmentService departmentService;
 
-    @RequestMapping("insertDepart")  //管理员添加部门信息
+    //管理员添加部门信息
+    @RequestMapping("insertDepart")
     public String insertDepart(Department department, HttpServletRequest request) {
         boolean insertDepart = departmentService.insertDepart(department);
         request.setAttribute("insertDepart", insertDepart);
