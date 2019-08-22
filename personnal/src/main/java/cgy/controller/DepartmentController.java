@@ -17,6 +17,7 @@ public class DepartmentController {
     @RequestMapping("insertDepart")
     public String insertDepart(Department department, HttpServletRequest request) {
         boolean insertDepart = departmentService.insertDepart(department);
+        //给出是否添加成功的判别信息
         request.setAttribute("insertDepart", insertDepart);
         return "admin/index";
     }
