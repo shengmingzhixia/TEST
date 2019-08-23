@@ -46,4 +46,9 @@ public class CvServiceImpl implements CvService {
     public boolean delete(int id1) {
         return cvDao.delete(id1);
     }
+
+    @Override
+    public List<Cv> getCvs(int cid) {
+        return cvDao.getCvs(cid);
+    }
 }

@@ -83,6 +83,7 @@
                     <td>${rct.salary}</td>
                 </tr>
             </table>
+            <a href="toChooseCv">去投简历！</a>
         </div>
     </div>
 </c:forEach>

@@ -73,4 +73,9 @@
         from P_CV
         where CV_ID = #{cv_id}
     </select>
+    <select id="getCvs" resultType="cgy.model.Cv">
+        select *
+        from P_CV
+        where CV_C_ID = #{cid}
+    </select>
 </mapper>

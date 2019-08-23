@@ -3,6 +3,8 @@ package cgy.service;
 import cgy.model.Cv;
 import cgy.model.Page;
 
+import java.util.List;
+
 public interface CvService {
     //添加简历信息
     boolean insertCv(Cv cv);
@@ -17,4 +19,7 @@ public interface CvService {
     boolean updateCv(Cv cv);
 
     boolean delete(int id1);
+
+    //通过c_id查找简历
+    List<Cv> getCvs(int cid);
 }

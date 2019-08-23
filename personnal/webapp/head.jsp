@@ -15,6 +15,8 @@
 %>
 欢迎用户：<%=cust.getAccount()%>
 <a href="getCv">查看你的简历</a>
+<a href="#">查看你的面试</a>
+<a href="#">修改密码</a>
 <%
     }
 %>

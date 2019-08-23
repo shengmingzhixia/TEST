@@ -20,4 +20,6 @@ public interface CvDao {
     boolean updateCv(Cv cv);
 
     boolean delete(int id1);
+
+    List<Cv> getCvs(int cid);
 }

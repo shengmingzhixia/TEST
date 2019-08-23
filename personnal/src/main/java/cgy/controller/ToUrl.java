@@ -22,6 +22,7 @@ public class ToUrl {
     public String toRegister() {
         return "jsp/register";
     }
+
     @RequestMapping("tocvadd")
     public String tocvadd() {
         return "jsp/cvadd";

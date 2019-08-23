@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 public class CvController {
@@ -175,5 +176,15 @@ public class CvController {
         boolean cvDelete = cvService.delete(id1);
         request.setAttribute("cvDelete", cvDelete);
         return "forward:getCv";
+    }
+
+    //选择简历 列出全部简历
+    @RequestMapping("toChooseCv")
+    public String toChooseCv(HttpServletRequest request) {
+        Customer customer = (Customer) request.getSession().getAttribute("cust");
+        if (customer == null) return "jsp/touristlogin";
+        List<Cv> cvList = cvService.getCvs(customer.getId());
+        request.setAttribute("cvList", cvList);
+        return "jsp/choosecv";
     }
 }
