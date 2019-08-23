@@ -178,7 +178,7 @@ public class CvController {
         return "forward:getCv";
     }
 
-    //选择简历 列出全部简历
+    //选择简历_列出全部简历
     @RequestMapping("toChooseCv")
     public String toChooseCv(HttpServletRequest request) {
         Customer customer = (Customer) request.getSession().getAttribute("cust");
