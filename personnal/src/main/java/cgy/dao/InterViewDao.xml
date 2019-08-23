@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cgy.dao.InterViewDao">
+    <insert id="insertInterView">
+        insert into P_INTERVIEW
+        values (SEQ_INTERVIEW.nextval,
+                #{in_cv_id},
+                #{in_rct_id},
+                #{in_date},
+                #{in_is_read},
+                #{in_is_accept},
+                #{in_is_agree},
+                #{in_read_account})
+    </insert>
+</mapper>

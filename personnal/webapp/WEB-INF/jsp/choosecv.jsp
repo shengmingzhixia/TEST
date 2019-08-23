@@ -29,11 +29,15 @@
 } else {
 %>
 <div>
-    <select name="cv">
-        <c:forEach items="${requestScope.cvList}" var="cv">
-            <option value="${cv.id}">简历名称==》${cv.title}</option>
-        </c:forEach>
-    </select>
+    <form action="insertInterView" method="post">
+        <input type="hidden" value="${requestScope.rct_id}">
+        <select name="cv">
+            <c:forEach items="${requestScope.cvList}" var="cv">
+                <option value="${cv.id}">简历名称==》${cv.title}</option>
+            </c:forEach>
+        </select>
+        <input type="submit" value="提交简历">
+    </form>
 </div>
 <%
     }

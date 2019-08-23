@@ -181,6 +181,9 @@ public class CvController {
     //选择简历_列出全部简历
     @RequestMapping("toChooseCv")
     public String toChooseCv(HttpServletRequest request) {
+        String id = request.getParameter("rctId");
+        int rct_id = Integer.parseInt(id);
+        request.setAttribute("rct_id",rct_id);
         Customer customer = (Customer) request.getSession().getAttribute("cust");
         if (customer == null) return "jsp/touristlogin";
         List<Cv> cvList = cvService.getCvs(customer.getId());
