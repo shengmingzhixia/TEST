@@ -35,4 +35,15 @@ public class CvServiceImpl implements CvService {
     public Cv getCv(int cv_id) {
         return cvDao.getCv(cv_id);
     }
+
+    @Override
+    public boolean updateCv(Cv cv) {
+        if (cv == null) return false;
+        return cvDao.updateCv(cv);
+    }
+
+    @Override
+    public boolean delete(int id1) {
+        return cvDao.delete(id1);
+    }
 }

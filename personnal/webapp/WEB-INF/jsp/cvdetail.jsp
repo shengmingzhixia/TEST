@@ -59,5 +59,6 @@
         <td>${requestScope.cv.phone}</td>
     </tr>
 </table>
+<a href="getCv">返回</a>
 </body>
 </html>

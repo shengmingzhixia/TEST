@@ -16,4 +16,8 @@ public interface CvDao {
 
     //根据简历id 查看单个简历
     Cv getCv(int cv_id);
+
+    boolean updateCv(Cv cv);
+
+    boolean delete(int id1);
 }

@@ -19,6 +19,29 @@
                 #{cv_phone},
                 #{cv_title})
     </insert>
+    <update id="updateCv">
+        update P_CV
+        set CV_NAME            = #{cv_name},
+            cv_gender          = #{cv_gender},
+            cv_birth           = #{cv_birth},
+            cv_address         = #{cv_address},
+            cv_school          = #{cv_school},
+            cv_education       = #{cv_education},
+            cv_major           = #{cv_major},
+            cv_enroll_date     = #{cv_enroll_date},
+            cv_graduation_date = #{cv_graduation_date},
+            cv_salary          = #{cv_salary},
+            cv_exprience       = #{cv_exprience},
+            cv_phone           = #{cv_phone},
+            cv_title           = #{cv_title}
+        where cv_id = #{cv_id}
+
+    </update>
+    <delete id="delete">
+        delete
+        from P_CV
+        where CV_ID = #{id1}
+    </delete>
     <select id="getCvByPage" resultType="cgy.model.Cv">
         SELECT *
         FROM (SELECT ROWNUM rn,
@@ -46,6 +69,8 @@
         from P_CV
     </select>
     <select id="getCv" resultType="cgy.model.Cv">
-        select * from P_CV where CV_ID = #{cv_id}
+        select *
+        from P_CV
+        where CV_ID = #{cv_id}
     </select>
 </mapper>

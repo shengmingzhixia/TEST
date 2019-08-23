@@ -35,7 +35,42 @@
         }
     }
 %>
-
+<%
+    if (request.getAttribute("updateCv") != null) {
+        boolean updateCv = (Boolean) request.getAttribute("updateCv");
+        if (updateCv) {
+%>
+<script>
+    alert("更新成功！")
+</script>
+<%
+} else {
+%>
+<script>
+    alert("更新失败！")
+</script>
+<%
+        }
+    }
+%>
+<%
+    if (request.getAttribute("cvDelete") != null) {
+        boolean cvDelete = (Boolean) request.getAttribute("cvDelete");
+        if (cvDelete) {
+%>
+<script>
+    alert("删除成功！")
+</script>
+<%
+} else {
+%>
+<script>
+    alert("删除失败！")
+</script>
+<%
+        }
+    }
+%>
 <body>
 <%
     Page<Cv> cvByPage = (Page<Cv>) request.getAttribute("cvByPage");
@@ -47,7 +82,8 @@
     <div class="prod">
         <div>
             <a href="cvdetail?id=${cv.id}">简历==>${cv.title}</a>
-            <a href="#">修改</a>
+            <a href="toCvUpdate?id=${cv.id}">修改</a>
+            <a href="cvDelete?id=${cv.id}">删除</a>
         </div>
     </div>
 </c:forEach>

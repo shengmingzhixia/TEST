@@ -1,5 +1,6 @@
 package cgy.controller;
 
+import cgy.model.Cv;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -25,4 +26,5 @@ public class ToUrl {
     public String tocvadd() {
         return "jsp/cvadd";
     }
+
 }
