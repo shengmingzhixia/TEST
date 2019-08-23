@@ -39,6 +39,24 @@
         }
     }
 %>
+<%
+    if (request.getAttribute("view") != null) {
+        boolean view = (Boolean) request.getAttribute("view");
+        if (view) {
+%>
+<script>
+    alert("投递成功！")
+</script>
+<%
+} else {
+%>
+<script>
+    alert("投递失败！")
+</script>
+<%
+        }
+    }
+%>
 <body>
 
 <%@ include file="head.jsp" %>
