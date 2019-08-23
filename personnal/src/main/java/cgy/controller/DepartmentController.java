@@ -1,10 +1,10 @@
 package cgy.controller;
 
 import cgy.model.Department;
+import cgy.model.Page;
 import cgy.service.DepartmentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -20,12 +20,22 @@ public class DepartmentController {
         boolean insertDepart = departmentService.insertDepart(department);
         //给出是否添加成功的判别信息
         request.setAttribute("insertDepart", insertDepart);
-        return "admin/index";
+        return "admin/departmentadd";
     }
 
     //查看部门信息
     @RequestMapping("getDepart")
     public String getDepart(HttpServletRequest request) {
-        return "admin/index";
+        String pageNoStr = request.getParameter("pageNo");
+        int pageNo = 1;
+        if (pageNoStr != null && !"".equals(pageNoStr)) {
+            pageNo = Integer.parseInt(pageNoStr);
+            if (pageNo < 1) {
+                pageNo = 1;
+            }
+        }
+        Page<Department> departmentPage = departmentService.getDepByPage(pageNo);
+        request.setAttribute("departmentPage", departmentPage);
+        return "admin/departmentlist";
     }
 }

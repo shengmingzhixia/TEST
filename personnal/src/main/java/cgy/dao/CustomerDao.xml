@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cgy.dao.CustomerDao">
+    <insert id="register">
+        insert into P_CUSTOMER
+        values (SEQ_CUSTOMER.nextval, #{c_account}, #{c_pass})
+    </insert>
+    <select id="repetition" resultType="cgy.model.Customer">
+        select *
+        from P_CUSTOMER
+        where C_ACCOUNT = #{account}
+    </select>
+    <select id="getCustomer" resultType="cgy.model.Customer">
+        select *
+        from P_CUSTOMER
+        where C_ACCOUNT = #{c_account}
+          and C_Pass = #{c_pass}
+    </select>
+</mapper>

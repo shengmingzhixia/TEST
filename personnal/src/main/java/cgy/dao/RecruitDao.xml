@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cgy.dao.RecruitDao">
+    <select id="getRecruitByPage" resultType="cgy.model.Recruit">
+        SELECT *
+        FROM (SELECT ROWNUM rn,
+                     RCT_ID,
+                     RCT_POS_ID,
+                     RCT_TITLE,
+                     RCT_INTRODUACTION,
+                     RCT_PUBLISH_TIME,
+                     RCT_ADDRESS,
+                     RCT_SALARY,
+                     RCT_E_ID,
+                     RCT_IS_DRAFT,
+                     RCT_IS_PUBLISH
+              FROM P_RECRUIT
+              WHERE ROWNUM &lt;= #{1})a
+        WHERE a.rn > #{0} and rct_is_publish = #{2}
+    </select>
+    <select id="getTotalRows" resultType="java.lang.Integer">
+        select count(*)
+        from P_RECRUIT
+    </select>
+</mapper>

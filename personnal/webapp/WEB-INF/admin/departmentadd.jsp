@@ -47,15 +47,6 @@
     }
 %>
 <body>
-<div>
-    <button onclick="">应聘管理</button>
-    <button onclick="">部门职位</button>
-    <button onclick="">培训管理</button>
-    <button onclick="">员工管理</button>
-    <button onclick="">奖惩管理</button>
-    <button onclick="">薪资管理</button>
-    <button onclick="">工资异议</button>
-    <button onclick="">退出</button>
-</div>
+<%@ include file="head.jsp" %>
 </body>
 </html>

@@ -1,6 +1,7 @@
 package cgy.model;
 
-import oracle.sql.DATE;
+
+import java.util.Date;
 
 //职员表
 public class Employee {
@@ -13,7 +14,7 @@ public class Employee {
     private String e_address;
     private String e_phone;
     private long e_debit;
-    private DATE e_enroll_date;
+    private Date e_enroll_date;
     private int e_state;
     private double e_salary;
     private int e_pos_id;
@@ -99,11 +100,11 @@ public class Employee {
         this.e_debit = e_debit;
     }
 
-    public DATE getEnrollDate() {
+    public Date getEnrollDate() {
         return e_enroll_date;
     }
 
-    public void setEnrollDate(DATE e_enroll_date) {
+    public void setEnrollDate(Date e_enroll_date) {
         this.e_enroll_date = e_enroll_date;
     }
 

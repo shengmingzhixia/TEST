@@ -1,0 +1,59 @@
+*{
+    font: 16px "楷体";
+}
+
+.f1 input:first-child{
+    width: 20px;
+}
+.div1 span a,.div2 span a{
+    font: 12px "楷体";
+    color: white;
+    text-decoration: none;
+}
+.div1 span a:hover,.div2 span a:hover{
+    color: red;
+}
+.div1{
+    float: left;
+}
+.div2{
+    float: right;
+}
+.div3{
+    margin-top: 30px;
+    position: relative;
+    top: 60px;
+    left: 300px;
+}
+.div4{
+    clear: both;
+    position: relative;
+    top: 60px;
+}
+.div3,.div4{
+    margin-left: 60px;
+}
+.div4 span,.div4 span a{
+    font: 10px "楷体";
+}
+.div4 form{
+    display: inline;
+}
+.prod{
+    width:200px;
+    height:150px;
+    background-color: #eeeeee;
+    opacity:1;
+    float: left;
+    margin-left: 40px;
+    margin-bottom: 10px;
+    border: 1px solid black;
+    padding: 10px;
+}
+#hidden11{
+    position: fixed;
+    left:500px;
+    width: 300px;
+    height: 500px;
+    background-color: aqua;
+}

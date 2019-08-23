@@ -1,16 +1,17 @@
 package cgy.model;
 
-import oracle.sql.DATE;
+import java.util.Date;
+
 //部门表
 public class Department {
     private int dep_id;
     private String dep_name;
-    private DATE dep_date;
+    private Date dep_date;
 
     public Department() {
     }
 
-    public Department(String dep_name, DATE dep_date) {
+    public Department(String dep_name, Date dep_date) {
         this.dep_name = dep_name;
         this.dep_date = dep_date;
     }
@@ -31,11 +32,11 @@ public class Department {
         this.dep_name = dep_name;
     }
 
-    public DATE getDate() {
+    public Date getDate() {
         return dep_date;
     }
 
-    public void setDate(DATE dep_date) {
+    public void setDate(Date dep_date) {
         this.dep_date = dep_date;
     }
 
