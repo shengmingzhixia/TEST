@@ -22,7 +22,7 @@ public class InsertTest {
         String ss=sd.format(d);
         ApplicationContext context = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
         departmentService = (DepartmentDao) context.getBean("departmentDao");
-        Department department = new Department("法律科", d);
+        Department department = new Department("财务部", d);
         System.out.println(department);
         boolean b = departmentService.insertDepart(department);
         if (b) {

@@ -82,26 +82,26 @@
             <table border="1" cellspacing="1" cellpadding="0">
                 <tr>
                     <td>招聘主题:</td>
-                    <td>${rct.title}</td>
+                    <td>${rct.rct_title}</td>
                 </tr>
                 <tr>
                     <td>招聘描述:</td>
-                    <td>${rct.introduaction}</td>
+                    <td>${rct.rct_introduaction}</td>
                 </tr>
                 <tr>
                     <td>发布时间:</td>
-                    <td><fmt:formatDate value="${rct.publishtime }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+                    <td><fmt:formatDate value="${rct.rct_publish_time }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                 </tr>
                 <tr>
                     <td>地址:</td>
-                    <td>${rct.address}</td>
+                    <td>${rct.rct_address}</td>
                 </tr>
                 <tr>
                     <td>薪资:</td>
-                    <td>${rct.salary}</td>
+                    <td>${rct.rct_salary}</td>
                 </tr>
             </table>
-            <a href="toChooseCv?rctId=${rct.id}">去投简历！</a>
+            <a href="toChooseCv?rctId=${rct.rct_id}">去投简历！</a>
         </div>
     </div>
 </c:forEach>

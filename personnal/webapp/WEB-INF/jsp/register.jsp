@@ -63,8 +63,8 @@
     </script>
     <script>
         $(function () {
-            $("input[name=name]").blur(function () {
-                $.post("checkName", {name: $("input:eq(0)").val(),type:1}, function (obj) {
+            $("input[name=c_name]").blur(function () {
+                $.post("checkName", {c_name: $("input:eq(0)").val()}, function (obj) {
                     $("#sub1").removeAttr("disabled");
                     $("span").remove();
                     if ("用户名重复！" == obj) {
@@ -83,10 +83,10 @@
         <div class="w3ls-form">
             <form action="register" method="post">
                 <div class="email-w3ls">
-                    <input type="text" name="name" placeholder="用户名" required="">
+                    <input type="text" name="c_account" placeholder="用户名" required="">
                 </div>
                 <div class="w3ls-password">
-                    <input type="password" name="pass" placeholder="密码" required="">
+                    <input type="password" name="c_pass" placeholder="密码" required="">
                 </div>
                 <div class="clear"></div>
                 <input type="submit" value="注册" id="sub1">

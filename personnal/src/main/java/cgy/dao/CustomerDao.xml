@@ -5,15 +5,16 @@
         insert into P_CUSTOMER
         values (SEQ_CUSTOMER.nextval, #{c_account}, #{c_pass})
     </insert>
-    <select id="repetition" resultType="cgy.model.Customer">
-        select *
-        from P_CUSTOMER
-        where C_ACCOUNT = #{account}
-    </select>
     <select id="getCustomer" resultType="cgy.model.Customer">
         select *
         from P_CUSTOMER
-        where C_ACCOUNT = #{c_account}
-          and C_Pass = #{c_pass}
+        <where>
+            <if test="c_pass != null and c_pass!=''">
+                and c_pass = #{c_pass}
+            </if>
+            <if test="c_account != null and c_account !=''">
+                and c_account = #{c_account}
+            </if>
+        </where>
     </select>
 </mapper>

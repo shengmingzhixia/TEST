@@ -19,20 +19,20 @@
 </head>
 <body>
 <form action="cvUpdate" method="post">
-    <input type="hidden" value="${requestScope.cv.id}" name="id">
+    <input type="hidden" value="${requestScope.cv.cv_id}" name="id">
     <table>
         <tr>
             <td>简历名称：</td>
-            <td><input type="text" name="title" value="${requestScope.cv.title}"></td>
+            <td><input type="text" name="cv_title" value="${requestScope.cv.title}"></td>
         </tr>
         <tr>
             <td>真实姓名</td>
-            <td><input type="text" name="name" value="${requestScope.cv.name}"></td>
+            <td><input type="text" name="cv_name" value="${requestScope.cv.name}"></td>
             <td>性别</td>
             <td>
                 <script>
                     $(function () {
-                        var gender = '${requestScope.cv.gender}'
+                        var gender = '${requestScope.cv.cv_gender}'
                         if("男" == gender){
                             $("#radio1").attr("checked",true)
                         }else {
@@ -46,17 +46,17 @@
         </tr>
         <tr>
             <td>出生日期</td>
-            <td><input type="date" name="birth" value="<fmt:formatDate value="${requestScope.cv.birth}" pattern="yyyy-MM-dd"/>"></td>
+            <td><input type="date" name="cv_birth" value="<fmt:formatDate value="${requestScope.cv.birth}" pattern="yyyy-MM-dd"/>"></td>
             <td>家庭住址</td>
-            <td><input type="text" name="address" value="${requestScope.cv.address}"></td>
+            <td><input type="text" name="cv_address" value="${requestScope.cv.address}"></td>
         </tr>
         <tr>
             <td>毕业院校</td>
-            <td><input type="text" name="school" value="${requestScope.cv.school}"></td>
+            <td><input type="text" name="cv_school" value="${requestScope.cv.school}"></td>
             <td>学历</td>
             <script>
                 $(function () {
-                    var education = '${requestScope.cv.education}'
+                    var education = '${requestScope.cv.cv_education}'
                     if("高中" == education){
                         $("#select1").attr("selected",true)
                     }else if ("专科" == education) {
@@ -69,7 +69,7 @@
                 })
             </script>
             <td>
-                <select name="education">
+                <select name="cv_education">
                     <option value="高中" id="select1">高中</option>
                     <option value="专科" id="select2">专科</option>
                     <option value="本科" id="select3">本科</option>
@@ -79,17 +79,17 @@
         </tr>
         <tr>
             <td>专业</td>
-            <td><input type="text" name="major" value="${requestScope.cv.major}"></td>
+            <td><input type="text" name="cv_major" value="${requestScope.cv.major}"></td>
             <td>入学时间</td>
-            <td><input type="date" name="enroll" value="<fmt:formatDate value="${requestScope.cv.enrollDate}" pattern="yyyy-MM-dd"/>"></td>
+            <td><input type="date" name="cv_enroll_date" value="<fmt:formatDate value="${requestScope.cv.enrollDate}" pattern="yyyy-MM-dd"/>"></td>
         </tr>
         <tr>
             <td>毕业时间</td>
-            <td><input type="date" name="graduation" value="<fmt:formatDate value="${requestScope.cv.graduationDate}" pattern="yyyy-MM-dd"/>"></td>
+            <td><input type="date" name="cv_graduation_date" value="<fmt:formatDate value="${requestScope.cv.graduationDate}" pattern="yyyy-MM-dd"/>"></td>
             <td>期望薪资</td>
             <script>
                 $(function () {
-                    var salary = ${requestScope.cv.salary}
+                    var salary = ${requestScope.cv.cv_salary}
                     if(4500 == salary){
                         $("#select5").attr("selected",true)
                     }else if (5500 == salary) {
@@ -104,7 +104,7 @@
                 })
             </script>
             <td>
-                <select name="salary" id="salary">
+                <select name="cv_salary" id="salary">
                     <option value="4500" id="select5">4000-5000</option>
                     <option value="5500" id="select6">5000-6000</option>
                     <option value="7500" id="select7">7000-8000</option>
@@ -116,10 +116,10 @@
         <tr>
             <td>工作经验</td>
             <td>
-                <textarea name="exprience">${requestScope.cv.exprience}</textarea>
+                <textarea name="cv_exprience">${requestScope.cv.exprience}</textarea>
             </td>
             <td>联系电话</td>
-            <td><input type="text" name="phone" value="${requestScope.cv.phone}"></td>
+            <td><input type="text" name="cv_phone" value="${requestScope.cv.phone}"></td>
         </tr>
         <tr>
             <td><input type="submit" value="提交"></td>

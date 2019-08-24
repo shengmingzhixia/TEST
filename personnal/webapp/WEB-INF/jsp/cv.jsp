@@ -81,9 +81,9 @@
 <c:forEach items="${requestScope.cvByPage.list}" var="cv">
     <div class="prod">
         <div>
-            <a href="cvdetail?id=${cv.id}">简历==>${cv.title}</a>
-            <a href="toCvUpdate?id=${cv.id}">修改</a>
-            <a href="cvDelete?id=${cv.id}">删除</a>
+            <a href="cvdetail?id=${cv.cv_id}">简历==>${cv.cv_title}</a>
+            <a href="toCvUpdate?id=${cv.cv_id}">修改</a>
+            <a href="cvDelete?id=${cv.cv_id}">删除</a>
         </div>
     </div>
 </c:forEach>

@@ -28,4 +28,9 @@ public class ToUrl {
         return "jsp/cvadd";
     }
 
+    @RequestMapping("todepartmentadd")
+    public String todepartmentadd() {
+        return "admin/departmentadd";
+    }
+
 }

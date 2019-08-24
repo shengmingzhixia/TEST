@@ -20,11 +20,7 @@ public class LoginController {
     private CustomerService customerService;
 
     @RequestMapping("login") //登录
-    public String login(HttpServletRequest request) {
-        String account = request.getParameter("account");
-        String password = request.getParameter("password");
-        String type = request.getParameter("type");
-        Employee employee = new Employee(account, password, Integer.parseInt(type));
+    public String login(Employee employee,HttpServletRequest request) {
         employee = employeeService.login(employee);
         if (employee == null) {
             request.setAttribute("login", false);
@@ -32,7 +28,7 @@ public class LoginController {
         }
         HttpSession session = request.getSession();
         session.setAttribute("employeeNow", employee);
-        if (employee.getType() == 0) {
+        if (employee.getE_type() == 0) {
             request.setAttribute("login", true);
             return "admin/head";
         } else {
@@ -42,10 +38,8 @@ public class LoginController {
     }
 
     @RequestMapping("touristLogin") //登录
-    public String touristLogin(HttpServletRequest request) {
-        String name = request.getParameter("name");
-        String pass = request.getParameter("pass");
-        Customer customer1 = customerService.login(new Customer(name,pass));
+    public String touristLogin(Customer customer,HttpServletRequest request) {
+        Customer customer1 = customerService.login(customer);
         if (customer1 == null){
             request.setAttribute("touristLogin",false);
         }else {

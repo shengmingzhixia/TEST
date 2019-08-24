@@ -8,7 +8,7 @@ import java.util.List;
 public class Page<T> {
     private int pageNo;//当前页数
     private int totalRows;//总记录数
-    private int pageSize=9;//页容量：一页显示多少条数据
+    private int pageSize=5;//页容量：一页显示多少条数据
     private List<T> list;//当前页显示的集合
 
     public int getPageNo() {

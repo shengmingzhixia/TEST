@@ -16,33 +16,33 @@
     <title>新增简历</title>
 </head>
 <body>
-<form action="cvadd">
+<form action="cvadd" method="post">
     <table>
         <tr>
             <td>简历名称：</td>
-            <td><input type="text" name="title" placeholder="简历1"></td>
+            <td><input type="text" name="cv_title" placeholder="简历1"></td>
         </tr>
         <tr>
             <td>真实姓名</td>
-            <td><input type="text" name="name"></td>
+            <td><input type="text" name="cv_name"></td>
             <td>性别</td>
             <td>
-                男<input type="radio" name="gender" value="男">
-                女<input type="radio" name="gender" value="女">
+                男<input type="radio" name="cv_gender" value="男">
+                女<input type="radio" name="cv_gender" value="女">
             </td>
         </tr>
         <tr>
             <td>出生日期</td>
-            <td><input type="date" name="birth"></td>
+            <td><input type="date" name="cv_birth"></td>
             <td>家庭住址</td>
-            <td><input type="text" name="address"></td>
+            <td><input type="text" name="cv_address"></td>
         </tr>
         <tr>
             <td>毕业院校</td>
-            <td><input type="text" name="school"></td>
+            <td><input type="text" name="cv_school"></td>
             <td>学历</td>
             <td>
-                <select name="education">
+                <select name="cv_education">
                     <option value="高中">高中</option>
                     <option value="专科">专科</option>
                     <option value="本科">本科</option>
@@ -52,16 +52,16 @@
         </tr>
         <tr>
             <td>专业</td>
-            <td><input type="text" name="major"></td>
+            <td><input type="text" name="cv_major"></td>
             <td>入学时间</td>
-            <td><input type="date" name="enroll"></td>
+            <td><input type="date" name="cv_enroll_date"></td>
         </tr>
         <tr>
             <td>毕业时间</td>
-            <td><input type="date" name="graduation"></td>
+            <td><input type="date" name="cv_graduation_date"></td>
             <td>期望薪资</td>
             <td>
-                <select name="salary">
+                <select name="cv_salary">
                     <option value="4500">4000-5000</option>
                     <option value="5500">5000-6000</option>
                     <option value="7500">7000-8000</option>
@@ -73,10 +73,10 @@
         <tr>
             <td>工作经验</td>
             <td>
-                <textarea name="exprience"></textarea>
+                <textarea name="cv_exprience"></textarea>
             </td>
             <td>联系电话</td>
-            <td><input type="text" name="phone"></td>
+            <td><input type="text" name="cv_phone"></td>
         </tr>
         <tr>
             <td><input type="submit" value="提交"></td>

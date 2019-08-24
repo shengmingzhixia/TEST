@@ -17,10 +17,11 @@ public class DepartmentController {
     //管理员添加部门信息
     @RequestMapping("insertDepart")
     public String insertDepart(Department department, HttpServletRequest request) {
+        System.out.println(department.getDep_name());
         boolean insertDepart = departmentService.insertDepart(department);
         //给出是否添加成功的判别信息
         request.setAttribute("insertDepart", insertDepart);
-        return "admin/departmentadd";
+        return "forward:getDepart";
     }
 
     //查看部门信息

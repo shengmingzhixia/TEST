@@ -14,8 +14,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override   //登录
     public Employee login(Employee employee) {
-        if (employee == null || employee.getAccount() == null ||
-                employee.getPassword() == null || employee.getType() == null)
+        if (employee == null || employee.getE_account() == null ||
+                employee.getE_password() == null || employee.getE_type() == null)
             return null;
         return employeeDao.getE(employee);
     }

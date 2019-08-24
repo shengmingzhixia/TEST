@@ -20,20 +20,18 @@ public class RegisterController {
 
     @RequestMapping("checkName")
     @ResponseBody
-    protected void checkName(String name, HttpServletResponse response) throws ServletException, IOException {
+    protected void checkName(String c_name, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter pw = response.getWriter();
-        boolean repetition = customerService.repetition(name);
+        boolean repetition = customerService.repetition(c_name);
         if (repetition) {
             pw.write("用户名重复！");
         }
     }
 
     @RequestMapping("register")
-    protected String register(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String name = request.getParameter("name");
-        String pass = request.getParameter("pass");
-        boolean b = customerService.register(new Customer(name, pass));
+    protected String register(Customer customer,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        boolean b = customerService.register(customer);
         request.setAttribute("b",b);
         return "jsp/touristlogin";
     }

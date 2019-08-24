@@ -63,6 +63,18 @@
             }
         }
     </script>
+    <%
+        if (request.getAttribute("login") != null) {
+            boolean login = (Boolean) request.getAttribute("login");
+            if (!login) {
+    %>
+    <script>
+        alert("登录失败，账号或密码错误！")
+    </script>
+    <%
+            }
+        }
+    %>
 </head>
 <body>
 <div class="agileheader">
@@ -74,15 +86,15 @@
         <div class="w3ls-form">
             <form action="login" method="post">
                 <div class="email-w3ls">
-                    <input type="text" name="account" onblur="fun1()" placeholder="用户名" required=""/>
+                    <input type="text" name="e_account" onblur="fun1()" placeholder="用户名" required=""/>
                     <%--<span class="icon1" id="td1"></span>--%>
                 </div>
                 <div class="w3ls-password">
-                    <input type="password" name="password" onblur="fun2()" placeholder="密码" required=""/>
+                    <input type="password" name="e_password" onblur="fun2()" placeholder="密码" required=""/>
                     <%--<span class="icon3" id="td2"></span>--%>
                 </div>
                 <div class="w3ls-password">
-                    <select name="type">
+                    <select name="e_type">
                         <option value="0">管理员</option>
                         <option value="1">普通职员</option>
                     </select>

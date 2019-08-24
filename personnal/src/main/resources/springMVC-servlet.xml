@@ -37,8 +37,9 @@
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
             <!--首页放行 和 搜索放行-->
-            <mvc:exclude-mapping path="/good"/>
-            <mvc:exclude-mapping path="/findGood"/>
+            <mvc:exclude-mapping path="/toLogin"/>
+            <mvc:exclude-mapping path="/entertouristLogin"/>
+            <mvc:exclude-mapping path="/toRegister"/>
             <bean class="cgy.interceptor.CheckLoginInc"/>
         </mvc:interceptor>
     </mvc:interceptors>

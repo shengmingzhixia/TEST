@@ -9,9 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -30,63 +27,20 @@ public class CvController {
             }
         }
         Customer cust = (Customer) request.getSession().getAttribute("cust");
-        Page<Cv> cvByPage = cvService.getCvByPage(pageNo, cust.getId());
+        Page<Cv> cvByPage = cvService.getCvByPage(pageNo, cust.getC_id());
         request.setAttribute("cvByPage", cvByPage);
         return "jsp/cv";
     }
 
     @RequestMapping("cvadd")
-    public String cvadd(HttpServletRequest request) {
-        String title = request.getParameter("title");
-        String name = request.getParameter("name");
-        String gender = request.getParameter("gender");
-        String birth = request.getParameter("birth");
-        String enroll = request.getParameter("enroll");
-        String graduation = request.getParameter("graduation");
-        SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
-        Date birth1 = null;
-        Date enroll1 = null;
-        Date graduation1 = null;
-        try {
-            birth1 = sd.parse(birth);
-            enroll1 = sd.parse(enroll);
-            graduation1 = sd.parse(graduation);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        String address = request.getParameter("address");
-        String school = request.getParameter("school");
-        String education = request.getParameter("education");
-        String major = request.getParameter("major");
-        String salary = request.getParameter("salary");
-        double salary2 = Double.parseDouble(salary);
-        String exprience = request.getParameter("exprience");
-        String phone = request.getParameter("phone");
-        long phone2 = Long.parseLong(phone);
-        if (title == null || name == null || gender == null ||
-                birth == null || address == null || school == null || education == null ||
-                major == null || enroll == null || graduation == null || phone == null) {
-            System.out.println("标题" + title + "名字" + name + "性别" + gender + "出生日期" + birth
-                    + "地址" + address + "学校" + school + "education" + education + "major" + major
-                    + "enroll" + enroll + "graduation" + graduation + "电话" + phone);
+    public String cvadd(Cv cv,HttpServletRequest request) {
+        if (cv == null || cv.getCv_title() == null || cv.getCv_name() == null || cv.getCv_gender() == null ||
+                cv.getCv_birth() == null || cv.getCv_address() == null || cv.getCv_school() == null || cv.getCv_education() == null ||
+                cv.getCv_major() == null || cv.getCv_enroll_date() == null || cv.getCv_graduation_date() == null || cv.getCv_phone() == 0) {
             request.setAttribute("addCv", false);
         } else {
-            Cv cv = new Cv();
             Customer customer = (Customer) request.getSession().getAttribute("cust");
-            cv.setCid(customer.getId());
-            cv.setName(name);
-            cv.setGender(gender);
-            cv.setBirth(birth1);
-            cv.setAddress(address);
-            cv.setSchool(school);
-            cv.setEducation(education);
-            cv.setMajor(major);
-            cv.setEnrollDate(enroll1);
-            cv.setGraduationDate(graduation1);
-            cv.setSalary(salary2);
-            cv.setExprience(exprience);
-            cv.setPhone(phone2);
-            cv.setTitle(title);
+            cv.setCv_c_id(customer.getC_id());
             System.out.println(cv);
             boolean b = cvService.insertCv(cv);
             request.setAttribute("addCv", b);
@@ -110,57 +64,14 @@ public class CvController {
 
     //更新简历
     @RequestMapping("cvUpdate")
-    public String cvUpdate(HttpServletRequest request) {
-        String id = request.getParameter("id");
-        int id1 = Integer.parseInt(id);
-        String title = request.getParameter("title");
-        String name = request.getParameter("name");
-        String gender = request.getParameter("gender");
-        String birth = request.getParameter("birth");
-        String enroll = request.getParameter("enroll");
-        String graduation = request.getParameter("graduation");
-        SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
-        Date birth1 = null;
-        Date enroll1 = null;
-        Date graduation1 = null;
-        try {
-            birth1 = sd.parse(birth);
-            enroll1 = sd.parse(enroll);
-            graduation1 = sd.parse(graduation);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        String address = request.getParameter("address");
-        String school = request.getParameter("school");
-        String education = request.getParameter("education");
-        String major = request.getParameter("major");
-        String salary = request.getParameter("salary");
-        double salary2 = Double.parseDouble(salary);
-        String exprience = request.getParameter("exprience");
-        String phone = request.getParameter("phone");
-        long phone2 = Long.parseLong(phone);
-        if (title == null || name == null || gender == null ||
-                birth == null || address == null || school == null || education == null ||
-                major == null || enroll == null || graduation == null || phone == null) {
+    public String cvUpdate(Cv cv, HttpServletRequest request) {
+        if (cv == null || cv.getCv_title() == null || cv.getCv_name() == null || cv.getCv_gender() == null ||
+                cv.getCv_birth() == null || cv.getCv_address() == null || cv.getCv_school() == null || cv.getCv_education() == null ||
+                cv.getCv_major() == null || cv.getCv_enroll_date() == null || cv.getCv_graduation_date() == null || cv.getCv_phone() == 0) {
             request.setAttribute("updateCv", false);
         } else {
-            Cv cv = new Cv();
-            cv.setId(id1);
             Customer customer = (Customer) request.getSession().getAttribute("cust");
-            cv.setCid(customer.getId());
-            cv.setName(name);
-            cv.setGender(gender);
-            cv.setBirth(birth1);
-            cv.setAddress(address);
-            cv.setSchool(school);
-            cv.setEducation(education);
-            cv.setMajor(major);
-            cv.setEnrollDate(enroll1);
-            cv.setGraduationDate(graduation1);
-            cv.setSalary(salary2);
-            cv.setExprience(exprience);
-            cv.setPhone(phone2);
-            cv.setTitle(title);
+            cv.setCv_c_id(customer.getC_id());
             System.out.println(cv);
             boolean b = cvService.updateCv(cv);
             request.setAttribute("updateCv", b);
@@ -183,10 +94,10 @@ public class CvController {
     public String toChooseCv(HttpServletRequest request) {
         String id = request.getParameter("rctId");
         int rct_id = Integer.parseInt(id);
-        request.setAttribute("rct_id",rct_id);
+        request.setAttribute("rct_id", rct_id);
         Customer customer = (Customer) request.getSession().getAttribute("cust");
         if (customer == null) return "jsp/touristlogin";
-        List<Cv> cvList = cvService.getCvs(customer.getId());
+        List<Cv> cvList = cvService.getCvs(customer.getC_id());
         request.setAttribute("cvList", cvList);
         return "jsp/choosecv";
     }

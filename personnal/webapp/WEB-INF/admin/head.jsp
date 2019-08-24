@@ -1,5 +1,5 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
     if (request.getAttribute("login") != null) {
         boolean login = (Boolean) request.getAttribute("login");
@@ -9,10 +9,29 @@
     alert("登录成功！")
 </script>
 <%
+        }
+    }
+%>
+<%
+    if (session.getAttribute("employeeNow") != null) {
+%>
+<div><span>当前用户===》${sessionScope.employeeNow.e_name}</span></div>
+<%
+    }
+%>
+<%
+    if (request.getAttribute("insertDepart") != null) {
+        boolean insertDepart = (Boolean) request.getAttribute("insertDepart");
+        if (insertDepart) {
+%>
+<script>
+    alert("添加部门成功！")
+</script>
+<%
 } else {
 %>
 <script>
-    alert("登录失败！")
+    alert("添加部门失败！")
 </script>
 <%
         }

@@ -92,11 +92,11 @@
         <div class="w3ls-form">
             <form action="touristLogin" method="post">
                 <div class="email-w3ls">
-                    <input type="text" name="name" onblur="fun1()" placeholder="用户名" required=""/>
+                    <input type="text" name="c_account" onblur="fun1()" placeholder="用户名" required=""/>
                     <%--<span class="icon1" id="td1"></span>--%>
                 </div>
                 <div class="w3ls-password">
-                    <input type="password" name="pass" onblur="fun2()" placeholder="密码" required=""/>
+                    <input type="password" name="c_pass" onblur="fun2()" placeholder="密码" required=""/>
                     <%--<span class="icon3" id="td2"></span>--%>
                 </div>
                 <input type="checkbox" name="cookie"/>Remember Me

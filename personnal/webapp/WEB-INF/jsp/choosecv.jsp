@@ -30,10 +30,10 @@
 %>
 <div>
     <form action="insertInterView" method="post">
-        <input type="hidden" value="${requestScope.rct_id}" name="rctId">
-        <select name="cv">
+        <input type="hidden" value="${requestScope.rct_id}" name="in_rct_id">
+        <select name="in_cv_id">
             <c:forEach items="${requestScope.cvList}" var="cv">
-                <option value="${cv.id}">简历名称==》${cv.title}</option>
+                <option value="${cv.cv_id}">简历名称==》${cv.cv_title}</option>
             </c:forEach>
         </select>
         <input type="submit" value="提交简历">

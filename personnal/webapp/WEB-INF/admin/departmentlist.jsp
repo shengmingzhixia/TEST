@@ -36,13 +36,21 @@
             departmentPage.getList().size() != 0) {
 %>
 部门名称
-<c:forEach items="${requestScope.departmentPage.list}"  var="depart">
-    <a href="#&dep_id=${depart.id}">${depart.name}</a>
-</c:forEach>
+<table border="1" cellspacing="1" cellpadding="0">
+    <c:forEach items="${requestScope.departmentPage.list}" var="depart">
+        <tr>
+            <td><a href="#&dep_id=${depart.dep_id}">${depart.name}</a></td>
+            <td><a href="#&dep_id=${depart.dep_id}">修改</a></td>
+            <td><a href="#&dep_id=${depart.dep_id}">删除</a></td>
+        </tr>
+
+    </c:forEach>
+</table>
+<span><a href="todepartmentadd">添加</a>部门</span>
 <%
 } else {
 %>
-<div>没有商品</div>
+<div>还没有部门信息被录入！去<a href="todepartmentadd">添加</a>部门</div>
 <%
     }
 %>

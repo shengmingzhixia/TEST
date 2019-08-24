@@ -6,7 +6,16 @@
     <select id="getE" resultType="cgy.model.Employee">
         select *
         from P_EMPLOYEE
-        where E_ACCOUNT = #{e_account}
-          and e_password = #{e_password}
+        <where>
+            <if test="e_type!=null and e_type!=''">
+                and e_type = #{e_type}
+            </if>
+            <if test="e_password!=null and e_password!=''">
+                and e_password = #{e_password}
+            </if>
+            <if test="e_account!=null and e_account!=''">
+                and e_account = #{e_account}
+            </if>
+        </where>
     </select>
 </mapper>

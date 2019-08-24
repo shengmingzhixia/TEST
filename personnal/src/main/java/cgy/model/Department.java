@@ -16,27 +16,27 @@ public class Department {
         this.dep_date = dep_date;
     }
 
-    public int getId() {
+    public int getDep_id() {
         return dep_id;
     }
 
-    public void setId(int dep_id) {
+    public void setDep_id(int dep_id) {
         this.dep_id = dep_id;
     }
 
-    public String getName() {
+    public String getDep_name() {
         return dep_name;
     }
 
-    public void setName(String dep_name) {
+    public void setDep_name(String dep_name) {
         this.dep_name = dep_name;
     }
 
-    public Date getDate() {
+    public Date getDep_date() {
         return dep_date;
     }
 
-    public void setDate(Date dep_date) {
+    public void setDep_date(Date dep_date) {
         this.dep_date = dep_date;
     }
 

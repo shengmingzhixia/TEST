@@ -16,7 +16,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public boolean insertDepart(Department department) {
-        if (department == null || department.getName() == null || department.getDate() == null)
+        if (department == null || department.getDep_name() == null || department.getDep_date() == null)
             return false;
         return departmentDao.insertDepart(department);
     }

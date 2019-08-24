@@ -1,6 +1,8 @@
 package cgy.model;
 
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 //职员表
@@ -14,6 +16,7 @@ public class Employee {
     private String e_address;
     private String e_phone;
     private long e_debit;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date e_enroll_date;
     private int e_state;
     private double e_salary;
@@ -28,107 +31,107 @@ public class Employee {
         this.e_type = e_type;
     }
 
-    public int getId() {
+    public int getE_id() {
         return e_id;
     }
 
-    public void setId(int e_id) {
+    public void setE_id(int e_id) {
         this.e_id = e_id;
     }
 
-    public String getAccount() {
+    public String getE_account() {
         return e_account;
     }
 
-    public void setAccount(String e_account) {
+    public void setE_account(String e_account) {
         this.e_account = e_account;
     }
 
-    public String getPassword() {
+    public String getE_password() {
         return e_password;
     }
 
-    public void setPassword(String e_password) {
+    public void setE_password(String e_password) {
         this.e_password = e_password;
     }
 
-    public Integer getType() {
+    public Integer getE_type() {
         return e_type;
     }
 
-    public void setType(int e_type) {
+    public void setE_type(Integer e_type) {
         this.e_type = e_type;
     }
 
-    public String getName() {
+    public String getE_name() {
         return e_name;
     }
 
-    public void setName(String e_name) {
+    public void setE_name(String e_name) {
         this.e_name = e_name;
     }
 
-    public String getGender() {
+    public String getE_gender() {
         return e_gender;
     }
 
-    public void setGender(String e_gender) {
+    public void setE_gender(String e_gender) {
         this.e_gender = e_gender;
     }
 
-    public String getAddress() {
+    public String getE_address() {
         return e_address;
     }
 
-    public void setAddress(String e_address) {
+    public void setE_address(String e_address) {
         this.e_address = e_address;
     }
 
-    public String getPhone() {
+    public String getE_phone() {
         return e_phone;
     }
 
-    public void setPhone(String e_phone) {
+    public void setE_phone(String e_phone) {
         this.e_phone = e_phone;
     }
 
-    public long getDebit() {
+    public long getE_debit() {
         return e_debit;
     }
 
-    public void setDebit(long e_debit) {
+    public void setE_debit(long e_debit) {
         this.e_debit = e_debit;
     }
 
-    public Date getEnrollDate() {
+    public Date getE_enroll_date() {
         return e_enroll_date;
     }
 
-    public void setEnrollDate(Date e_enroll_date) {
+    public void setE_enroll_date(Date e_enroll_date) {
         this.e_enroll_date = e_enroll_date;
     }
 
-    public int getState() {
+    public int getE_state() {
         return e_state;
     }
 
-    public void setState(int e_state) {
+    public void setE_state(int e_state) {
         this.e_state = e_state;
     }
 
-    public double getSalary() {
+    public double getE_salary() {
         return e_salary;
     }
 
-    public void setSalary(double e_salary) {
+    public void setE_salary(double e_salary) {
         this.e_salary = e_salary;
     }
 
-    public int getPosId() {
+    public int getE_pos_id() {
         return e_pos_id;
     }
 
-    public void setPosId(int e_pos_id) {
+    public void setE_pos_id(int e_pos_id) {
         this.e_pos_id = e_pos_id;
     }
 
