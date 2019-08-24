@@ -1,8 +1,11 @@
 package cgy.service.impl;
 
+import cgy.dao.EmployeeDao;
 import cgy.dao.PositionDao;
+import cgy.model.Employee;
 import cgy.model.Page;
 import cgy.model.Position;
+import cgy.service.EmployeeService;
 import cgy.service.PositionService;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +16,8 @@ import java.util.List;
 public class PositionServiceImpl implements PositionService {
     @Resource
     private PositionDao positionDao;
+    @Resource
+    private EmployeeDao employeeDao;
 
     @Override
     public List<Position> getPositions(Position position) {
@@ -22,16 +27,23 @@ public class PositionServiceImpl implements PositionService {
 
     @Override
     public boolean updatePosition(Position position) {
-        return false;
+        if (position == null || position.getPos_dep_id() == null) return false;
+        return positionDao.updatePosition(position);
     }
 
     @Override
     public boolean insertPosition(Position position) {
-        return false;
+        return positionDao.insertPosition(position);
     }
 
     @Override
     public boolean deletePosition(int pos_id) {
+        Employee employee = new Employee();
+        employee.setE_pos_id(pos_id);
+        List<Employee> employees = employeeDao.getE(employee);
+        if (employees == null || employees.size() == 0){
+            return positionDao.deletePosition(pos_id);
+        }
         return false;
     }
 

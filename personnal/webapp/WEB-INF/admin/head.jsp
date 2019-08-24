@@ -73,6 +73,60 @@
         }
     }
 %>
+<%
+    if (request.getAttribute("insertPosition") != null) {
+        boolean insertPosition = (Boolean) request.getAttribute("insertPosition");
+        if (insertPosition) {
+%>
+<script>
+    alert("新增职位成功！")
+</script>
+<%
+} else {
+%>
+<script>
+    alert("新增职位失败！")
+</script>
+<%
+        }
+    }
+%>
+<%
+    if (request.getAttribute("updatePosition") != null) {
+        boolean updatePosition = (Boolean) request.getAttribute("updatePosition");
+        if (updatePosition) {
+%>
+<script>
+    alert("修改职位成功！")
+</script>
+<%
+} else {
+%>
+<script>
+    alert("修改职位失败！")
+</script>
+<%
+        }
+    }
+%>
+<%
+    if (request.getAttribute("deletePosition") != null) {
+        boolean deletePosition = (Boolean) request.getAttribute("deletePosition");
+        if (deletePosition) {
+%>
+<script>
+    alert("删除职位成功！")
+</script>
+<%
+} else {
+%>
+<script>
+    alert("删除职位失败！")
+</script>
+<%
+        }
+    }
+%>
 <div>
     <button>应聘管理</button>
     <button><a href="getDepart">部门职位</a></button>

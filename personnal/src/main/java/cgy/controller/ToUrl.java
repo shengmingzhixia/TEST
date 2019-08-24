@@ -39,4 +39,10 @@ public class ToUrl {
         request.setAttribute("position", position);
         return "admin/positionupdate";
     }
+
+    @RequestMapping("toaddposition")
+    public String toaddposition(Integer dep_id, HttpServletRequest request) {
+        request.setAttribute("dep_id", dep_id);
+        return "admin/positionadd";
+    }
 }

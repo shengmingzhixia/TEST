@@ -30,6 +30,11 @@ public class PositionController {
                 pageNo = 1;
             }
         }
+        System.out.println(position+"2");
+        if (position.getPos_dep_id() == null){
+            System.out.println(position+"3");
+            position = (Position) request.getAttribute("position");
+        }
         Page<Position> positionByPage = positionService.getPositionByPage(pageNo, position.getPos_dep_id());
         request.setAttribute("pos_dep_id",position.getPos_dep_id());
         request.setAttribute("positionByPage",positionByPage);
@@ -45,5 +50,30 @@ public class PositionController {
         if (repetition) {
             pw.write("职位名重复！");
         }
+    }
+
+    @RequestMapping("addPosition")
+    public String addPosition(Position position, HttpServletRequest request){
+        System.out.println(position+"1");
+        request.setAttribute("position",position);
+        boolean insertPosition = positionService.insertPosition(position);
+        request.setAttribute("insertPosition",insertPosition);
+        return "forward:getPositions";
+    }
+
+    @RequestMapping("updatePosition")
+    public String updatePosition(Position position, HttpServletRequest request){
+        request.setAttribute("position",position);
+        boolean updatePosition = positionService.updatePosition(position);
+        request.setAttribute("updatePosition",updatePosition);
+        return "forward:getPositions";
+    }
+
+    @RequestMapping("deleteposition")
+    public String deleteposition(Position position, HttpServletRequest request){
+        request.setAttribute("position",position);
+        boolean deletePosition = positionService.deletePosition(position.getPos_id());
+        request.setAttribute("deletePosition",deletePosition);
+        return "forward:getPositions";
     }
 }

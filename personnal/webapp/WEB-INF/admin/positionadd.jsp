@@ -2,7 +2,7 @@
   Created by IntelliJ IDEA.
   User: Administrator
   Date: 2019\8\24 0024
-  Time: 10:07
+  Time: 17:05
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -13,7 +13,7 @@
 <html>
 <head>
     <base href="<%=basePath%>"/>
-    <title>更新部门信息</title>
+    <title>添加职位</title>
     <script src="js/jquery-1.7.2.js"></script>
     <script>
         $(function () {
@@ -35,10 +35,9 @@
 <table>
     <tr>请输入职位名称</tr>
     <tr>
-        <form action="updatePosition" method="post">
-            <input type="text" name="pos_name" value="${requestScope.position.pos_name}">
-            <input type="hidden" value="${requestScope.position.pos_id}" name="pos_id">
-            <input type="hidden" value="${requestScope.position.pos_dep_id}" name="pos_dep_id">
+        <form action="addPosition" method="post">
+            <input type="text" name="pos_name" >
+            <input type="hidden" value="${requestScope.dep_id}" name="pos_dep_id">
             <input type="submit" value="提交" id="sub1">
         </form>
     </tr>
