@@ -16,6 +16,37 @@
             <if test="e_account!=null and e_account!=''">
                 and e_account = #{e_account}
             </if>
+            <if test="e_pos_id!=null and e_pos_id !=''">
+                and e_pos_id = #{e_pos_id}
+            </if>
+            <if test="e_id!=null and e_id !=''">
+                and e_id = #{e_id}
+            </if>
         </where>
+    </select>
+    <select id="getTotalRows" resultType="java.lang.Integer">
+        select count(*)
+        from P_EMPLOYEE
+        where E_POS_ID = #{pos_id}
+    </select>
+    <select id="getEmployeeByPage" resultType="cgy.model.Employee">
+        SELECT *
+        FROM (SELECT ROWNUM rn,
+                     E_ID,
+                     E_ACCOUNT,
+                     E_PASSWORD,
+                     E_TYPE,
+                     E_NAME,
+                     E_GENDER,
+                     E_ADDRESS,
+                     E_PHONE,
+                     E_DEBIT,
+                     E_ENROLL_DATE,
+                     E_STATE,
+                     E_SALARY,
+                     E_POS_ID
+              FROM (select * from P_EMPLOYEE where E_POS_ID = #{2})
+              WHERE ROWNUM &lt;= #{1})a
+        WHERE a.rn > #{0}
     </select>
 </mapper>

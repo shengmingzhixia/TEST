@@ -7,7 +7,7 @@ import java.util.Date;
 
 //职员表
 public class Employee {
-    private int e_id;
+    private Integer e_id;
     private String e_account;
     private String e_password;
     private Integer e_type;
@@ -20,7 +20,7 @@ public class Employee {
     private Date e_enroll_date;
     private int e_state;
     private double e_salary;
-    private int e_pos_id;
+    private Integer e_pos_id;
 
     public Employee() {
     }
@@ -31,11 +31,11 @@ public class Employee {
         this.e_type = e_type;
     }
 
-    public int getE_id() {
+    public Integer getE_id() {
         return e_id;
     }
 
-    public void setE_id(int e_id) {
+    public void setE_id(Integer e_id) {
         this.e_id = e_id;
     }
 
@@ -127,11 +127,11 @@ public class Employee {
         this.e_salary = e_salary;
     }
 
-    public int getE_pos_id() {
+    public Integer getE_pos_id() {
         return e_pos_id;
     }
 
-    public void setE_pos_id(int e_pos_id) {
+    public void setE_pos_id(Integer e_pos_id) {
         this.e_pos_id = e_pos_id;
     }
 

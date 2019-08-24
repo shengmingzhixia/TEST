@@ -1,6 +1,7 @@
 package cgy.controller;
 
 import cgy.model.Cv;
+import cgy.model.Position;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -33,4 +34,9 @@ public class ToUrl {
         return "admin/departmentadd";
     }
 
+    @RequestMapping("toupdateposition")
+    public String toupdateposition(Position position, HttpServletRequest request) {
+        request.setAttribute("position", position);
+        return "admin/positionupdate";
+    }
 }

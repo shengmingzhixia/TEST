@@ -39,9 +39,9 @@
 <table border="1" cellspacing="1" cellpadding="0">
     <c:forEach items="${requestScope.departmentPage.list}" var="depart">
         <tr>
-            <td><a href="#&dep_id=${depart.dep_id}">${depart.name}</a></td>
-            <td><a href="#&dep_id=${depart.dep_id}">修改</a></td>
-            <td><a href="#&dep_id=${depart.dep_id}">删除</a></td>
+            <td><a href="getPositions?pos_dep_id=${depart.dep_id}&name=${depart.dep_name}">${depart.dep_name}</a></td>
+            <td><a href="toupdateDepart?dep_id=${depart.dep_id}&dep_name=${depart.dep_name}">修改</a></td>
+            <td><a href="deleteDepart?dep_id=${depart.dep_id}">删除</a></td>
         </tr>
 
     </c:forEach>

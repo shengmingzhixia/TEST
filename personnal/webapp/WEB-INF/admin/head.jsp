@@ -37,6 +37,42 @@
         }
     }
 %>
+<%
+    if (request.getAttribute("deleteDepart") != null) {
+        boolean deleteDepart = (Boolean) request.getAttribute("deleteDepart");
+        if (deleteDepart) {
+%>
+<script>
+    alert("删除部门成功！")
+</script>
+<%
+} else {
+%>
+<script>
+    alert("删除部门失败！")
+</script>
+<%
+        }
+    }
+%>
+<%
+    if (request.getAttribute("updateDepart") != null) {
+        boolean updateDepart = (Boolean) request.getAttribute("updateDepart");
+        if (updateDepart) {
+%>
+<script>
+    alert("更新部门成功！")
+</script>
+<%
+} else {
+%>
+<script>
+    alert("更新部门失败！")
+</script>
+<%
+        }
+    }
+%>
 <div>
     <button>应聘管理</button>
     <button><a href="getDepart">部门职位</a></button>
@@ -45,5 +81,17 @@
     <button>奖惩管理</button>
     <button>薪资管理</button>
     <button>工资异议</button>
-    <button>退出</button>
+    <button><a href="javascript:history.go(-1)">返回上一步</a></button>
 </div>
+<%
+    if (request.getAttribute("name") != null) {
+        session.setAttribute("name", request.getAttribute("name"));
+%>
+<div><span>当前===》${requestScope.name}</span></div>
+<%
+} else if (session.getAttribute("name") != null) {
+%>
+<div><span>当前===》${sessionScope.name}</span></div>
+<%
+    }
+%>

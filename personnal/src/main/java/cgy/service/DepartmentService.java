@@ -9,4 +9,13 @@ public interface DepartmentService {
 
     //查询部门信息
     Page<Department> getDepByPage(int pageNo);
+
+    //更新部门名称
+    boolean updateDepart(Department department);
+
+    boolean deleteDepart(int id);
+
+    boolean repetition(String dep_name);
+
+    Department getDepartment(Integer pos_dep_id);
 }

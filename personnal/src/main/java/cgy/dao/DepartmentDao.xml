@@ -5,13 +5,33 @@
         insert into P_DEPARTMENT
         values (SEQ_DEPARTMENT.nextval, #{dep_name}, #{dep_date})
     </insert>
+    <update id="updateDepart">
+        update P_DEPARTMENT
+        set DEP_NAME = #{dep_name}
+        where dep_id = #{dep_id}
+    </update>
+    <delete id="deleteDepart">
+        delete
+        from P_DEPARTMENT
+        where DEP_ID = #{id}
+    </delete>
     <select id="getDepByPage" resultType="cgy.model.Department">
         SELECT *
-        FROM (SELECT ROWNUM rn, DEP_ID, DEP_NAME, DEP_DATE
-              FROM P_DEPARTMENT WHERE ROWNUM &lt;= #{1})a
+        FROM (SELECT ROWNUM rn, DEP_ID, DEP_NAME, DEP_DATE FROM P_DEPARTMENT WHERE ROWNUM &lt;= #{1})a
         WHERE a.rn > #{0}
     </select>
     <select id="getTotalRows" resultType="java.lang.Integer">
-        select count(*) from P_DEPARTMENT
+        select count(*)
+        from P_DEPARTMENT
+    </select>
+    <select id="getDeparts" resultType="cgy.model.Department">
+        select *
+        from P_DEPARTMENT
+        where DEP_NAME = #{dep_name}
+    </select>
+    <select id="getDepart" resultType="cgy.model.Department">
+        select *
+        from P_DEPARTMENT
+        where DEP_ID = #{pos_dep_id}
     </select>
 </mapper>

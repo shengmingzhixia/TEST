@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cgy.dao.PositionDao">
+    <insert id="insertPosition">
+        insert into P_POSITION
+        values (SEQ_POSITION.nextval, #{pos_name}, #{pos_dep_id})
+    </insert>
+    <update id="updatePosition">
+        update P_POSITION
+        set POS_NAME   = #{pos_name},
+            pos_dep_id = #{pos_dep_id}
+        where pos_id = #{pos_id}
+    </update>
+    <delete id="deletePosition">
+        delete
+        from P_POSITION
+        where POS_ID = #{pos_id}
+    </delete>
+    <select id="getPositions" resultType="cgy.model.Position">
+        select * from P_POSITION
+        <where>
+            <if test="pos_dep_id!=null">
+                and pos_dep_id = #{pos_dep_id}
+            </if>
+            <if test="pos_id!=null">
+                and pos_id = #{pos_id}
+            </if>
+            <if test="pos_name!=null">
+                and pos_name = #{pos_name}
+            </if>
+        </where>
+    </select>
+    <select id="getPositionByPage" resultType="cgy.model.Position">
+        SELECT *
+        FROM (SELECT ROWNUM rn, POS_ID, POS_NAME, POS_DEP_ID
+              FROM (select * from P_POSITION where POS_DEP_ID = #{2})
+              WHERE ROWNUM &lt;= #{1})a
+        WHERE a.rn > #{0}
+    </select>
+    <select id="getTotalRows" resultType="java.lang.Integer">
+        select count(*)
+        from P_POSITION
+        where POS_DEP_ID = #{dep_id}
+    </select>
+</mapper>
