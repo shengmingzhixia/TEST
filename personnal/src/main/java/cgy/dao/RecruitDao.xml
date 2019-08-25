@@ -16,10 +16,21 @@
                      RCT_IS_PUBLISH
               FROM P_RECRUIT
               WHERE ROWNUM &lt;= #{1})a
-        WHERE a.rn > #{0} and rct_is_publish = #{2}
+        WHERE a.rn > #{0}
+          and rct_is_publish = #{2}
     </select>
     <select id="getTotalRows" resultType="java.lang.Integer">
         select count(*)
         from P_RECRUIT
+    </select>
+    <select id="getRecruit" resultType="cgy.model.Recruit">
+        select *
+        from P_RECRUIT
+        where RCT_ID = #{Rct_id}
+    </select>
+    <select id="getRecruitById" resultType="cgy.model.Recruit">
+        select *
+        from P_RECRUIT
+        where RCT_E_ID = #{e_id}
     </select>
 </mapper>

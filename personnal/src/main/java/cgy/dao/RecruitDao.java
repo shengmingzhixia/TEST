@@ -10,4 +10,9 @@ public interface RecruitDao {
 
     //得出招聘信息的记录数
     int getTotalRows();
+
+    //查看某条招聘信息的具体内容
+    Recruit getRecruit(int Rct_id);
+
+    List<Recruit> getRecruitById(Integer e_id);
 }

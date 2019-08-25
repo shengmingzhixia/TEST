@@ -13,4 +13,6 @@ public interface EmployeeDao {
 
     //得出员工的记录数
     int getTotalRows(int pos_id);
+
+    boolean insert(Employee employee);
 }

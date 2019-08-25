@@ -12,4 +12,54 @@
                 #{in_is_agree},
                 #{in_read_account})
     </insert>
+    <update id="updateInterView">
+        update P_INTERVIEW
+        <set>
+            <if test="in_is_agree!=null">
+                in_is_agree = #{in_is_agree},
+            </if>
+            <if test="in_is_accept!=null">
+                in_is_accept = #{in_is_accept},
+            </if>
+            <if test="in_is_read!=null">
+                in_is_read = #{in_is_read},
+            </if>
+            <if test="in_read_account!=null">
+                in_read_account = in_read_account+#{in_read_account},
+            </if>
+            <if test="in_date!=null">
+                in_date = #{in_date},
+            </if>
+        </set>
+        where in_id = #{in_id}
+    </update>
+    <select id="getInterViewByPage" resultType="cgy.model.InterView">
+        SELECT *
+        FROM (SELECT ROWNUM rn,
+                     IN_ID,
+                     IN_CV_ID,
+                     IN_RCT_ID,
+                     IN_DATE,
+                     IN_IS_READ,
+                     IN_IS_ACCEPT,
+                     IN_IS_AGREE,
+                     IN_READ_ACCOUNT
+              FROM (select * from P_INTERVIEW where IN_IS_ACCEPT &lt; 3)
+              WHERE ROWNUM &lt;= #{1})a
+        WHERE a.rn > #{0}
+    </select>
+    <select id="getTotalRows" resultType="java.lang.Integer">
+        select count(*)
+        from P_INTERVIEW
+    </select>
+    <select id="getInterViews" resultType="cgy.model.InterView">
+        select *
+        from P_INTERVIEW
+        where IN_CV_ID = #{cv_id}
+    </select>
+    <select id="getInterView" resultType="cgy.model.InterView">
+        select *
+        from P_INTERVIEW
+        where IN_RCT_ID = #{rct_id}
+    </select>
 </mapper>

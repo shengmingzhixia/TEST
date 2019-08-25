@@ -14,7 +14,7 @@ public class Employee {
     private String e_name;
     private String e_gender;
     private String e_address;
-    private String e_phone;
+    private long e_phone;
     private long e_debit;
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date e_enroll_date;
@@ -87,11 +87,11 @@ public class Employee {
         this.e_address = e_address;
     }
 
-    public String getE_phone() {
+    public long getE_phone() {
         return e_phone;
     }
 
-    public void setE_phone(String e_phone) {
+    public void setE_phone(long e_phone) {
         this.e_phone = e_phone;
     }
 

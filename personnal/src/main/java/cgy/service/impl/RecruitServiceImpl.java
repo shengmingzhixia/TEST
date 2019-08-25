@@ -24,4 +24,14 @@ public class RecruitServiceImpl implements RecruitService {
         page.setList(recruits);
         return page;
     }
+
+    @Override
+    public List<Recruit> getRecruits(Integer e_id) {
+        return recruitDao.getRecruitById(e_id);
+    }
+
+    @Override
+    public Recruit getRecruit(Integer in_rct_id) {
+        return recruitDao.getRecruit(in_rct_id);
+    }
 }

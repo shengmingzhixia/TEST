@@ -1,8 +1,6 @@
 package cgy.controller;
 
-import cgy.model.Customer;
-import cgy.model.Cv;
-import cgy.model.Page;
+import cgy.model.*;
 import cgy.service.CvService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,7 +31,7 @@ public class CvController {
     }
 
     @RequestMapping("cvadd")
-    public String cvadd(Cv cv,HttpServletRequest request) {
+    public String cvadd(Cv cv, HttpServletRequest request) {
         if (cv == null || cv.getCv_title() == null || cv.getCv_name() == null || cv.getCv_gender() == null ||
                 cv.getCv_birth() == null || cv.getCv_address() == null || cv.getCv_school() == null || cv.getCv_education() == null ||
                 cv.getCv_major() == null || cv.getCv_enroll_date() == null || cv.getCv_graduation_date() == null || cv.getCv_phone() == 0) {
@@ -53,6 +51,14 @@ public class CvController {
         Cv cv = cvService.getCv(id);
         request.setAttribute("cv", cv);
         return "jsp/cvdetail";
+    }
+
+    @RequestMapping("cvdetail2")
+    public String cvDetail2(InterView2 interView2, HttpServletRequest request) {
+        Cv cv = cvService.getCv(interView2.getIn_cv_id());
+        request.setAttribute("cv", cv);
+        request.setAttribute("interView2", interView2);
+        return "admin/interview/interviewdetail";
     }
 
     @RequestMapping("toCvUpdate")

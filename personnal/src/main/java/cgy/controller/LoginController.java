@@ -21,7 +21,9 @@ public class LoginController {
 
     @RequestMapping("login") //登录
     public String login(Employee employee,HttpServletRequest request) {
+        System.out.println(employee);
         employee = employeeService.login(employee);
+        System.out.println(employee);
         if (employee == null) {
             request.setAttribute("login", false);
             return "jsp/login";
@@ -33,7 +35,7 @@ public class LoginController {
             return "admin/head";
         } else {
             request.setAttribute("login", true);
-            return "../index";
+            return "employee/index";
         }
     }
 

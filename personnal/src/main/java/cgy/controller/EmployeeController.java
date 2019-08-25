@@ -1,17 +1,13 @@
 package cgy.controller;
 
-import cgy.model.Department;
-import cgy.model.Employee;
-import cgy.model.Page;
-import cgy.model.Position;
-import cgy.service.DepartmentService;
-import cgy.service.EmployeeService;
-import cgy.service.PositionService;
+import cgy.model.*;
+import cgy.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 
 @Controller
 public class EmployeeController {
@@ -21,6 +17,10 @@ public class EmployeeController {
     private PositionService positionService;
     @Resource
     private DepartmentService departmentService;
+    @Resource
+    CvService cvService;
+    @Resource
+    RecruitService recruitService;
 
     @RequestMapping("getEmployees")
     public String getEmployees(Employee employee, HttpServletRequest request) {
@@ -47,5 +47,28 @@ public class EmployeeController {
         Department department = departmentService.getDepartment(position.getPos_dep_id());
         request.setAttribute("depName", department.getDep_name());
         return "admin/employee/employeedetail";
+    }
+
+    @RequestMapping("addnewemployee")
+    public String addnewemployee(Integer in_rct_id, Cv cv, HttpServletRequest request) {
+        Cv cv1 = cvService.getCv(cv.getCv_id());
+        Employee employee = new Employee();
+        Customer customer = (Customer) request.getSession().getAttribute("cust");
+        employee.setE_account(customer.getC_account());
+        employee.setE_password(customer.getC_pass());
+        employee.setE_type(1);
+        employee.setE_name(cv1.getCv_name());
+        employee.setE_gender(cv1.getCv_gender());
+        employee.setE_address(cv1.getCv_address());
+        employee.setE_phone(cv1.getCv_phone());
+        employee.setE_enroll_date(new Date());
+        employee.setE_state(1);
+        employee.setE_salary(cv1.getCv_salary());
+        Recruit recruit = recruitService.getRecruit(in_rct_id);
+        employee.setE_pos_id(recruit.getRct_pos_id());
+        System.out.println(employee);
+        boolean insert = employeeService.insertEmployee(employee);
+        request.setAttribute("insert", insert);
+        return "../head";
     }
 }

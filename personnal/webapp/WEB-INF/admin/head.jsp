@@ -127,9 +127,58 @@
         }
     }
 %>
+<%
+    if (request.getAttribute("view") != null) {
+        boolean view = (Boolean) request.getAttribute("view");
+        if (view) {
+%>
+<script>
+    alert("发送面试邀请成功！")
+</script>
+<%
+} else {
+%>
+<script>
+    alert("发送面试邀请失败！")
+</script>
+<%
+        }
+    }
+%>
+<%
+    if (request.getAttribute("view3") != null) {
+        boolean view3 = (Boolean) request.getAttribute("view3");
+        if (view3) {
+%>
+<script>
+    alert("面试完成！")
+</script>
+<%
+        }
+    }
+%>
+<%
+    if (request.getAttribute("view4") != null) {
+        boolean view3 = (Boolean) request.getAttribute("view4");
+        if (view3) {
+%>
+<script>
+    alert("录用成功！")
+</script>
+<%
+} else {
+%>
+<script>
+    alert("不录用成功！")
+</script>
+<%
+        }
+    }
+%>
 <div>
-    <button>应聘管理</button>
+    <button><a href="getInter">应聘管理</a></button>
     <button><a href="getDepart">部门职位</a></button>
+    <button><a href="getMyInter">面试信息</a></button>
     <button>培训管理</button>
     <button>员工管理</button>
     <button>奖惩管理</button>

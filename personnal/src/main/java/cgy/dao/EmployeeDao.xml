@@ -3,11 +3,27 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cgy.dao.EmployeeDao">
+    <insert id="insert">
+        insert into P_EMPLOYEE
+        values (SEQ_EMPLOYEE.nextval,
+                #{e_account},
+                #{e_password},
+                #{e_type},
+                #{e_name},
+                #{e_gender},
+                #{e_address},
+                #{e_phone},
+                #{e_debit},
+                #{e_enroll_date},
+                #{e_state},
+                #{e_salary},
+                #{e_pos_id})
+    </insert>
     <select id="getE" resultType="cgy.model.Employee">
         select *
         from P_EMPLOYEE
         <where>
-            <if test="e_type!=null and e_type!=''">
+            <if test="e_type!=null">
                 and e_type = #{e_type}
             </if>
             <if test="e_password!=null and e_password!=''">

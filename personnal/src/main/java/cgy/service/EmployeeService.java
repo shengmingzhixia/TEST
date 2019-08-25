@@ -12,4 +12,6 @@ public interface EmployeeService {
     Page<Employee> getEmployeeByPage(int pageNo,int pos_id);
 
     Employee getEmployee(Employee employee);
+
+    boolean insertEmployee(Employee employee);
 }
