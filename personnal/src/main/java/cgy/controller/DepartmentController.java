@@ -81,7 +81,13 @@ public class DepartmentController {
     protected void checkDepName(String dep_name, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter pw = response.getWriter();
-        boolean repetition = departmentService.repetition(dep_name);
+
+        boolean repetition = false;
+        try {
+            repetition = departmentService.repetition(dep_name);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         if (repetition) {
             pw.write("部门名重复！");
         }

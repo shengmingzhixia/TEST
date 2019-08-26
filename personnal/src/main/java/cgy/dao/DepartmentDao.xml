@@ -28,7 +28,7 @@
         select *
         from P_DEPARTMENT
         <where>
-            <if test="dep_name!=null">
+            <if test="_parameter!=null">
                 and DEP_NAME = #{dep_name}
             </if>
         </where>

@@ -20,10 +20,11 @@ public class RegisterController {
 
     @RequestMapping("checkName")
     @ResponseBody
-    protected void checkName(String c_name, HttpServletResponse response) throws ServletException, IOException {
+    protected void checkName(String c_account, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter pw = response.getWriter();
-        boolean repetition = customerService.repetition(c_name);
+        boolean repetition = false;
+        repetition = customerService.repetition(c_account);
         if (repetition) {
             pw.write("用户名重复！");
         }

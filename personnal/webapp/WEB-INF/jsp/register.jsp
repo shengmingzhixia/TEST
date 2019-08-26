@@ -63,8 +63,8 @@
     </script>
     <script>
         $(function () {
-            $("input[name=c_name]").blur(function () {
-                $.post("checkName", {c_name: $("input:eq(0)").val()}, function (obj) {
+            $("input[name=c_account]").blur(function () {
+                $.post("checkName", {c_account: $("input:eq(0)").val()}, function (obj) {
                     $("#sub1").removeAttr("disabled");
                     $("span").remove();
                     if ("用户名重复！" == obj) {

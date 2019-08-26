@@ -47,7 +47,12 @@ public class PositionController {
     protected void checkPosName(String pos_name, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter pw = response.getWriter();
-        boolean repetition = positionService.repetition(pos_name);
+        boolean repetition = false;
+        try {
+            repetition = positionService.repetition(pos_name);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         if (repetition) {
             pw.write("职位名重复！");
         }
