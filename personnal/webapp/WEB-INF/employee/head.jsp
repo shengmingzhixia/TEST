@@ -23,5 +23,6 @@
     <button>培训管理</button>
     <button>薪资管理</button>
     <button>工资异议</button>
+    <button><a href="getMyInter">面试信息</a></button>
     <button><a href="javascript:history.go(-1)">返回上一步</a></button>
 </div>

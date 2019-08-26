@@ -1,6 +1,49 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cgy.dao.RecruitDao">
+    <insert id="insert">
+        insert into P_RECRUIT
+        values (SEQ_RECRUIT.nextval,
+                #{rct_pos_id},
+                #{rct_title},
+                #{rct_introduaction},
+                null,
+                #{rct_address},
+                #{rct_salary},
+                #{rct_e_id},
+                #{rct_is_draft},
+                #{rct_is_publish})
+    </insert>
+    <update id="update">
+        update P_RECRUIT
+        <set>
+            <if test="rct_title!=null">
+                rct_title = #{rct_title},
+            </if>
+            <if test="rct_introduaction!=null">
+                rct_introduaction = #{rct_introduaction},
+            </if>
+            <if test="rct_address!=null">
+                rct_address = #{rct_address},
+            </if>
+            <if test="rct_salary!=0.0">
+                rct_salary = #{rct_salary},
+            </if>
+            <if test="rct_is_publish!=null">
+                rct_is_publish = #{rct_is_publish},
+            </if>
+            <if test="rct_is_draft!=null">
+                rct_is_draft = #{rct_is_draft},
+            </if>
+            rct_publish_time = #{rct_publish_time}
+        </set>
+        where rct_id = #{rct_id}
+    </update>
+    <delete id="delete">
+        delete
+        from P_RECRUIT
+        where RCT_ID = #{rct_id}
+    </delete>
     <select id="getRecruitByPage" resultType="cgy.model.Recruit">
         SELECT *
         FROM (SELECT ROWNUM rn,
@@ -33,4 +76,22 @@
         from P_RECRUIT
         where RCT_E_ID = #{e_id}
     </select>
+    <select id="getRecruitByPage2" resultType="cgy.model.Recruit">
+        SELECT *
+        FROM (SELECT ROWNUM rn,
+                     RCT_ID,
+                     RCT_POS_ID,
+                     RCT_TITLE,
+                     RCT_INTRODUACTION,
+                     RCT_PUBLISH_TIME,
+                     RCT_ADDRESS,
+                     RCT_SALARY,
+                     RCT_E_ID,
+                     RCT_IS_DRAFT,
+                     RCT_IS_PUBLISH
+              FROM P_RECRUIT
+              WHERE ROWNUM &lt;= #{1})a
+        WHERE a.rn > #{0}
+    </select>
+
 </mapper>

@@ -12,4 +12,12 @@ public interface RecruitService {
     List<Recruit> getRecruits(Integer e_id);
 
     Recruit getRecruit(Integer in_rct_id);
+
+    boolean insertRecruit(Recruit recruit);
+
+    Page<Recruit> getRecruitByPage2(int pageNo);
+
+    boolean deleteRecruit(int rct_id);
+
+    boolean updateRecruit(Recruit recruit);
 }

@@ -31,6 +31,7 @@ public class InterViewController {
         return "forward:getRecruits";
     }
 
+    //获得所有的面试信息
     @RequestMapping("getInter")
     public String getInter(HttpServletRequest request) {
         String pageNoStr = request.getParameter("pageNo");

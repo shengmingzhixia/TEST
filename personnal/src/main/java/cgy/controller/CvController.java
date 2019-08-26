@@ -14,6 +14,7 @@ public class CvController {
     @Resource
     private CvService cvService;
 
+    //查看游客自己的简历
     @RequestMapping("getCv")
     public String getCv(HttpServletRequest request) {
         String pageNoStr = request.getParameter("pageNo");
@@ -30,6 +31,7 @@ public class CvController {
         return "jsp/cv";
     }
 
+    //添加一份简历
     @RequestMapping("cvadd")
     public String cvadd(Cv cv, HttpServletRequest request) {
         if (cv == null || cv.getCv_title() == null || cv.getCv_name() == null || cv.getCv_gender() == null ||
@@ -46,6 +48,7 @@ public class CvController {
         return "forward:getCv";
     }
 
+    //查看简历细节
     @RequestMapping("cvdetail")
     public String cvDetail(int id, HttpServletRequest request) {
         Cv cv = cvService.getCv(id);
@@ -53,6 +56,7 @@ public class CvController {
         return "jsp/cvdetail";
     }
 
+    //管理员查看面试信息，查看游客的简历
     @RequestMapping("cvdetail2")
     public String cvDetail2(InterView2 interView2, HttpServletRequest request) {
         Cv cv = cvService.getCv(interView2.getIn_cv_id());

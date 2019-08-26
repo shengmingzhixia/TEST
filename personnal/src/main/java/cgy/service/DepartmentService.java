@@ -3,6 +3,8 @@ package cgy.service;
 import cgy.model.Department;
 import cgy.model.Page;
 
+import java.util.List;
+
 public interface DepartmentService {
     //添加部门信息
     boolean insertDepart(Department department);
@@ -18,4 +20,6 @@ public interface DepartmentService {
     boolean repetition(String dep_name);
 
     Department getDepartment(Integer pos_dep_id);
+
+    List<Department> getDeparts();
 }

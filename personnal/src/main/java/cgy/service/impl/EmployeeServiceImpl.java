@@ -16,12 +16,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override   //登录
     public Employee login(Employee employee) {
-        System.out.println(employee+"yewy1");
         if (employee == null || employee.getE_account() == null ||
                 employee.getE_password() == null || employee.getE_type() == null)
             return null;
         List<Employee> employees = employeeDao.getE(employee);
-        System.out.println(employees);
         if (employees == null || employees.size() == 0) return null;
         return employees.get(0);
     }

@@ -6,7 +6,6 @@ import cgy.service.CustomerService;
 import cgy.service.EmployeeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -20,10 +19,8 @@ public class LoginController {
     private CustomerService customerService;
 
     @RequestMapping("login") //登录
-    public String login(Employee employee,HttpServletRequest request) {
-        System.out.println(employee);
+    public String login(Employee employee, HttpServletRequest request) {
         employee = employeeService.login(employee);
-        System.out.println(employee);
         if (employee == null) {
             request.setAttribute("login", false);
             return "jsp/login";
@@ -40,13 +37,13 @@ public class LoginController {
     }
 
     @RequestMapping("touristLogin") //登录
-    public String touristLogin(Customer customer,HttpServletRequest request) {
+    public String touristLogin(Customer customer, HttpServletRequest request) {
         Customer customer1 = customerService.login(customer);
-        if (customer1 == null){
-            request.setAttribute("touristLogin",false);
-        }else {
-            request.getSession().setAttribute("cust",customer1);
-            request.setAttribute("touristLogin",true);
+        if (customer1 == null) {
+            request.setAttribute("touristLogin", false);
+        } else {
+            request.getSession().setAttribute("cust", customer1);
+            request.setAttribute("touristLogin", true);
         }
         return "../index";
     }

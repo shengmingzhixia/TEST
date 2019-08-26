@@ -29,10 +29,11 @@ public class RegisterController {
         }
     }
 
+    //注册
     @RequestMapping("register")
-    protected String register(Customer customer,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected String register(Customer customer, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         boolean b = customerService.register(customer);
-        request.setAttribute("b",b);
+        request.setAttribute("b", b);
         return "jsp/touristlogin";
     }
 }

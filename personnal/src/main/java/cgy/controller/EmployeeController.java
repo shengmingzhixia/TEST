@@ -38,6 +38,7 @@ public class EmployeeController {
         return "admin/employee/employeelist";
     }
 
+    //查看员工的具体信息
     @RequestMapping("getEmployee")
     public String getEmployee(Employee employee, HttpServletRequest request) {
         Employee employee1 = employeeService.getEmployee(employee);
@@ -49,6 +50,7 @@ public class EmployeeController {
         return "admin/employee/employeedetail";
     }
 
+    //游客确定入职后，添加该员工的账号信息
     @RequestMapping("addnewemployee")
     public String addnewemployee(Integer in_rct_id, Cv cv, HttpServletRequest request) {
         Cv cv1 = cvService.getCv(cv.getCv_id());

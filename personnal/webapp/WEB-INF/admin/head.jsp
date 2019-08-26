@@ -175,10 +175,73 @@
         }
     }
 %>
+<%
+    if (request.getAttribute("insertRct") != null) {
+        boolean insertRct = (Boolean) request.getAttribute("insertRct");
+        if (insertRct) {
+%>
+<script>
+    alert("撰写成功！")
+</script>
+<%
+} else {
+%>
+<script>
+    alert("撰写失败！")
+</script>
+<%
+        }
+    }
+%>
+
+<%
+    if (request.getAttribute("deleteRct") != null) {
+        boolean deleteRct = (Boolean) request.getAttribute("deleteRct");
+        if (deleteRct) {
+%>
+<script>
+    alert("删除成功！")
+</script>
+<%
+} else {
+%>
+<script>
+    alert("删除失败！")
+</script>
+<%
+        }
+    }
+%>
+<%
+    if (request.getAttribute("updateRct") != null) {
+        boolean updateRct = (Boolean) request.getAttribute("updateRct");
+        if (request.getAttribute("mark") != null) {
+%>
+<script>
+    alert('${requestScope.mark}')
+</script>
+<%
+    if (updateRct) {
+%>
+<script>
+    alert("更新成功！")
+</script>
+<%
+} else {
+%>
+<script>
+    alert("更新失败！")
+</script>
+<%
+            }
+        }
+    }
+%>
 <div>
     <button><a href="getInter">应聘管理</a></button>
     <button><a href="getDepart">部门职位</a></button>
     <button><a href="getMyInter">面试信息</a></button>
+    <button><a href="torct">招聘信息管理</a></button>
     <button>培训管理</button>
     <button>员工管理</button>
     <button>奖惩管理</button>

@@ -2,7 +2,9 @@ package cgy.controller;
 
 import cgy.model.Department;
 import cgy.model.Page;
+import cgy.model.Position;
 import cgy.service.DepartmentService;
+import cgy.service.PositionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -14,11 +16,14 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 public class DepartmentController {
     @Resource
     private DepartmentService departmentService;
+    @Resource
+    private PositionService positionService;
 
     //管理员添加部门信息
     @RequestMapping("insertDepart")
@@ -80,5 +85,15 @@ public class DepartmentController {
         if (repetition) {
             pw.write("部门名重复！");
         }
+    }
+
+
+    @RequestMapping("toaddrecruit")
+    public String toaddrecruit(HttpServletRequest request) {
+        List<Department> departs = departmentService.getDeparts();
+        request.setAttribute("departs", departs);
+        List<Position> positions = positionService.getPositionByDep_id(null);
+        request.setAttribute("positions",positions);
+        return "admin/recruit/recruitadd";
     }
 }

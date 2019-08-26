@@ -75,4 +75,17 @@ public class PositionServiceImpl implements PositionService {
         if (positions == null || positions.size() == 0) return false;
         return true;
     }
+
+    @Override
+    public List<Position> getPositionByDep_id(Integer dep_id) {
+        Position position = new Position();
+        position.setPos_dep_id(dep_id);
+        return positionDao.getPositions(position);
+    }
+
+    @Override
+    public Position getPositionByName(String pos_name) {
+        if (pos_name == null) return null;
+        return positionDao.getPosition(pos_name);
+    }
 }

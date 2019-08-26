@@ -22,4 +22,6 @@ public interface PositionDao {
 
     //获取职位数
     int getTotalRows(int dep_id);
+
+    Position getPosition(String pos_name);
 }

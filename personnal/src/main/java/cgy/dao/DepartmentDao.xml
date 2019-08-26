@@ -27,7 +27,11 @@
     <select id="getDeparts" resultType="cgy.model.Department">
         select *
         from P_DEPARTMENT
-        where DEP_NAME = #{dep_name}
+        <where>
+            <if test="dep_name!=null">
+                and DEP_NAME = #{dep_name}
+            </if>
+        </where>
     </select>
     <select id="getDepart" resultType="cgy.model.Department">
         select *

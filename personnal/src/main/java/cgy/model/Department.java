@@ -40,12 +40,21 @@ public class Department {
         this.dep_date = dep_date;
     }
 
-    @Override
+    /*@Override
     public String toString() {
         return "Department{" +
                 "部门编号=" + dep_id +
                 ", 部门名称='" + dep_name + '\'' +
                 ", 成立时间=" + dep_date +
+                '}';
+    }*/
+
+    @Override
+    public String toString() {
+        return "Department{" +
+                "dep_id=" + dep_id +
+                ", dep_name='" + dep_name + '\'' +
+                ", dep_date=" + dep_date +
                 '}';
     }
 }

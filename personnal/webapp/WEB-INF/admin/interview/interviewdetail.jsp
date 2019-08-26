@@ -77,11 +77,13 @@
         })
     </script>
 </c:if>
-<form action="sendInterView" method="post" id="action1">
-    <input type="hidden" value="${requestScope.interView2.in_id}" name="in_id">
-    <input type="date" name="in_date">
-    <input type="submit" value="邀请面试">
-</form>
+<c:if test="${requestScope.interView2.in_is_accept==0}">
+    <form action="sendInterView" method="post" id="action1">
+        <input type="hidden" value="${requestScope.interView2.in_id}" name="in_id">
+        <input type="date" name="in_date">
+        <input type="submit" value="邀请面试">
+    </form>
+</c:if>
 <a href="javascript:history.go(-1)">返回</a>
 </body>
 </html>

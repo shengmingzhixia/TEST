@@ -28,6 +28,9 @@
             <if test="pos_name!=null">
                 and pos_name = #{pos_name}
             </if>
+            <if test="pos_dep_id == null">
+                1=1
+            </if>
         </where>
     </select>
     <select id="getPositionByPage" resultType="cgy.model.Position">
@@ -41,5 +44,10 @@
         select count(*)
         from P_POSITION
         where POS_DEP_ID = #{dep_id}
+    </select>
+    <select id="getPosition" resultType="cgy.model.Position">
+        select *
+        from P_POSITION
+        where POS_NAME = #{pos_name}
     </select>
 </mapper>

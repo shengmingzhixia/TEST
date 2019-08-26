@@ -1,11 +1,12 @@
 package cgy.controller;
 
-import cgy.model.Cv;
 import cgy.model.Position;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class ToUrl {
@@ -45,4 +46,10 @@ public class ToUrl {
         request.setAttribute("dep_id", dep_id);
         return "admin/positionadd";
     }
+
+    @RequestMapping("torct")
+    public String torct(HttpServletRequest request) {
+        return "admin/recruit/recruitlist";
+    }
+
 }

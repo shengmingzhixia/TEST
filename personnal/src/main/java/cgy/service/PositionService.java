@@ -24,4 +24,8 @@ public interface PositionService {
     Position getPosition(Integer e_pos_id);
 
     boolean repetition(String pos_name);
+
+    List<Position> getPositionByDep_id(Integer dep_id);
+
+    Position getPositionByName(String pos_name);
 }
