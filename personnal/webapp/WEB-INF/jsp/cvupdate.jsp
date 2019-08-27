@@ -19,15 +19,15 @@
 </head>
 <body>
 <form action="cvUpdate" method="post">
-    <input type="hidden" value="${requestScope.cv.cv_id}" name="id">
+    <input type="hidden" value="${requestScope.cv.cv_id}" name="cv_id">
     <table>
         <tr>
             <td>简历名称：</td>
-            <td><input type="text" name="cv_title" value="${requestScope.cv.title}"></td>
+            <td><input type="text" name="cv_title" value="${requestScope.cv.cv_title}"></td>
         </tr>
         <tr>
             <td>真实姓名</td>
-            <td><input type="text" name="cv_name" value="${requestScope.cv.name}"></td>
+            <td><input type="text" name="cv_name" value="${requestScope.cv.cv_name}"></td>
             <td>性别</td>
             <td>
                 <script>
@@ -40,19 +40,19 @@
                         }
                     })
                 </script>
-                男<input type="radio" name="gender" value="男" id="radio1">
-                女<input type="radio" name="gender" value="女" id="radio2">
+                男<input type="radio" name="cv_gender" value="男" id="radio1">
+                女<input type="radio" name="cv_gender" value="女" id="radio2">
             </td>
         </tr>
         <tr>
             <td>出生日期</td>
-            <td><input type="date" name="cv_birth" value="<fmt:formatDate value="${requestScope.cv.birth}" pattern="yyyy-MM-dd"/>"></td>
+            <td><input type="date" name="cv_birth" value="<fmt:formatDate value="${requestScope.cv.cv_birth}" pattern="yyyy-MM-dd"/>"></td>
             <td>家庭住址</td>
-            <td><input type="text" name="cv_address" value="${requestScope.cv.address}"></td>
+            <td><input type="text" name="cv_address" value="${requestScope.cv.cv_address}"></td>
         </tr>
         <tr>
             <td>毕业院校</td>
-            <td><input type="text" name="cv_school" value="${requestScope.cv.school}"></td>
+            <td><input type="text" name="cv_school" value="${requestScope.cv.cv_school}"></td>
             <td>学历</td>
             <script>
                 $(function () {
@@ -79,13 +79,13 @@
         </tr>
         <tr>
             <td>专业</td>
-            <td><input type="text" name="cv_major" value="${requestScope.cv.major}"></td>
+            <td><input type="text" name="cv_major" value="${requestScope.cv.cv_major}"></td>
             <td>入学时间</td>
-            <td><input type="date" name="cv_enroll_date" value="<fmt:formatDate value="${requestScope.cv.enrollDate}" pattern="yyyy-MM-dd"/>"></td>
+            <td><input type="date" name="cv_enroll_date" value="<fmt:formatDate value="${requestScope.cv.cv_enroll_date}" pattern="yyyy-MM-dd"/>"></td>
         </tr>
         <tr>
             <td>毕业时间</td>
-            <td><input type="date" name="cv_graduation_date" value="<fmt:formatDate value="${requestScope.cv.graduationDate}" pattern="yyyy-MM-dd"/>"></td>
+            <td><input type="date" name="cv_graduation_date" value="<fmt:formatDate value="${requestScope.cv.cv_graduation_date}" pattern="yyyy-MM-dd"/>"></td>
             <td>期望薪资</td>
             <script>
                 $(function () {
@@ -116,10 +116,10 @@
         <tr>
             <td>工作经验</td>
             <td>
-                <textarea name="cv_exprience">${requestScope.cv.exprience}</textarea>
+                <textarea name="cv_exprience">${requestScope.cv.cv_exprience}</textarea>
             </td>
             <td>联系电话</td>
-            <td><input type="text" name="cv_phone" value="${requestScope.cv.phone}"></td>
+            <td><input type="text" name="cv_phone" value="${requestScope.cv.cv_phone}"></td>
         </tr>
         <tr>
             <td><input type="submit" value="提交"></td>

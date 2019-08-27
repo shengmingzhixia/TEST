@@ -16,7 +16,7 @@
 <html>
 <head>
     <base href="<%=basePath%>"/>
-    <title>简历界面</title>
+    <title>简历界面(管理员)</title>
     <script src="js/index.js"></script>
     <script src="js/jquery-1.7.2.js"></script>
 </head>
@@ -41,7 +41,7 @@
             </tr>
             <c:forEach items="${requestScope.interViewPage.list}" var="inter">
                 <tr>
-                    <td>${inter.in_cv_name}</td>
+                    <td>${inter.in_cv_title}</td>
                     <td>${inter.in_rct_name}</td>
                     <td>
                         <fmt:formatDate value="${inter.in_date}" pattern="yyyy-MM-dd HH:mm:ss"/>

@@ -19,6 +19,14 @@
                 #{e_salary},
                 #{e_pos_id})
     </insert>
+    <update id="update">
+        update P_EMPLOYEE
+        set E_SALARY = #{e_salary},
+            e_state  = #{e_state},
+            e_debit  = #{e_debit},
+            e_phone  = #{e_phone}
+        where e_id = #{e_id}
+    </update>
     <select id="getE" resultType="cgy.model.Employee">
         select *
         from P_EMPLOYEE
@@ -38,12 +46,20 @@
             <if test="e_id!=null and e_id !=''">
                 and e_id = #{e_id}
             </if>
+            <if test="e_name!=null and e_name !=''">
+                and e_name = #{e_name}
+            </if>
         </where>
     </select>
     <select id="getTotalRows" resultType="java.lang.Integer">
         select count(*)
         from P_EMPLOYEE
-        where E_POS_ID = #{pos_id}
+        <where>
+            1 = 1
+            <if test="pos_id!=null">
+                and e_pos_id = #{pos_id}
+            </if>
+        </where>
     </select>
     <select id="getEmployeeByPage" resultType="cgy.model.Employee">
         SELECT *
@@ -62,6 +78,26 @@
                      E_SALARY,
                      E_POS_ID
               FROM (select * from P_EMPLOYEE where E_POS_ID = #{2})
+              WHERE ROWNUM &lt;= #{1})a
+        WHERE a.rn > #{0}
+    </select>
+    <select id="getEmployeeByPage2" resultType="cgy.model.Employee">
+        SELECT *
+        FROM (SELECT ROWNUM rn,
+                     E_ID,
+                     E_ACCOUNT,
+                     E_PASSWORD,
+                     E_TYPE,
+                     E_NAME,
+                     E_GENDER,
+                     E_ADDRESS,
+                     E_PHONE,
+                     E_DEBIT,
+                     E_ENROLL_DATE,
+                     E_STATE,
+                     E_SALARY,
+                     E_POS_ID
+              FROM P_EMPLOYEE
               WHERE ROWNUM &lt;= #{1})a
         WHERE a.rn > #{0}
     </select>

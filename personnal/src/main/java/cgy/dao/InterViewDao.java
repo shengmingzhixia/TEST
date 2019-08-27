@@ -17,7 +17,7 @@ public interface InterViewDao {
     //更新面试信息
      boolean updateInterView(InterView interView);
 
-    InterView getInterViews(int cv_id);
+    List<InterView> getInterViewsByCvID(int cv_id);
 
-    List<InterView> getInterView(int rct_id);
+    List<InterView> getInterViewsByRctId(int rct_id);
 }

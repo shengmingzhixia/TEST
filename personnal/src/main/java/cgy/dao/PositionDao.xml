@@ -19,11 +19,11 @@
     <select id="getPositions" resultType="cgy.model.Position">
         select * from P_POSITION
         <where>
-            <if test="pos_dep_id!=null">
-                and pos_dep_id = #{pos_dep_id}
-            </if>
             <if test="pos_id!=null">
                 and pos_id = #{pos_id}
+            </if>
+            <if test="pos_dep_id!=null">
+                and pos_dep_id = #{pos_dep_id}
             </if>
             <if test="pos_name!=null">
                 and pos_name = #{pos_name}

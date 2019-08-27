@@ -18,7 +18,7 @@ public class Employee {
     private long e_debit;
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date e_enroll_date;
-    private int e_state;
+    private Integer e_state;
     private double e_salary;
     private Integer e_pos_id;
 
@@ -111,11 +111,11 @@ public class Employee {
         this.e_enroll_date = e_enroll_date;
     }
 
-    public int getE_state() {
+    public Integer getE_state() {
         return e_state;
     }
 
-    public void setE_state(int e_state) {
+    public void setE_state(Integer e_state) {
         this.e_state = e_state;
     }
 

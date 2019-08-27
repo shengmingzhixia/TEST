@@ -43,12 +43,16 @@ public class RecruitController {
     public String addRecruit(Recruit recruit, HttpServletRequest request) {
         Employee employee = (Employee) request.getSession().getAttribute("employeeNow");
         recruit.setRct_e_id(employee.getE_id());
-        Position position = positionService.getPositionByName(recruit.getRct_title());
-        recruit.setRct_pos_id(position.getPos_id());
-        recruit.setRct_is_draft(1); //是草稿
-        recruit.setRct_is_publish(0); //未发布
-        boolean insertRct = recruitService.insertRecruit(recruit);
-        request.setAttribute("insertRct",insertRct);
+        if ("null".equals(recruit.getRct_title())){
+            request.setAttribute("insertRct",false);
+        }else {
+            Position position = positionService.getPositionByName(recruit.getRct_title());
+            recruit.setRct_pos_id(position.getPos_id());
+            recruit.setRct_is_draft(1); //是草稿
+            recruit.setRct_is_publish(0); //未发布
+            boolean insertRct = recruitService.insertRecruit(recruit);
+            request.setAttribute("insertRct",insertRct);
+        }
         return "admin/recruit/recruitlist";
     }
 

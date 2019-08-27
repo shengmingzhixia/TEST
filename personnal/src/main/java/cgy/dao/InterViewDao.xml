@@ -52,12 +52,12 @@
         select count(*)
         from P_INTERVIEW
     </select>
-    <select id="getInterViews" resultType="cgy.model.InterView">
+    <select id="getInterViewsByCvID" resultType="cgy.model.InterView">
         select *
         from P_INTERVIEW
         where IN_CV_ID = #{cv_id}
     </select>
-    <select id="getInterView" resultType="cgy.model.InterView">
+    <select id="getInterViewsByRctId" resultType="cgy.model.InterView">
         select *
         from P_INTERVIEW
         where IN_RCT_ID = #{rct_id}

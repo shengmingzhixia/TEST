@@ -37,7 +37,7 @@
             </tr>
             <c:forEach items="${requestScope.interViews}" var="inter">
                 <tr>
-                    <td>${inter.in_cv_name}</td>
+                    <td>${inter.in_cv_title}</td>
                     <td>${inter.in_rct_name}</td>
                     <td>
                         <fmt:formatDate value="${inter.in_date}" pattern="yyyy-MM-dd HH:mm:ss"/>
@@ -62,7 +62,10 @@
                         <td>已被录用</td>
                     </c:if>
                     <c:if test="${inter.in_is_accept==4}">
-                        <td>已被拒绝</td>
+                        <td>已拒绝</td>
+                    </c:if>
+                    <c:if test="${inter.in_is_accept==5}">
+                        <td>已经同意入职</td>
                     </c:if>
                     <c:if test="${inter.in_is_agree==0}">
                         <td>未反馈</td>
@@ -73,15 +76,14 @@
                     <c:if test="${inter.in_is_agree==2}">
                         <td>已拒绝</td>
                     </c:if>
-                    <c:if test="${inter.in_is_agree==0}">
+                    <c:if test="${inter.in_is_agree==0 && inter.in_is_accept==1}">
                         <td><a href="sendInterView2?in_is_agree=1&in_id=${inter.in_id}">同意</a></td>
                         <td><a href="sendInterView2?in_is_agree=2&in_id=${inter.in_id}">拒绝</a></td>
                     </c:if>
                     <c:if test="${inter.in_is_accept==3}">
-                        <td><a href="addnewemployee?cv_id=${inter.in_cv_id}&in_rct_id=${inter.in_rct_id}">同意入职</a></td>
+                        <td><a href="addnewemployee?cv_id=${inter.in_cv_id}&in_rct_id=${inter.in_rct_id}&in_id=${inter.in_id}">同意入职</a></td>
                         <td><a href="sendInterView5?in_is_accept=4">拒绝入职</a></td>
                     </c:if>
-
                 </tr>
             </c:forEach>
         </table>

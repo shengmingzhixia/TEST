@@ -26,6 +26,7 @@ public class InterViewController {
         interView.setIn_is_accept(0);//0代表管理员未接受该简历
         interView.setIn_is_agree(0);//0代表该游客尚未同意来面试
         interView.setIn_read_account(0);//代表尚未看过  所以阅读次数是0
+        interView.setIn_date(new Date());
         boolean view = interViewService.insertInterView(interView);
         request.setAttribute("view", view);
         return "forward:getRecruits";

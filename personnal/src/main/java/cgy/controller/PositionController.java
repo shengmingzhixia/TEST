@@ -1,7 +1,9 @@
 package cgy.controller;
 
+import cgy.model.Department;
 import cgy.model.Page;
 import cgy.model.Position;
+import cgy.service.DepartmentService;
 import cgy.service.PositionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +21,8 @@ import java.util.List;
 public class PositionController {
     @Resource
     private PositionService positionService;
+    @Resource
+    private DepartmentService departmentService;
 
     //获得所有的职位信息
     @RequestMapping("getPositions")
@@ -31,12 +35,12 @@ public class PositionController {
                 pageNo = 1;
             }
         }
-        System.out.println(position + "2");
         if (position.getPos_dep_id() == null) {
-            System.out.println(position + "3");
             position = (Position) request.getAttribute("position");
         }
         Page<Position> positionByPage = positionService.getPositionByPage(pageNo, position.getPos_dep_id());
+        Department department = departmentService.getDepartment(position.getPos_dep_id());
+        request.setAttribute("dep_name",department.getDep_name());
         request.setAttribute("pos_dep_id", position.getPos_dep_id());
         request.setAttribute("positionByPage", positionByPage);
         return "admin/positionlist";

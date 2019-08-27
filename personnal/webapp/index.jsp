@@ -63,7 +63,6 @@
 
 <%
     Page<Recruit> recruitPage = (Page<Recruit>) request.getAttribute("recruitPage");
-    int i = 0;
     if (recruitPage == null) {
 %>
 <script>
@@ -75,36 +74,30 @@
     if (recruitPage != null && recruitPage.getList() != null &&
             recruitPage.getList().size() != 0) {
 %>
-
-<c:forEach items="${requestScope.recruitPage.list}" var="rct">
-    <div class="prod">
-        <div>
-            <table border="1" cellspacing="1" cellpadding="0">
+<div class="prod">
+    <div>
+        <table border="1" cellspacing="1" cellpadding="0">
+            <tr>
+                <td>招聘主题</td>
+                <td>招聘描述</td>
+                <td>发布时间</td>
+                <td>地址</td>
+                <td>薪资</td>
+                <td>加入我们!</td>
+            </tr>
+            <c:forEach items="${requestScope.recruitPage.list}" var="rct">
                 <tr>
-                    <td>招聘主题:</td>
                     <td>${rct.rct_title}</td>
-                </tr>
-                <tr>
-                    <td>招聘描述:</td>
                     <td>${rct.rct_introduaction}</td>
-                </tr>
-                <tr>
-                    <td>发布时间:</td>
                     <td><fmt:formatDate value="${rct.rct_publish_time }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
-                </tr>
-                <tr>
-                    <td>地址:</td>
                     <td>${rct.rct_address}</td>
-                </tr>
-                <tr>
-                    <td>薪资:</td>
                     <td>${rct.rct_salary}</td>
+                    <td><a href="toChooseCv?rctId=${rct.rct_id}">去投简历！</a></td>
                 </tr>
-            </table>
-            <a href="toChooseCv?rctId=${rct.rct_id}">去投简历！</a>
-        </div>
+            </c:forEach>
+        </table>
     </div>
-</c:forEach>
+</div>
 <%
 } else {
 %>

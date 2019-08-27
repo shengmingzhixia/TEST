@@ -2,6 +2,7 @@ package cgy.controller;
 
 import cgy.model.*;
 import cgy.service.CvService;
+import cgy.service.InterViewService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -13,6 +14,9 @@ import java.util.List;
 public class CvController {
     @Resource
     private CvService cvService;
+
+    @Resource
+    private InterViewService interViewService;
 
     //查看游客自己的简历
     @RequestMapping("getCv")
@@ -60,6 +64,11 @@ public class CvController {
     @RequestMapping("cvdetail2")
     public String cvDetail2(InterView2 interView2, HttpServletRequest request) {
         Cv cv = cvService.getCv(interView2.getIn_cv_id());
+        InterView interView = new InterView();
+        interView.setIn_is_read(1);
+        interView.setIn_read_account(1);
+        interView.setIn_id(interView2.getIn_id());
+        interViewService.updateInterView(interView);
         request.setAttribute("cv", cv);
         request.setAttribute("interView2", interView2);
         return "admin/interview/interviewdetail";

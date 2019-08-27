@@ -2,8 +2,8 @@
 <%@ page import="cgy.model.Page" %><%--
   Created by IntelliJ IDEA.
   User: Administrator
-  Date: 2019\8\24 0024
-  Time: 15:46
+  Date: 2019\8\27 0027
+  Time: 13:38
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -14,7 +14,7 @@
 <html>
 <head>
     <base href="<%=basePath%>"/>
-    <title>员工展示界面</title>
+    <title>员工管理界面</title>
     <script src="js/index.js"></script>
     <script src="js/jquery-1.7.2.js"></script>
 </head>
@@ -25,6 +25,18 @@
     if (employeePage != null && employeePage.getList() != null &&
             employeePage.getList().size() != 0) {
 %>
+<form action="getEmployeeByName" method="post" novalidate="novalidate">
+    <table>
+        <tbody>
+        <tr>
+            <td>
+                <input type="text" name="e_name" maxlength="20">
+                <input type="submit" value="搜 索">
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</form>
 <div class="prod">
     <div>
         <table border="1" cellspacing="1" cellpadding="0">
@@ -33,10 +45,8 @@
                 <td>员工姓名</td>
                 <td>员工状态</td>
                 <td>性别</td>
-                <td>职位</td>
-                <td colspan="4">操作</td>
+                <td colspan="4" style="text-align: center">操作</td>
             </tr>
-
             <c:forEach items="${requestScope.employeePage.list}" var="employee">
                 <tr>
                     <td>${employee.e_account}</td>
@@ -48,8 +58,7 @@
                         <td>离职</td>
                     </c:if>
                     <td>${employee.e_gender}</td>
-                    <td>${requestScope.pos_name}</td>
-                    <td><a href="getEmployee?e_id=${employee.e_id}">查看</a></td>
+                    <td><a href="getEmployee?e_id=${employee.e_id}">查看基本信息</a></td>
                     <td><a href="#?e_id=${employee.e_id}">换岗</a></td>
                     <td><a href="#?e_id=${employee.e_id}">查看考勤</a></td>
                     <td><a href="#?e_id=${employee.e_id}">查看培训记录</a></td>

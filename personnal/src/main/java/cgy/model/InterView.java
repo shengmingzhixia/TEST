@@ -12,7 +12,7 @@ public class InterView {
     private Date in_date;
     private Integer in_is_read;
     private Integer in_is_accept;//0 初始值（一开始显示未邀请）
-    // 1 邀请来面试 2 已完成面试  3 录用 4 不录用
+    // 1 邀请来面试 2 已完成面试  3 录用 4 不录用 5.结束
     private Integer in_is_agree;//0 未反馈  1 同意 2 拒绝
     private Integer in_read_account;
 

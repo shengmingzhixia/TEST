@@ -1,3 +1,4 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="cgy.model.Department" %>
 <%@ page import="cgy.model.Page" %><%--
   Created by IntelliJ IDEA.
@@ -35,15 +36,20 @@
     if (departmentPage != null && departmentPage.getList() != null &&
             departmentPage.getList().size() != 0) {
 %>
-部门名称
 <table border="1" cellspacing="1" cellpadding="0">
+    <tr>
+        <td>部门名称</td>
+        <td>启用时间</td>
+        <td colspan="3">操作</td>
+    </tr>
     <c:forEach items="${requestScope.departmentPage.list}" var="depart">
         <tr>
-            <td><a href="getPositions?pos_dep_id=${depart.dep_id}&name=${depart.dep_name}">${depart.dep_name}</a></td>
+            <td>${depart.dep_name}</td>
+            <td><fmt:formatDate value="${depart.dep_date}" pattern="yyyy-MM-dd"/></td>
+            <td><a href="getPositions?pos_dep_id=${depart.dep_id}&name=${depart.dep_name}">查看该部门下职位</a></td>
             <td><a href="toupdateDepart?dep_id=${depart.dep_id}&dep_name=${depart.dep_name}">修改</a></td>
             <td><a href="deleteDepart?dep_id=${depart.dep_id}">删除</a></td>
         </tr>
-
     </c:forEach>
 </table>
 <span><a href="todepartmentadd">添加</a>部门</span>

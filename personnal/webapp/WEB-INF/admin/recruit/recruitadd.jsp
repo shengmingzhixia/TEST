@@ -31,8 +31,8 @@
                 j++
                 </c:if>
             </c:forEach>
-            if (arr[arr[i]] == null){
-                arr[arr[i]][0] == '没有职位！'
+            if (arr[arr[i]].length == 0){
+                arr[arr[i]][0] = 'null'
             }
             i++
         </c:forEach>
@@ -64,7 +64,7 @@
             <tr>
                 <td>选择部门</td>
                 <td>
-                    <select id="dep" onchange="changePos(this.value)"></select>
+                    <select id="dep" onchange="changePos(this.value)" required></select>
                 </td>
                 <td>选择职位</td>
                 <td>

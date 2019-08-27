@@ -9,28 +9,33 @@
     if (positionByPage != null && positionByPage.getList() != null &&
             positionByPage.getList().size() != 0) {
 %>
-
-<c:forEach items="${requestScope.positionByPage.list}" var="pos">
-    <div class="prod">
-        <div>
-            <table border="1" cellspacing="1" cellpadding="0">
+<div class="prod">
+    <div>
+        <table border="1" cellspacing="1" cellpadding="0">
+            <tr>
+                <td>部门名称</td>
+                <td>职位名称</td>
+                <td colspan="3">操作</td>
+            </tr>
+            <c:forEach items="${requestScope.positionByPage.list}" var="pos">
                 <tr>
-                    <td><a href="getEmployees?e_pos_id=${pos.pos_id}&name=${pos.pos_name}">${pos.pos_name}</a></td>
+                    <td>${requestScope.dep_name}</td>
+                    <td>${pos.pos_name}</td>
+                    <td><a href="getEmployees?e_pos_id=${pos.pos_id}&name=${pos.pos_name}">查看下面的员工信息</a></td>
                     <td>
                         <a href="toupdateposition?pos_id=${pos.pos_id}&pos_name=${pos.pos_name}&pos_dep_id=${pos.pos_dep_id}">修改</a>
                     </td>
                     <td><a href="deleteposition?pos_id=${pos.pos_id}&pos_dep_id=${pos.pos_dep_id}">删除</a></td>
                 </tr>
-            </table>
-        </div>
+            </c:forEach>
+        </table>
     </div>
-</c:forEach>
-<%--这边拿不到--%>
+</div>
 <a href="toaddposition?dep_id=${requestScope.positionByPage.list.get(0).pos_dep_id}">添加一个新的职位</a>
 <%
 } else {
 %>
-<div>没有职位信息</div>
+<div>没有职位信息<a href="toaddposition?dep_id=${requestScope.positionByPage.list.get(0).pos_dep_id}">添加一个新的职位</a></div>
 <%
     }
 %>

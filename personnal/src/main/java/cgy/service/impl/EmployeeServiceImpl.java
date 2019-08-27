@@ -25,7 +25,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Page<Employee> getEmployeeByPage(int pageNo, int pos_id) {
+    public Page<Employee> getEmployeeByPage(int pageNo, Integer pos_id) {
         Page page = new Page<>();
         int totalRows = employeeDao.getTotalRows(pos_id);
         List<Employee> employees = employeeDao.getEmployeeByPage((pageNo - 1) * page.getPageSize(), pageNo * page.getPageSize(), pos_id);
@@ -37,7 +37,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee getEmployee(Employee employee) {
-        if (employee == null || employee.getE_id() == null) return null;
+        if (employee == null || employee.getE_id() == null) {
+            if (employee.getE_name() == null) {
+                return null;
+            }
+        }
         List<Employee> e = employeeDao.getE(employee);
         if (e == null || e.size() == 0) return null;
         return e.get(0);
@@ -46,5 +50,22 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public boolean insertEmployee(Employee employee) {
         return employeeDao.insert(employee);
+    }
+
+    @Override
+    public Page<Employee> getEmployeeByPage2(int pageNo) {
+        Page page = new Page<>();
+        int totalRows = employeeDao.getTotalRows(null);
+        List<Employee> employees = employeeDao.getEmployeeByPage2((pageNo - 1) * page.getPageSize(), pageNo * page.getPageSize());
+        page.setPageNo(pageNo);
+        page.setTotalRows(totalRows);
+        page.setList(employees);
+        return page;
+    }
+
+    @Override
+    public boolean updateEmployee(Employee employee) {
+        if (employee == null || employee.getE_id() == null) return false;
+        return employeeDao.update(employee);
     }
 }

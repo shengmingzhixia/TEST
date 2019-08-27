@@ -15,7 +15,7 @@
 <html>
 <head>
     <base href="<%=basePath%>"/>
-    <title>$</title>
+    <title>简历详情(管理员)</title>
     <script src="js/jquery-1.7.2.js"></script>
 </head>
 <body>

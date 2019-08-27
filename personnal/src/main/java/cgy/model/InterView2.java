@@ -7,7 +7,7 @@ import java.util.Date;
 public class InterView2 {
     private Integer in_id;
     private Integer in_cv_id;
-    private String in_cv_name;
+    private String in_cv_title;
     private Integer in_rct_id;
     private String in_rct_name;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -21,10 +21,10 @@ public class InterView2 {
     public InterView2() {
     }
 
-    public InterView2(InterView interView, String in_cv_name, String in_rct_name) {
+    public InterView2(InterView interView, String in_cv_title, String in_rct_name) {
         this.in_id = interView.getIn_id();
         this.in_cv_id = interView.getIn_cv_id();
-        this.in_cv_name = in_cv_name;
+        this.in_cv_title = in_cv_title;
         this.in_rct_id = interView.getIn_rct_id();
         this.in_rct_name = in_rct_name;
         this.in_date = interView.getIn_date();
@@ -34,12 +34,13 @@ public class InterView2 {
         this.in_read_account = interView.getIn_read_account();
     }
 
-    public String getIn_cv_name() {
-        return in_cv_name;
+
+    public String getIn_cv_title() {
+        return in_cv_title;
     }
 
-    public void setIn_cv_name(String in_cv_name) {
-        this.in_cv_name = in_cv_name;
+    public void setIn_cv_title(String in_cv_title) {
+        this.in_cv_title = in_cv_title;
     }
 
     public String getIn_rct_name() {
@@ -119,7 +120,7 @@ public class InterView2 {
         return "InterView2{" +
                 "in_id=" + in_id +
                 ", in_cv_id=" + in_cv_id +
-                ", in_cv_name='" + in_cv_name + '\'' +
+                ", in_cv_title='" + in_cv_title + '\'' +
                 ", in_rct_id=" + in_rct_id +
                 ", in_rct_name='" + in_rct_name + '\'' +
                 ", in_date=" + in_date +

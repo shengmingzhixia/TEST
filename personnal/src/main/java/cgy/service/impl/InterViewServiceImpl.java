@@ -49,10 +49,12 @@ public class InterViewServiceImpl implements InterViewService {
         List<Cv> cvs = cvDao.getCvs(c_id);
         List<InterView2> list = new ArrayList<>();
         for (Cv cv : cvs) {
-            InterView interView = interViewDao.getInterViews(cv.getCv_id());
-            Recruit recruit = recruitDao.getRecruit(interView.getIn_rct_id());
-            InterView2 interView2 = new InterView2(interView, cv.getCv_name(), recruit.getRct_title());
-            list.add(interView2);
+            List<InterView> interViews = interViewDao.getInterViewsByCvID(cv.getCv_id());
+            for (InterView interView : interViews) {
+                Recruit recruit = recruitDao.getRecruit(interView.getIn_rct_id());
+                InterView2 interView2 = new InterView2(interView, cv.getCv_title(), recruit.getRct_title());
+                list.add(interView2);
+            }
         }
         return list;
     }
@@ -65,7 +67,7 @@ public class InterViewServiceImpl implements InterViewService {
 
     @Override
     public List<InterView2> getInterView(int rct_id) {
-        List<InterView> interViews = interViewDao.getInterView(rct_id);
+        List<InterView> interViews = interViewDao.getInterViewsByRctId(rct_id);
         List<InterView2> interView2s = new ArrayList<>();
         for (InterView interView : interViews) {
             Cv cv = cvDao.getCv(interView.getIn_cv_id());

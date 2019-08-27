@@ -237,13 +237,31 @@
         }
     }
 %>
+<%
+    if (request.getAttribute("updateEmployee") != null) {
+        boolean updateEmployee = (Boolean) request.getAttribute("updateEmployee");
+        if (updateEmployee) {
+%>
+<script>
+    alert("更新成功！")
+</script>
+<%
+} else {
+%>
+<script>
+    alert("更新失败！")
+</script>
+<%
+        }
+    }
+%>
 <div>
     <button><a href="getInter">应聘管理</a></button>
     <button><a href="getDepart">部门职位</a></button>
     <button><a href="getMyInter">面试信息</a></button>
     <button><a href="torct">招聘信息管理</a></button>
     <button>培训管理</button>
-    <button>员工管理</button>
+    <button><a href="toEmployeeManage">员工管理</a></button>
     <button>奖惩管理</button>
     <button>薪资管理</button>
     <button>工资异议</button>
