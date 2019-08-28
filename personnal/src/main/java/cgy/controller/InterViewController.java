@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -61,7 +63,16 @@ public class InterViewController {
     //发送面试邀请
     @RequestMapping("sendInterView")
     public String sendInterView(InterView interView, HttpServletRequest request) {
-        interView.setIn_date(interView.getIn_date());
+        String f_date = request.getParameter( "in_date" );
+        String replace = f_date.replace( "T", " " );
+        SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date=null;
+        try {
+            date=sdf.parse( replace+":00" );
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        interView.setIn_date(date);
         interView.setIn_is_read(1);//0代表未读
         interView.setIn_is_accept(1);//0代表管理员未接受该简历
         interView.setIn_read_account(1);//代表尚未看过  所以阅读次数是0

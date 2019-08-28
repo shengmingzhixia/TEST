@@ -11,6 +11,7 @@ public interface InterViewService {
     boolean insertInterView(InterView interView);
 
     //分页找面试信息
+    //accept在3以下的
     Page<InterView2> getInterViewByPage(int pageNo);
 
     //找面试信息

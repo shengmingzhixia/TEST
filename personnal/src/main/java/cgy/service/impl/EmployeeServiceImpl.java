@@ -66,6 +66,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public boolean updateEmployee(Employee employee) {
         if (employee == null || employee.getE_id() == null) return false;
+        if (employee.getE_pos_id() != null) return employeeDao.update2(employee);
         return employeeDao.update(employee);
     }
 }

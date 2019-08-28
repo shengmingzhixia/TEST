@@ -59,7 +59,7 @@
                     </c:if>
                     <td>${employee.e_gender}</td>
                     <td><a href="getEmployee?e_id=${employee.e_id}">查看基本信息</a></td>
-                    <td><a href="#?e_id=${employee.e_id}">换岗</a></td>
+                    <td><a href="toChangePosition?e_id=${employee.e_id}">换岗</a></td>
                     <td><a href="#?e_id=${employee.e_id}">查看考勤</a></td>
                     <td><a href="#?e_id=${employee.e_id}">查看培训记录</a></td>
                 </tr>

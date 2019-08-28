@@ -17,9 +17,9 @@ public class InsertTest {
 
     @Test
     public void test1() {
-        Date d=new Date();
-        SimpleDateFormat sd=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String ss=sd.format(d);
+        Date d = new Date();
+        SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String ss = sd.format(d);
         ApplicationContext context = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
         departmentService = (DepartmentDao) context.getBean("departmentDao");
         Department department = new Department("财务部", d);
@@ -32,5 +32,11 @@ public class InsertTest {
         }
     }
 
+    @Test
+    public void test002() {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd 09:00:00");
+        String dateString = formatter.format(new Date());
+        System.out.println(dateString);
+    }
 
 }

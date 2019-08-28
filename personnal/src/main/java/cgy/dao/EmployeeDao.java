@@ -20,4 +20,6 @@ public interface EmployeeDao {
     List<Employee> getEmployeeByPage2(int firstPageNo, int endPageNo);
 
     boolean update(Employee employee);
+
+    boolean update2(Employee employee);
 }

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cgy.dao.AttendenceDao">
+    <insert id="insert">
+        insert into P_ATTENDENCE
+        values (SEQ_ATTENDENCE.nextval, #{atd_e_id}, #{atd_start_time}, null)
+    </insert>
+    <update id="update">
+        update P_ATTENDENCE
+        set ATD_END_TIME = #{atd_end_time}
+        where atd_id = #{atd_id}
+    </update>
+    <select id="getAtd" resultType="cgy.model.Attendence">
+        select *
+        from P_ATTENDENCE
+        where ATD_E_ID = #{atd_e_id}
+    </select>
+</mapper>

@@ -27,6 +27,11 @@
             e_phone  = #{e_phone}
         where e_id = #{e_id}
     </update>
+    <update id="update2">
+        update P_EMPLOYEE
+        set E_POS_ID = #{e_pos_id}
+        where e_id = #{e_id}
+    </update>
     <select id="getE" resultType="cgy.model.Employee">
         select *
         from P_EMPLOYEE

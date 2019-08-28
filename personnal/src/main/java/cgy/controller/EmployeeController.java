@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 public class EmployeeController {
@@ -24,6 +25,8 @@ public class EmployeeController {
     RecruitService recruitService;
     @Resource
     private InterViewService interViewService;
+    @Resource
+    private TrainingEmployeeService trainingEmployeeService;
 
     @RequestMapping("getEmployees")
     public String getEmployees(Employee employee, HttpServletRequest request) {
@@ -100,7 +103,7 @@ public class EmployeeController {
     @RequestMapping("updateEmployee")
     public String updateEmployee(Employee employee, HttpServletRequest request) {
         boolean updateEmployee = employeeService.updateEmployee(employee);
-        request.setAttribute("updateEmployee",updateEmployee);
+        request.setAttribute("updateEmployee", updateEmployee);
         return "forward:getEmployee";
     }
 
@@ -116,5 +119,39 @@ public class EmployeeController {
         Department department = departmentService.getDepartment(position.getPos_dep_id());
         request.setAttribute("depName", department.getDep_name());
         return "admin/employee/employeedetail";
+    }
+
+    //换岗操作
+    @RequestMapping("toChangePosition")
+    public String toChangePosition(int e_id, HttpServletRequest request) {
+        List<Department> departs = departmentService.getDeparts();
+        request.setAttribute("departs", departs);
+        List<Position> positions = positionService.getPositionByDep_id(null);
+        request.setAttribute("positions", positions);
+        Employee employee = new Employee();
+        employee.setE_id(e_id);
+        employeeService.getEmployee(employee);
+        request.setAttribute("employee", employee);
+        return "admin/employee/changepos";
+    }
+
+    //换岗操作
+    @RequestMapping("updatePos")
+    public String updatePos(int e_id, String pos_name, HttpServletRequest request) {
+        Employee employee = new Employee();
+        employee.setE_id(e_id);
+        Position positionByName = positionService.getPositionByName(pos_name);
+        employee.setE_pos_id(positionByName.getPos_id());
+        boolean updateEmployee = employeeService.updateEmployee(employee);
+        request.setAttribute("updateEmployee", updateEmployee);
+        return "admin/head";
+    }
+
+    //培训
+    @RequestMapping("addtrainandemployee")
+    public String addtrainandemployee(int t_id, String pos_name, HttpServletRequest request) {
+        boolean insertTrainEmployee = trainingEmployeeService.insert(t_id, pos_name);
+        request.setAttribute("insertTrainEmployee", insertTrainEmployee);
+        return "forward:totrain";
     }
 }

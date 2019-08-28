@@ -27,6 +27,7 @@ public class LoginController {
         }
         HttpSession session = request.getSession();
         session.setAttribute("employeeNow", employee);
+        session.setAttribute("cust", null);
         if (employee.getE_type() == 0) {
             request.setAttribute("login", true);
             return "admin/head";
@@ -43,6 +44,7 @@ public class LoginController {
             request.setAttribute("touristLogin", false);
         } else {
             request.getSession().setAttribute("cust", customer1);
+            request.getSession().setAttribute("employeeNow", null);
             request.setAttribute("touristLogin", true);
         }
         return "../index";

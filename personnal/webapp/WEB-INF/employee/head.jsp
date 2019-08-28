@@ -13,6 +13,42 @@
     }
 %>
 <%
+    if (request.getAttribute("insert") != null) {
+        boolean insert = (Boolean) request.getAttribute("insert");
+        if (insert) {
+%>
+<script>
+    alert("打卡成功！")
+</script>
+<%
+} else {
+%>
+<script>
+    alert("打卡失败，今天已经打过卡")
+</script>
+<%
+        }
+    }
+%>
+<%
+    if (request.getAttribute("update") != null) {
+        boolean update = (Boolean) request.getAttribute("update");
+        if (update) {
+%>
+<script>
+    alert("打卡成功！")
+</script>
+<%
+} else {
+%>
+<script>
+    alert("打卡失败，今天没打上班卡或已经打过下班卡！")
+</script>
+<%
+        }
+    }
+%>
+<%
     if (session.getAttribute("employeeNow") != null) {
 %>
 <div><span>当前用户===》${sessionScope.employeeNow.e_name}</span></div>
@@ -23,6 +59,7 @@
     <button>培训管理</button>
     <button>薪资管理</button>
     <button>工资异议</button>
-    <button><a href="getMyInter">面试信息</a></button>
     <button><a href="javascript:history.go(-1)">返回上一步</a></button>
+    <button style="float: right"><a href="xiaban">下班打卡</a></button>
+    <button style="float: right"><a href="shangban">上班打卡</a></button>
 </div>

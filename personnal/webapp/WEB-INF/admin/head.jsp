@@ -10,6 +10,7 @@
 </script>
 <%
         }
+        request.setAttribute("login",null);
     }
 %>
 <%
@@ -35,6 +36,7 @@
 </script>
 <%
         }
+        request.setAttribute("insertDepart",null);
     }
 %>
 <%
@@ -53,6 +55,7 @@
 </script>
 <%
         }
+        request.setAttribute("deleteDepart",null);
     }
 %>
 <%
@@ -71,6 +74,7 @@
 </script>
 <%
         }
+        request.setAttribute("updateDepart",null);
     }
 %>
 <%
@@ -89,6 +93,7 @@
 </script>
 <%
         }
+        request.setAttribute("insertPosition",null);
     }
 %>
 <%
@@ -107,6 +112,7 @@
 </script>
 <%
         }
+        request.setAttribute("updatePosition",null);
     }
 %>
 <%
@@ -125,6 +131,7 @@
 </script>
 <%
         }
+        request.setAttribute("deletePosition",null);
     }
 %>
 <%
@@ -143,6 +150,7 @@
 </script>
 <%
         }
+        request.setAttribute("view",null);
     }
 %>
 <%
@@ -155,6 +163,7 @@
 </script>
 <%
         }
+        request.setAttribute("view3",null);
     }
 %>
 <%
@@ -173,6 +182,7 @@
 </script>
 <%
         }
+        request.setAttribute("view4",null);
     }
 %>
 <%
@@ -191,6 +201,7 @@
 </script>
 <%
         }
+        request.setAttribute("insertRct",null);
     }
 %>
 
@@ -210,6 +221,7 @@
 </script>
 <%
         }
+        request.setAttribute("deleteRct",null);
     }
 %>
 <%
@@ -235,6 +247,7 @@
 <%
             }
         }
+        request.setAttribute("updateRct",null);
     }
 %>
 <%
@@ -253,6 +266,83 @@
 </script>
 <%
         }
+        request.setAttribute("updateEmployee",null);
+    }
+%>
+<%
+    if (request.getAttribute("updateState") != null) {
+        boolean updateState = (Boolean) request.getAttribute("updateState");
+        if (updateState) {
+%>
+<script>
+    alert("更新成功！")
+</script>
+<%
+} else {
+%>
+<script>
+    alert("更新失败！")
+</script>
+<%
+        }
+        request.setAttribute("updateState",null);
+    }
+%>
+<%
+    if (request.getAttribute("deletetrain") != null) {
+        boolean deletetrain = (Boolean) request.getAttribute("deletetrain");
+        if (deletetrain) {
+%>
+<script>
+    alert("删除成功！")
+</script>
+<%
+} else {
+%>
+<script>
+    alert("删除失败！")
+</script>
+<%
+        }
+        request.setAttribute("deletetrain",null);
+    }
+%>
+<%
+    if (request.getAttribute("addTrain") != null) {
+        boolean addTrain = (Boolean) request.getAttribute("addTrain");
+        if (addTrain) {
+%>
+<script>
+    alert("新增成功！")
+</script>
+<%
+} else {
+%>
+<script>
+    alert("新增失败！")
+</script>
+<%
+        }
+        request.setAttribute("addTrain",null);
+    }
+%>
+<%
+    if (request.getAttribute("insertTrainEmployee") != null) {
+        boolean insertTrainEmployee = (Boolean) request.getAttribute("insertTrainEmployee");
+        if (insertTrainEmployee) {
+%>
+<script>
+    alert("分配成功！")
+</script>
+<%
+} else {
+%>
+<script>
+    alert("分配失败！")
+</script>
+<%
+        }
+        request.setAttribute("insertTrainEmployee",null);
     }
 %>
 <div>
@@ -260,7 +350,7 @@
     <button><a href="getDepart">部门职位</a></button>
     <button><a href="getMyInter">面试信息</a></button>
     <button><a href="torct">招聘信息管理</a></button>
-    <button>培训管理</button>
+    <button><a href="totrain">培训管理</a></button>
     <button><a href="toEmployeeManage">员工管理</a></button>
     <button>奖惩管理</button>
     <button>薪资管理</button>

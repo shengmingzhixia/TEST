@@ -52,4 +52,13 @@ public class ToUrl {
         return "admin/recruit/recruitlist";
     }
 
+    @RequestMapping("tohead")
+    public String tohead(HttpServletRequest request) {
+        return "admin/head";
+    }
+
+    @RequestMapping("toaddtrain")
+    public String toaddtrain(HttpServletRequest request) {
+        return "admin/training/trainingadd";
+    }
 }

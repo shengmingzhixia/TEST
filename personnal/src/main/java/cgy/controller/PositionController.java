@@ -90,4 +90,14 @@ public class PositionController {
         return "forward:getPositions";
     }
 
+    //去给职位下的人分配培训
+    @RequestMapping("toChoosePos")
+    public String toChoosePos(int t_id, HttpServletRequest request) {
+        request.setAttribute("t_id", t_id);
+        List<Department> departs = departmentService.getDeparts();
+        request.setAttribute("departs", departs);
+        List<Position> positions = positionService.getPositionByDep_id(null);
+        request.setAttribute("positions",positions);
+        return "admin/training/trainingtopos";
+    }
 }

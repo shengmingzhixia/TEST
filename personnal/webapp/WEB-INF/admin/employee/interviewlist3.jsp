@@ -19,6 +19,7 @@
     <title>查看面试</title>
 </head>
 <body>
+<%@ include file="../head.jsp" %>
 <%
     List<InterView2> interViews = (List<InterView2>) request.getAttribute("list");
     if (interViews != null && interViews.size() != 0) {
@@ -34,7 +35,7 @@
             </tr>
             <c:forEach items="${requestScope.list}" var="inter">
                 <tr>
-                    <td>${inter.in_cv_name}</td>
+                    <td>${inter.in_cv_title}</td>
                     <td>${inter.in_rct_name}</td>
                     <td>
                         <fmt:formatDate value="${inter.in_date}" pattern="yyyy-MM-dd HH:mm:ss"/>

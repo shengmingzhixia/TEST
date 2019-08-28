@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cgy.dao.RewardDao">
+    <insert id="insertReward">
+        insert into P_REWARD
+        values (SEQ_REWARD.nextval, #{r_e_id}, #{r_date}, #{r_reason}, #{r_money})
+    </insert>
+    <select id="getRewards" resultType="cgy.model.Reward">
+        select *
+        from P_REWARD
+        where R_E_ID = #{r_e_id}
+    </select>
+</mapper>
