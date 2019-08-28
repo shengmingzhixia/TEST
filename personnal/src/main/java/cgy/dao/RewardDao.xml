@@ -8,6 +8,11 @@
     <select id="getRewards" resultType="cgy.model.Reward">
         select *
         from P_REWARD
-        where R_E_ID = #{r_e_id}
+        <where>
+            1=1
+            <if test="r_e_id!=null">
+                and R_E_ID = #{r_e_id}
+            </if>
+        </where>
     </select>
 </mapper>

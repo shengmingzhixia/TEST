@@ -36,6 +36,7 @@
         select *
         from P_EMPLOYEE
         <where>
+            1=1
             <if test="e_type!=null">
                 and e_type = #{e_type}
             </if>

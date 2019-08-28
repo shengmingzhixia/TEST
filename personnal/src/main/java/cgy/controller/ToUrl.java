@@ -61,4 +61,9 @@ public class ToUrl {
     public String toaddtrain(HttpServletRequest request) {
         return "admin/training/trainingadd";
     }
+
+    @RequestMapping("toSalaryManage")
+    public String toSalaryManage(HttpServletRequest request) {
+        return "admin/salaryManage";
+    }
 }

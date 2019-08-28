@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cgy.dao.SalaryDao">
+    <insert id="insertSalary">
+        insert into P_SALARY
+        values (SEQ_SALARY.nextval,
+                #{s_e_id},
+                #{s_date},
+                #{s_performance},
+                #{s_extra},
+                #{s_reward},
+                #{s_insurance},
+                #{s_total},
+                #{s_is_trouble})
+    </insert>
+    <select id="getSalarysByPage" resultType="cgy.model.Salary">
+        SELECT *
+        FROM (SELECT ROWNUM rn,
+                     S_ID,
+                     S_E_ID,
+                     S_DATE,
+                     S_PERFORMANCE,
+                     S_EXTRA,
+                     S_REWARD,
+                     S_INSURANCE,
+                     S_TOTAL,
+                     S_IS_TROUBLE
+              FROM (select * from P_SALARY order by S_DATE desc)
+              WHERE ROWNUM &lt;= #{1})a
+        WHERE a.rn > #{0}
+    </select>
+    <select id="getTotalRows" resultType="java.lang.Integer">
+        select count(*)
+        from P_SALARY
+    </select>
+    <select id="getSalarys" resultType="cgy.model.Salary">
+        select *
+        from P_SALARY
+    </select>
+</mapper>
