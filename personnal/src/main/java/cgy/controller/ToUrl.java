@@ -54,7 +54,7 @@ public class ToUrl {
 
     @RequestMapping("tohead")
     public String tohead(HttpServletRequest request) {
-        return "admin/head";
+        return "main/main";
     }
 
     @RequestMapping("toaddtrain")
@@ -65,5 +65,12 @@ public class ToUrl {
     @RequestMapping("toSalaryManage")
     public String toSalaryManage(HttpServletRequest request) {
         return "admin/salaryManage";
+    }
+
+    @RequestMapping("logout")
+    public String logout(HttpServletRequest request) {
+        request.getSession().setAttribute("employeeNow", null);
+        request.getSession().setAttribute("cust", null);
+        return "../index";
     }
 }

@@ -1,6 +1,7 @@
 package cgy.controller;
 
 import cgy.model.Department;
+import cgy.model.Employee;
 import cgy.model.Page;
 import cgy.model.Position;
 import cgy.service.DepartmentService;
@@ -27,6 +28,11 @@ public class PositionController {
     //获得所有的职位信息
     @RequestMapping("getPositions")
     public String getPositions(Position position, HttpServletRequest request) {
+        Employee employee = (Employee) request.getSession().getAttribute("employeeNow");
+        if (employee == null){
+            request.setAttribute("message","请先登录");
+            return "../index";
+        }
         String pageNoStr = request.getParameter("pageNo");
         int pageNo = 1;
         if (pageNoStr != null && !"".equals(pageNoStr)) {
@@ -65,6 +71,11 @@ public class PositionController {
     //添加一个职位
     @RequestMapping("addPosition")
     public String addPosition(Position position, HttpServletRequest request) {
+        Employee employee = (Employee) request.getSession().getAttribute("employeeNow");
+        if (employee == null){
+            request.setAttribute("message","请先登录");
+            return "../index";
+        }
         System.out.println(position + "1");
         request.setAttribute("position", position);
         boolean insertPosition = positionService.insertPosition(position);
@@ -75,6 +86,11 @@ public class PositionController {
     //修改职位信息
     @RequestMapping("updatePosition")
     public String updatePosition(Position position, HttpServletRequest request) {
+        Employee employee = (Employee) request.getSession().getAttribute("employeeNow");
+        if (employee == null){
+            request.setAttribute("message","请先登录");
+            return "../index";
+        }
         request.setAttribute("position", position);
         boolean updatePosition = positionService.updatePosition(position);
         request.setAttribute("updatePosition", updatePosition);
@@ -84,6 +100,11 @@ public class PositionController {
     //删除职位信息
     @RequestMapping("deleteposition")
     public String deleteposition(Position position, HttpServletRequest request) {
+        Employee employee = (Employee) request.getSession().getAttribute("employeeNow");
+        if (employee == null){
+            request.setAttribute("message","请先登录");
+            return "../index";
+        }
         request.setAttribute("position", position);
         boolean deletePosition = positionService.deletePosition(position.getPos_id());
         request.setAttribute("deletePosition", deletePosition);
@@ -93,6 +114,11 @@ public class PositionController {
     //去给职位下的人分配培训
     @RequestMapping("toChoosePos")
     public String toChoosePos(int t_id, HttpServletRequest request) {
+        Employee employee = (Employee) request.getSession().getAttribute("employeeNow");
+        if (employee == null){
+            request.setAttribute("message","请先登录");
+            return "../index";
+        }
         request.setAttribute("t_id", t_id);
         List<Department> departs = departmentService.getDeparts();
         request.setAttribute("departs", departs);

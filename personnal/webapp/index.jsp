@@ -17,6 +17,7 @@
     <link href="css/slider.css" rel="stylesheet" type="text/css"/>
     <link href="css/common.css" rel="stylesheet" type="text/css"/>
     <link href="css/index.css" rel="stylesheet" type="text/css"/>
+    <script src="js/jquery-1.7.2.js"></script>
     <style>
         * {
             margin: 0;
@@ -262,7 +263,16 @@
     </script>
 </head>
 <body>
-
+<%
+    Object message = request.getAttribute("message");
+    if (message != null) {
+%>
+<script>
+    alert('${requestScope.message}')
+</script>
+<%
+    }
+%>
 <div class="container header">
     <div class="span5">
         <div class="logo">

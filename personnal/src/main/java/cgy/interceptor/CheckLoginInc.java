@@ -18,7 +18,14 @@ public class CheckLoginInc implements HandlerInterceptor {
         String servletPath = request.getServletPath();
         HttpSession session = request.getSession();
         System.out.println("进入拦截器功能主体");
-
+        Object employeeNow = request.getSession().getAttribute("employeeNow");
+        Object cust = request.getSession().getAttribute("cust");
+        if (employeeNow == null && cust == null) {
+            request.setAttribute("message", "请先登录！");
+            System.out.println("用户为空");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+            return;
+        }
     }
 
     @Override

@@ -40,6 +40,7 @@
             <mvc:exclude-mapping path="/toLogin"/>
             <mvc:exclude-mapping path="/entertouristLogin"/>
             <mvc:exclude-mapping path="/toRegister"/>
+            <mvc:exclude-mapping path="/logout"/>
             <bean class="cgy.interceptor.CheckLoginInc"/>
         </mvc:interceptor>
     </mvc:interceptors>

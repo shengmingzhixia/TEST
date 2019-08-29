@@ -33,7 +33,7 @@
             </div>
             <br/><br/>
             <div>
-                <table>
+                <table border="1" cellspacing="1" cellpadding="0">
                     <tr>
                         <td>姓名</td>
                         <td>结算日期</td>

@@ -30,6 +30,10 @@ public class CvController {
             }
         }
         Customer cust = (Customer) request.getSession().getAttribute("cust");
+        if (cust == null) {
+            request.setAttribute("message", "请先登录");
+            return "../index";
+        }
         Page<Cv> cvByPage = cvService.getCvByPage(pageNo, cust.getC_id());
         request.setAttribute("cvByPage", cvByPage);
         return "jsp/cv";
@@ -38,12 +42,17 @@ public class CvController {
     //添加一份简历
     @RequestMapping("cvadd")
     public String cvadd(Cv cv, HttpServletRequest request) {
+        System.out.println(cv);
         if (cv == null || cv.getCv_title() == null || cv.getCv_name() == null || cv.getCv_gender() == null ||
                 cv.getCv_birth() == null || cv.getCv_address() == null || cv.getCv_school() == null || cv.getCv_education() == null ||
                 cv.getCv_major() == null || cv.getCv_enroll_date() == null || cv.getCv_graduation_date() == null || cv.getCv_phone() == 0) {
             request.setAttribute("addCv", false);
         } else {
             Customer customer = (Customer) request.getSession().getAttribute("cust");
+            if (customer == null) {
+                request.setAttribute("message", "请先登录");
+                return "../index";
+            }
             cv.setCv_c_id(customer.getC_id());
             System.out.println(cv);
             boolean b = cvService.insertCv(cv);
@@ -55,6 +64,11 @@ public class CvController {
     //查看简历细节
     @RequestMapping("cvdetail")
     public String cvDetail(int id, HttpServletRequest request) {
+        Customer customer = (Customer) request.getSession().getAttribute("cust");
+        if (customer == null) {
+            request.setAttribute("message", "请先登录");
+            return "../index";
+        }
         Cv cv = cvService.getCv(id);
         request.setAttribute("cv", cv);
         return "jsp/cvdetail";
@@ -63,6 +77,11 @@ public class CvController {
     //管理员查看面试信息，查看游客的简历
     @RequestMapping("cvdetail2")
     public String cvDetail2(InterView2 interView2, HttpServletRequest request) {
+        Employee employee = (Employee) request.getSession().getAttribute("employeeNow");
+        if (employee == null){
+            request.setAttribute("message","请先登录");
+            return "../index";
+        }
         Cv cv = cvService.getCv(interView2.getIn_cv_id());
         InterView interView = new InterView();
         interView.setIn_is_read(1);
@@ -76,6 +95,11 @@ public class CvController {
 
     @RequestMapping("toCvUpdate")
     public String toCvUpdate(int id, HttpServletRequest request) {
+        Customer customer = (Customer) request.getSession().getAttribute("cust");
+        if (customer == null) {
+            request.setAttribute("message", "请先登录");
+            return "../index";
+        }
         Cv cv = cvService.getCv(id);
         request.setAttribute("cv", cv);
         return "jsp/cvupdate";
@@ -90,6 +114,10 @@ public class CvController {
             request.setAttribute("updateCv", false);
         } else {
             Customer customer = (Customer) request.getSession().getAttribute("cust");
+            if (customer == null){
+                request.setAttribute("message","请先登录");
+                return "../index";
+            }
             cv.setCv_c_id(customer.getC_id());
             System.out.println(cv);
             boolean b = cvService.updateCv(cv);
@@ -101,6 +129,11 @@ public class CvController {
     //删除简历
     @RequestMapping("cvDelete")
     public String cvDelete(HttpServletRequest request) {
+        Customer customer = (Customer) request.getSession().getAttribute("cust");
+        if (customer == null) {
+            request.setAttribute("message", "请先登录");
+            return "../index";
+        }
         String id = request.getParameter("id");
         int id1 = Integer.parseInt(id);
         boolean cvDelete = cvService.delete(id1);

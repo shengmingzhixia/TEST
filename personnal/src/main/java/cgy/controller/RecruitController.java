@@ -41,6 +41,10 @@ public class RecruitController {
     @RequestMapping("addRecruit")
     public String addRecruit(Recruit recruit, HttpServletRequest request) {
         Employee employee = (Employee) request.getSession().getAttribute("employeeNow");
+        if (employee == null){
+            request.setAttribute("message","请先登录");
+            return "../index";
+        }
         recruit.setRct_e_id(employee.getE_id());
         if ("null".equals(recruit.getRct_title())){
             request.setAttribute("insertRct",false);
@@ -58,6 +62,11 @@ public class RecruitController {
     //删除一条草稿
     @RequestMapping("deleteRct")
     public String deleteRct(Recruit recruit, HttpServletRequest request) {
+        Employee employee = (Employee) request.getSession().getAttribute("employeeNow");
+        if (employee == null){
+            request.setAttribute("message","请先登录");
+            return "../index";
+        }
         boolean deleteRct = recruitService.deleteRecruit(recruit.getRct_id());
         request.setAttribute("deleteRct",deleteRct);
         return "admin/recruit/recruitlist";
@@ -66,6 +75,11 @@ public class RecruitController {
     //更新一条草稿的状态
     @RequestMapping("updateRct")
     public String updateRct(Recruit recruit, HttpServletRequest request) {
+        Employee employee = (Employee) request.getSession().getAttribute("employeeNow");
+        if (employee == null){
+            request.setAttribute("message","请先登录");
+            return "../index";
+        }
         recruit.setRct_publish_time(new Date());
         boolean updateRct = recruitService.updateRecruit(recruit);
         request.setAttribute("updateRct",updateRct);
@@ -82,6 +96,11 @@ public class RecruitController {
     //修改一条草稿
     @RequestMapping("updateRct2")
     public String updateRct2(Recruit recruit, HttpServletRequest request) {
+        Employee employee = (Employee) request.getSession().getAttribute("employeeNow");
+        if (employee == null){
+            request.setAttribute("message","请先登录");
+            return "../index";
+        }
         boolean updateRct2 = recruitService.updateRecruit(recruit);
         request.setAttribute("updateRct",updateRct2);
         request.setAttribute("mark","");

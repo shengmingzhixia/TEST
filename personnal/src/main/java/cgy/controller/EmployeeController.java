@@ -30,6 +30,11 @@ public class EmployeeController {
 
     @RequestMapping("getEmployees")
     public String getEmployees(Employee employee, HttpServletRequest request) {
+        Employee employee1 = (Employee) request.getSession().getAttribute("employeeNow");
+        if (employee1 == null){
+            request.setAttribute("message","请先登录");
+            return "../index";
+        }
         String pageNoStr = request.getParameter("pageNo");
         int pageNo = 1;
         if (pageNoStr != null && !"".equals(pageNoStr)) {
@@ -49,6 +54,11 @@ public class EmployeeController {
     //查看员工的具体信息
     @RequestMapping("getEmployee")
     public String getEmployee(Employee employee, HttpServletRequest request) {
+        Employee employee2 = (Employee) request.getSession().getAttribute("employeeNow");
+        if (employee2 == null){
+            request.setAttribute("message","请先登录");
+            return "../index";
+        }
         Employee employee1 = employeeService.getEmployee(employee);
         request.setAttribute("employee1", employee1);
         Position position = positionService.getPosition(employee1.getE_pos_id());
@@ -64,6 +74,10 @@ public class EmployeeController {
         Cv cv1 = cvService.getCv(cv.getCv_id());
         Employee employee = new Employee();
         Customer customer = (Customer) request.getSession().getAttribute("cust");
+        if (customer == null){
+            request.setAttribute("message","请先登录");
+            return "../index";
+        }
         employee.setE_account(customer.getC_account());
         employee.setE_password(customer.getC_pass());
         employee.setE_type(1);
@@ -80,12 +94,17 @@ public class EmployeeController {
         interViewService.updateInterView(interView);
         boolean insert = employeeService.insertEmployee(employee);
         request.setAttribute("insert", insert);
-        return "../head";
+        return "main/main";
     }
 
     //管理员管理员工
     @RequestMapping("toEmployeeManage")
     public String toEmployeeManage(HttpServletRequest request) {
+        Employee employee = (Employee) request.getSession().getAttribute("employeeNow");
+        if (employee == null){
+            request.setAttribute("message","请先登录");
+            return "../index";
+        }
         String pageNoStr = request.getParameter("pageNo");
         int pageNo = 1;
         if (pageNoStr != null && !"".equals(pageNoStr)) {
@@ -102,6 +121,11 @@ public class EmployeeController {
     //更新员工的部分信息
     @RequestMapping("updateEmployee")
     public String updateEmployee(Employee employee, HttpServletRequest request) {
+        Employee employee1 = (Employee) request.getSession().getAttribute("employeeNow");
+        if (employee1 == null){
+            request.setAttribute("message","请先登录");
+            return "../index";
+        }
         boolean updateEmployee = employeeService.updateEmployee(employee);
         request.setAttribute("updateEmployee", updateEmployee);
         return "forward:getEmployee";
@@ -110,6 +134,11 @@ public class EmployeeController {
     //通过姓名查看员工的具体信息
     @RequestMapping("getEmployeeByName")
     public String getEmployeeByName(Employee employee, HttpServletRequest request) {
+        Employee employee2 = (Employee) request.getSession().getAttribute("employeeNow");
+        if (employee2 == null){
+            request.setAttribute("message","请先登录");
+            return "../index";
+        }
         System.out.println(employee);
         Employee employee1 = employeeService.getEmployee(employee);
         System.out.println(employee1);
@@ -124,6 +153,11 @@ public class EmployeeController {
     //换岗操作
     @RequestMapping("toChangePosition")
     public String toChangePosition(int e_id, HttpServletRequest request) {
+        Employee employee1 = (Employee) request.getSession().getAttribute("employeeNow");
+        if (employee1 == null){
+            request.setAttribute("message","请先登录");
+            return "../index";
+        }
         List<Department> departs = departmentService.getDeparts();
         request.setAttribute("departs", departs);
         List<Position> positions = positionService.getPositionByDep_id(null);
@@ -138,18 +172,28 @@ public class EmployeeController {
     //换岗操作
     @RequestMapping("updatePos")
     public String updatePos(int e_id, String pos_name, HttpServletRequest request) {
+        Employee employee1 = (Employee) request.getSession().getAttribute("employeeNow");
+        if (employee1 == null){
+            request.setAttribute("message","请先登录");
+            return "../index";
+        }
         Employee employee = new Employee();
         employee.setE_id(e_id);
         Position positionByName = positionService.getPositionByName(pos_name);
         employee.setE_pos_id(positionByName.getPos_id());
         boolean updateEmployee = employeeService.updateEmployee(employee);
         request.setAttribute("updateEmployee", updateEmployee);
-        return "admin/head";
+        return "main/main";
     }
 
     //培训
     @RequestMapping("addtrainandemployee")
     public String addtrainandemployee(int t_id, String pos_name, HttpServletRequest request) {
+        Employee employee = (Employee) request.getSession().getAttribute("employeeNow");
+        if (employee == null){
+            request.setAttribute("message","请先登录");
+            return "../index";
+        }
         boolean insertTrainEmployee = trainingEmployeeService.insert(t_id, pos_name);
         request.setAttribute("insertTrainEmployee", insertTrainEmployee);
         return "forward:totrain";
