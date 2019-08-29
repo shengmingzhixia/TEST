@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: Administrator
-  Date: 2019\8\28 0028
-  Time: 9:52
+  Date: 2019\8\25 0025
+  Time: 14:03
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -13,33 +13,25 @@
 <html>
 <head>
     <base href="<%=basePath%>"/>
-    <title>添加新的培训信息</title>
+    <title>管理员界面</title>
+    <script language="javascript" src="jquery.js"></script>
     <link href="css/main.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="mainDiv">
 
-    <%@ include file="../../main/head.jsp" %>
+    <%@ include file="../main/head.jsp" %>
 
     <div id="centerDiv">
 
-        <%@ include file="../../main/left.jsp" %>
+        <%@ include file="../main/left.jsp" %>
 
 
         <div id="right">
             <div id="current" align="center">&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 20px;font-weight: bold;">当前位置--->>>${title}</span>
             </div>
             <br/><br/>
-            <div>
-                <form action="addtrain" method="post">
-                    <input type="text" name="t_title" placeholder="标题">
-                    <textarea placeholder="内容" name="t_context"></textarea>
-                    <br/>开始时间<input type="datetime-local" name="t_start_time">
-                    <br/>结束时间<input type="datetime-local" name="t_end_time">
-                    <input type="text" name="t_address" placeholder="地址">
-                    <input type="submit" value="提交">
-                </form>
-            </div>
+
         </div>
     </div>
     <div id="bottomDiv"></div>

@@ -88,7 +88,7 @@ public class InterViewController {
         boolean view = interViewService.updateInterView(interView);
         if (interView.getIn_is_agree() == 0) view = false;
         request.setAttribute("view2", view);
-        return "../index";
+        return "jsp/index";
     }
 
     //面试过程跳过

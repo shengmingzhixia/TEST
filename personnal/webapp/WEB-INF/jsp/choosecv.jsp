@@ -14,33 +14,51 @@
 <head>
     <base href="<%=basePath%>"/>
     <title>选择要投递的简历</title>
+    <link href="css/main.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-<%@ include file="../../head.jsp" %>
-<%
-    List<Cv> cvList = (List<Cv>) request.getAttribute("cvList");
-    if (cvList == null || cvList.size() == 0) {
-%>
-<script>
-    alert("你还没有一份简历，请先去创建！")
-    top.location = "tocvadd"
-</script>
-<%
-} else {
-%>
-<div>
-    <form action="insertInterView" method="post">
-        <input type="hidden" value="${requestScope.rct_id}" name="in_rct_id">
-        <select name="in_cv_id">
-            <c:forEach items="${requestScope.cvList}" var="cv">
-                <option value="${cv.cv_id}">简历名称==》${cv.cv_title}</option>
-            </c:forEach>
-        </select>
-        <input type="submit" value="提交简历">
-    </form>
+<div id="mainDiv">
+
+
+    <%@ include file="../main/head.jsp" %>
+
+    <div id="centerDiv">
+
+        <%@ include file="../main/left.jsp" %>
+
+
+        <div id="right">
+            <div id="current" align="center">&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 20px;font-weight: bold;">当前位置--->>>${title}</span>
+            </div>
+            <br/><br/>
+            <%
+                List<Cv> cvList = (List<Cv>) request.getAttribute("cvList");
+                if (cvList == null || cvList.size() == 0) {
+            %>
+            <script>
+                alert("你还没有一份简历，请先去创建！")
+                top.location = "tocvadd"
+            </script>
+            <%
+            } else {
+            %>
+            <div>
+                <form action="insertInterView" method="post">
+                    <input type="hidden" value="${requestScope.rct_id}" name="in_rct_id">
+                    <select name="in_cv_id">
+                        <c:forEach items="${requestScope.cvList}" var="cv">
+                            <option value="${cv.cv_id}">简历名称==》${cv.cv_title}</option>
+                        </c:forEach>
+                    </select>
+                    <input type="submit" value="提交简历">
+                </form>
+            </div>
+            <%
+                }
+            %>
+        </div>
+    </div>
+    <div id="bottomDiv"></div>
 </div>
-<%
-    }
-%>
 </body>
 </html>

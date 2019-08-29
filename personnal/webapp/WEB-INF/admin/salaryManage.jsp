@@ -18,6 +18,7 @@
 <head>
     <base href="<%=basePath%>"/>
     <title>薪资结算界面</title>
+    <link href="css/main.css" rel="stylesheet" type="text/css"/>
     <%
         if (request.getAttribute("insertSalarys") != null) {
             boolean insertSalarys = (Boolean) request.getAttribute("insertSalarys");
@@ -38,68 +39,86 @@
     %>
 </head>
 <body>
-<button><a href="insertAllSalary">一键结算</a></button>
-<%
-    Page<Salary2> salaryPage = (Page<Salary2>) request.getAttribute("salaryPage");
-    if (salaryPage == null) {
-%>
-<script>
-    top.location = "getSalarys";
-</script>
-<%
-        return;
-    }
-    if (salaryPage != null && salaryPage.getList() != null &&
-            salaryPage.getList().size() != 0) {
-%>
-<div class="prod">
-    <div>
-        <table border="1" cellspacing="1" cellpadding="0">
-            <tr>
-                <td>员工姓名</td>
-                <td>结算日期</td>
-                <td>基本工资</td>
-                <td>加班费用</td>
-                <td>奖惩费用</td>
-                <td>社保</td>
-                <td>你的薪水</td>
-                <td>复议</td>
-            </tr>
-            <c:forEach items="${requestScope.salaryPage.list}" var="salary">
-                <tr>
-                    <td>${salary.s_e_name}</td>
-                    <td><fmt:formatDate value="${salary.s_date}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
-                    <td>${salary.s_performance}</td>
-                    <td>${salary.s_extra}</td>
-                    <td>${salary.s_reward}</td>
-                    <td>${salary.s_insurance}</td>
-                    <td>${salary.s_total}</td>
-                    <td><a>对此疑问</a></td>
-                </tr>
-            </c:forEach>
-        </table>
-    </div>
-</div>
-<%
-} else {
-%>
-<div>null</div>
-<%
-    }
-%>
+<div id="mainDiv">
 
-</div>
-<div class="div4">
-    <span>共 <%=salaryPage.getTotalPage()%> 页</span>
-    <span>当前在第 <%=salaryPage.getPageNo()%> 页</span>
-    <span><a href="getSalarys?pageNo=1">首页</a></span>
-    <span><a href="getSalarys?pageNo=<%=salaryPage.getPrevPage()%>">上一页</a></span>
-    <span><a href="getSalarys?pageNo=<%=salaryPage.getNextPage()%>">下一页</a></span>
-    <span><a href="getSalarys?pageNo=<%=salaryPage.getTotalPage()%>">尾页</a></span>
-    <form action="getSalarys" onsubmit="return checkNum(this.children[1].value,<%=salaryPage.getTotalPage()%>)">
-        <span>跳转到</span><input name="pageNo">
-        <input type="submit" value="跳转">
-    </form>
+    <%@ include file="../main/head.jsp" %>
+
+    <div id="centerDiv">
+
+        <%@ include file="../main/left.jsp" %>
+
+
+        <div id="right">
+            <div id="current" align="center">&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 20px;font-weight: bold;">当前位置--->>>${title}</span>
+            </div>
+            <br/><br/>
+            <div>
+                <button><a href="insertAllSalary">一键结算</a></button>
+                <%
+                    Page<Salary2> salaryPage = (Page<Salary2>) request.getAttribute("salaryPage");
+                    if (salaryPage == null) {
+                %>
+                <script>
+                    top.location = "getSalarys";
+                </script>
+                <%
+                        return;
+                    }
+                    if (salaryPage != null && salaryPage.getList() != null &&
+                            salaryPage.getList().size() != 0) {
+                %>
+                <div class="prod">
+                    <div>
+                        <table border="1" cellspacing="1" cellpadding="0">
+                            <tr>
+                                <td>员工姓名</td>
+                                <td>结算日期</td>
+                                <td>基本工资</td>
+                                <td>加班费用</td>
+                                <td>奖惩费用</td>
+                                <td>社保</td>
+                                <td>你的薪水</td>
+                                <td>复议</td>
+                            </tr>
+                            <c:forEach items="${requestScope.salaryPage.list}" var="salary">
+                                <tr>
+                                    <td>${salary.s_e_name}</td>
+                                    <td><fmt:formatDate value="${salary.s_date}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+                                    <td>${salary.s_performance}</td>
+                                    <td>${salary.s_extra}</td>
+                                    <td>${salary.s_reward}</td>
+                                    <td>${salary.s_insurance}</td>
+                                    <td>${salary.s_total}</td>
+                                    <td><a>对此疑问</a></td>
+                                </tr>
+                            </c:forEach>
+                        </table>
+                    </div>
+                </div>
+                <%
+                } else {
+                %>
+                <div>null</div>
+                <%
+                    }
+                %>
+                <div class="div4">
+                    <span>共 <%=salaryPage.getTotalPage()%> 页</span>
+                    <span>当前在第 <%=salaryPage.getPageNo()%> 页</span>
+                    <span><a href="getSalarys?pageNo=1">首页</a></span>
+                    <span><a href="getSalarys?pageNo=<%=salaryPage.getPrevPage()%>">上一页</a></span>
+                    <span><a href="getSalarys?pageNo=<%=salaryPage.getNextPage()%>">下一页</a></span>
+                    <span><a href="getSalarys?pageNo=<%=salaryPage.getTotalPage()%>">尾页</a></span>
+                    <form action="getSalarys"
+                          onsubmit="return checkNum(this.children[1].value,<%=salaryPage.getTotalPage()%>)">
+                        <span>跳转到</span><input name="pageNo">
+                        <input type="submit" value="跳转">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="bottomDiv"></div>
 </div>
 </body>
 </html>

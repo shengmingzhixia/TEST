@@ -15,50 +15,72 @@
 <head>
     <base href="<%=basePath%>"/>
     <title>详细简历</title>
+    <link href="css/main.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-<table border="1" cellspacing="1" cellpadding="0">
-    <tr>
-        <td>简历名称：</td>
-        <td>${requestScope.cv.cv_title}</td>
-    </tr>
-    <tr>
-        <td>真实姓名</td>
-        <td>${requestScope.cv.cv_name}</td>
-        <td>性别</td>
-        <td>${requestScope.cv.cv_gender}</td>
-    </tr>
-    <tr>
-        <td>出生日期</td>
-        <td><fmt:formatDate value="${requestScope.cv.cv_birth}" pattern="yyyy-MM-dd"/></td>
-        <td>家庭住址</td>
-        <td>${requestScope.cv.cv_address}</td>
-    </tr>
-    <tr>
-        <td>毕业院校</td>
-        <td>${requestScope.cv.cv_school}</td>
-        <td>学历</td>
-        <td>${requestScope.cv.cv_education}</td>
-    </tr>
-    <tr>
-        <td>专业</td>
-        <td>${requestScope.cv.cv_major}</td>
-        <td>入学时间</td>
-        <td><fmt:formatDate value="${requestScope.cv.cv_enroll_date}" pattern="yyyy-MM-dd"/></td>
-    </tr>
-    <tr>
-        <td>毕业时间</td>
-        <td><fmt:formatDate value="${requestScope.cv.cv_graduation_date}" pattern="yyyy-MM-dd"/></td>
-        <td>期望薪资</td>
-        <td>${requestScope.cv.cv_salary}</td>
-    </tr>
-    <tr>
-        <td>工作经验</td>
-        <td>${requestScope.cv.cv_exprience}</td>
-        <td>联系电话</td>
-        <td>${requestScope.cv.cv_phone}</td>
-    </tr>
-</table>
-<a href="getCv">返回</a>
+<div id="mainDiv">
+
+    <%@ include file="../main/head.jsp" %>
+
+    <div id="centerDiv">
+
+        <%@ include file="../main/left.jsp" %>
+
+
+        <div id="right">
+            <div id="current" align="center">&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 20px;font-weight: bold;">当前位置--->>>${title}</span>
+            </div>
+            <br/><br/>
+            <div>
+                <table border="1" cellspacing="1" cellpadding="0">
+                    <tr>
+                        <td>简历名称：</td>
+                        <td>${requestScope.cv.cv_title}</td>
+                    </tr>
+                    <tr>
+                        <td>真实姓名</td>
+                        <td>${requestScope.cv.cv_name}</td>
+                        <td>性别</td>
+                        <td>${requestScope.cv.cv_gender}</td>
+                    </tr>
+                    <tr>
+                        <td>出生日期</td>
+                        <td><fmt:formatDate value="${requestScope.cv.cv_birth}" pattern="yyyy-MM-dd"/></td>
+                        <td>家庭住址</td>
+                        <td>${requestScope.cv.cv_address}</td>
+                    </tr>
+                    <tr>
+                        <td>毕业院校</td>
+                        <td>${requestScope.cv.cv_school}</td>
+                        <td>学历</td>
+                        <td>${requestScope.cv.cv_education}</td>
+                    </tr>
+                    <tr>
+                        <td>专业</td>
+                        <td>${requestScope.cv.cv_major}</td>
+                        <td>入学时间</td>
+                        <td><fmt:formatDate value="${requestScope.cv.cv_enroll_date}" pattern="yyyy-MM-dd"/></td>
+                    </tr>
+                    <tr>
+                        <td>毕业时间</td>
+                        <td><fmt:formatDate value="${requestScope.cv.cv_graduation_date}" pattern="yyyy-MM-dd"/></td>
+                        <td>期望薪资</td>
+                        <td>${requestScope.cv.cv_salary}</td>
+                    </tr>
+                    <tr>
+                        <td>工作经验</td>
+                        <td>${requestScope.cv.cv_exprience}</td>
+                        <td>联系电话</td>
+                        <td>${requestScope.cv.cv_phone}</td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <a href="getCv">返回</a>
+            </div>
+        </div>
+    </div>
+    <div id="bottomDiv"></div>
+</div>
 </body>
 </html>

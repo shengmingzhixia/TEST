@@ -1,11 +1,12 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="cgy.model.Recruit" %>
 <%@ page import="cgy.model.Page" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: Administrator
-  Date: 2019\8\26 0026
-  Time: 9:59
+  Date: 2019\8\22 0022
+  Time: 15:23
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -16,19 +17,56 @@
 <html>
 <head>
     <base href="<%=basePath%>"/>
-    <title>所有的招聘信息</title>
+    <title>海同招聘信息网</title>
     <script src="js/index.js"></script>
     <script src="js/jquery-1.7.2.js"></script>
     <link href="css/main.css" rel="stylesheet" type="text/css"/>
 </head>
+<%
+    if (request.getAttribute("touristLogin") != null) {
+        boolean touristLogin = (Boolean) request.getAttribute("touristLogin");
+        if (touristLogin) {
+%>
+<script>
+    alert("登录成功！")
+</script>
+<%
+} else {
+%>
+<script>
+    alert("登录失败！")
+</script>
+<%
+        }
+    }
+%>
+<%
+    if (request.getAttribute("view") != null) {
+        boolean view = (Boolean) request.getAttribute("view");
+        if (view) {
+%>
+<script>
+    alert("投递成功！")
+</script>
+<%
+} else {
+%>
+<script>
+    alert("投递失败！")
+</script>
+<%
+        }
+    }
+%>
 <body>
+
 <div id="mainDiv">
 
-    <%@ include file="../../main/head.jsp" %>
+    <%@ include file="../main/head.jsp" %>
 
     <div id="centerDiv">
 
-        <%@ include file="../../main/left.jsp" %>
+        <%@ include file="../main/left.jsp" %>
 
 
         <div id="right">
@@ -38,7 +76,6 @@
 
             <%
                 Page<Recruit> recruitPage = (Page<Recruit>) request.getAttribute("recruitPage");
-                int i = 0;
                 if (recruitPage == null) {
             %>
             <script>
@@ -56,36 +93,23 @@
                         <tr>
                             <td>招聘主题</td>
                             <td>招聘描述</td>
+                            <td>发布时间</td>
                             <td>地址</td>
                             <td>薪资</td>
-                            <td>发布时间</td>
-                            <td colspan="3">操作</td>
+                            <td>加入我们!</td>
                         </tr>
                         <c:forEach items="${requestScope.recruitPage.list}" var="rct">
                             <tr>
                                 <td>${rct.rct_title}</td>
                                 <td>${rct.rct_introduaction}</td>
+                                <td><fmt:formatDate value="${rct.rct_publish_time }"
+                                                    pattern="yyyy-MM-dd HH:mm:ss"/></td>
                                 <td>${rct.rct_address}</td>
                                 <td>${rct.rct_salary}</td>
-                                <c:if test="${rct.rct_is_draft == 1}">
-                                    <td>未发布</td>
-                                    <td><a href="">修改</a></td>
-                                    <td><a href="updateRct?&rct_is_draft=0&rct_is_publish=1&rct_id=${rct.rct_id}">发布</a>
-                                    </td>
-                                    <td><a href="deleteRct?rct_id=${rct.rct_id}">删除</a></td>
-                                </c:if>
-                                <c:if test="${rct.rct_is_draft == 0}">
-                                    <td><fmt:formatDate value="${rct.rct_publish_time }"
-                                                        pattern="yyyy-MM-dd HH:mm:ss"/></td>
-                                    <td colspan="3"><a
-                                            href="updateRct?&rct_is_draft=1&rct_is_publish=0&rct_id=${rct.rct_id}">下架</a>
-                                    </td>
-                                    <%--下架时，更新时间为null--%>
-                                </c:if>
+                                <td><a href="toChooseCv?rctId=${rct.rct_id}">去投简历！</a></td>
                             </tr>
                         </c:forEach>
                     </table>
-                    <a href="toaddrecruit">添加一个招聘信息</a>
                 </div>
             </div>
             <%
@@ -95,7 +119,6 @@
             <%
                 }
             %>
-
             <div class="div4">
                 <span>共 <%=recruitPage.getTotalPage()%> 页</span>
                 <span>当前在第 <%=recruitPage.getPageNo()%> 页</span>

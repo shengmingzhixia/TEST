@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
-import java.util.List;
 
 @Controller
 public class RecruitController {
@@ -36,7 +35,7 @@ public class RecruitController {
         }
         Page<Recruit> recruitPage = recruitService.getRecruitByPage(pageNo, 1);
         request.setAttribute("recruitPage", recruitPage);
-        return "../index";
+        return "jsp/index";
     }
     //添加一条草稿
     @RequestMapping("addRecruit")

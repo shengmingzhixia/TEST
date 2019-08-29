@@ -16,25 +16,26 @@
     <base href="<%=basePath%>"/>
     <title>添加一个招聘信息</title>
     <script src="js/jquery-1.7.2.js"></script>
+    <link href="css/main.css" rel="stylesheet" type="text/css"/>
     <script>
         var arr = new Array()
         var i = 0
         <c:forEach items="${requestScope.departs}" var="depart">
-            var j = 0
-            var a = '${depart.dep_name}'
-            arr[i] = a
-            arr[arr[i]] = new Array()
-            <c:forEach items="${requestScope.positions}" var="position">
-                <c:if test="${depart.dep_id == position.pos_dep_id}">
-                var b = '${position.pos_name}'
-                arr[arr[i]][j] = b
-                j++
-                </c:if>
-            </c:forEach>
-            if (arr[arr[i]].length == 0){
-                arr[arr[i]][0] = 'null'
-            }
-            i++
+        var j = 0
+        var a = '${depart.dep_name}'
+        arr[i] = a
+        arr[arr[i]] = new Array()
+        <c:forEach items="${requestScope.positions}" var="position">
+        <c:if test="${depart.dep_id == position.pos_dep_id}">
+        var b = '${position.pos_name}'
+        arr[arr[i]][j] = b
+        j++
+        </c:if>
+        </c:forEach>
+        if (arr[arr[i]].length == 0) {
+            arr[arr[i]][0] = 'null'
+        }
+        i++
         </c:forEach>
 
         function init() {
@@ -58,32 +59,49 @@
     </script>
 </head>
 <body onload="init()">
-<div>
-    <table border="1" cellspacing="1" cellpadding="0">
-        <form action="addRecruit" method="post">
-            <tr>
-                <td>选择部门</td>
-                <td>
-                    <select id="dep" onchange="changePos(this.value)" required></select>
-                </td>
-                <td>选择职位</td>
-                <td>
-                    <select id="pos" name="rct_title" required></select>
-                </td>
-            </tr>
-            <tr>
-                <td>详情描述</td>
-                <td><textarea name="rct_introduaction"></textarea></td>
-                <td>招聘地址</td>
-                <td><input type="text" name="rct_address"></td>
-            </tr>
-            <tr>
-                <td>薪资待遇</td>
-                <td><input type="text" name="rct_salary"></td>
-            </tr>
-            <tr><input type="submit" value="提交草稿"></tr>
-        </form>
-    </table>
+<div id="mainDiv">
+
+    <%@ include file="../../main/head.jsp" %>
+
+    <div id="centerDiv">
+
+        <%@ include file="../../main/left.jsp" %>
+
+
+        <div id="right">
+            <div id="current" align="center">&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 20px;font-weight: bold;">当前位置--->>>${title}</span>
+            </div>
+            <br/><br/>
+            <div>
+                <table border="1" cellspacing="1" cellpadding="0">
+                    <form action="addRecruit" method="post">
+                        <tr>
+                            <td>选择部门</td>
+                            <td>
+                                <select id="dep" onchange="changePos(this.value)" required></select>
+                            </td>
+                            <td>选择职位</td>
+                            <td>
+                                <select id="pos" name="rct_title" required></select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>详情描述</td>
+                            <td><textarea name="rct_introduaction"></textarea></td>
+                            <td>招聘地址</td>
+                            <td><input type="text" name="rct_address"></td>
+                        </tr>
+                        <tr>
+                            <td>薪资待遇</td>
+                            <td><input type="text" name="rct_salary"></td>
+                        </tr>
+                        <tr><input type="submit" value="提交草稿"></tr>
+                    </form>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div id="bottomDiv"></div>
 </div>
 </body>
 </html>

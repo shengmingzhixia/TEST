@@ -90,10 +90,10 @@ public class AttendenceServiceImpl implements AttendenceService {
             if (dateYear.equals(dateYearNow) && dateMonth.equals(dateMonthNow)
                     && dateDay.equals(dateDayNow)
                     && attendences.get(i).getAtd_end_time() == null) {
-                Attendence attendence1 = attendences.get(0);
+                Attendence attendence1 = attendences.get(i);
                 attendence1.setAtd_end_time(new Date());
-                attendenceDao.update(attendence1);
-
+                boolean update = attendenceDao.update(attendence1);
+                System.out.println("更新："+update);
                 //判断时间  添加奖惩
 
                 Date atd_end_time = attendence1.getAtd_end_time();

@@ -17,9 +17,26 @@
     <title>职位信息</title>
     <script src="js/index.js"></script>
     <script src="js/jquery-1.7.2.js"></script>
+    <link href="css/main.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-<%@ include file="head.jsp" %>
-<%@ include file="positionlistbody.jsp" %>
+<div id="mainDiv">
+
+    <%@ include file="../main/head.jsp" %>
+
+    <div id="centerDiv">
+
+        <%@ include file="../main/left.jsp" %>
+
+
+        <div id="right">
+            <div id="current" align="center">&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 20px;font-weight: bold;">当前位置--->>>${title}</span>
+            </div>
+            <br/><br/>
+            <%@ include file="positionlistbody.jsp" %>
+        </div>
+    </div>
+    <div id="bottomDiv"></div>
+</div>
 </body>
 </html>

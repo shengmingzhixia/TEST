@@ -15,6 +15,7 @@
     <base href="<%=basePath%>"/>
     <title>更新部门信息</title>
     <script src="js/jquery-1.7.2.js"></script>
+    <link href="css/main.css" rel="stylesheet" type="text/css"/>
     <script>
         $(function () {
             $("input[name=pos_name]").blur(function () {
@@ -31,17 +32,35 @@
     </script>
 </head>
 <body>
-<%@ include file="head.jsp" %>
-<table>
-    <tr>请输入职位名称</tr>
-    <tr>
-        <form action="updatePosition" method="post">
-            <input type="text" name="pos_name" value="${requestScope.position.pos_name}">
-            <input type="hidden" value="${requestScope.position.pos_id}" name="pos_id">
-            <input type="hidden" value="${requestScope.position.pos_dep_id}" name="pos_dep_id">
-            <input type="submit" value="提交" id="sub1">
-        </form>
-    </tr>
-</table>
+<div id="mainDiv">
+
+    <%@ include file="../main/head.jsp" %>
+
+    <div id="centerDiv">
+
+        <%@ include file="../main/left.jsp" %>
+
+
+        <div id="right">
+            <div id="current" align="center">&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 20px;font-weight: bold;">当前位置--->>>${title}</span>
+            </div>
+            <br/><br/>
+            <div>
+                <table>
+                    <tr>请输入职位名称</tr>
+                    <tr>
+                        <form action="updatePosition" method="post">
+                            <input type="text" name="pos_name" value="${requestScope.position.pos_name}">
+                            <input type="hidden" value="${requestScope.position.pos_id}" name="pos_id">
+                            <input type="hidden" value="${requestScope.position.pos_dep_id}" name="pos_dep_id">
+                            <input type="submit" value="提交" id="sub1">
+                        </form>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div id="bottomDiv"></div>
+</div>
 </body>
 </html>

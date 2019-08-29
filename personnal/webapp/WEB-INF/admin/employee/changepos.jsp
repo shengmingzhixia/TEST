@@ -16,6 +16,7 @@
     <base href="<%=basePath%>"/>
     <title>换岗操作</title>
     <script src="js/jquery-1.7.2.js"></script>
+    <link href="css/main.css" rel="stylesheet" type="text/css"/>
     <script>
         var arr = new Array()
         var i = 0
@@ -58,26 +59,44 @@
     </script>
 </head>
 <body onload="init()">
-<div>
-    <table border="1" cellspacing="1" cellpadding="0">
-        <form action="updatePos" method="post">
-            <input type="hidden" value="${requestScope.employee.e_id}" name="e_id">
-            <tr>
-                <td>选择部门</td>
-                <td>
-                    <select id="dep" onchange="changePos(this.value)" required></select>
-                </td>
-                <td>选择职位</td>
-                <td>
-                    <select id="pos" name="pos_name" required></select>
-                </td>
-            </tr>
-            <tr>
-                <td><input type="submit" value="确定更改"></td>
-                <td><a href="tohead">返回</a></td>
-            </tr>
-        </form>
-    </table>
+<div id="mainDiv">
+
+
+    <%@ include file="../../main/head.jsp" %>
+
+    <div id="centerDiv">
+
+        <%@ include file="../../main/left.jsp" %>
+
+
+        <div id="right">
+            <div id="current" align="center">&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 20px;font-weight: bold;">当前位置--->>>${title}</span>
+            </div>
+            <br/><br/>
+            <div>
+                <table border="1" cellspacing="1" cellpadding="0">
+                    <form action="updatePos" method="post">
+                        <input type="hidden" value="${requestScope.employee.e_id}" name="e_id">
+                        <tr>
+                            <td>选择部门</td>
+                            <td>
+                                <select id="dep" onchange="changePos(this.value)" required></select>
+                            </td>
+                            <td>选择职位</td>
+                            <td>
+                                <select id="pos" name="pos_name" required></select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="submit" value="确定更改"></td>
+                            <td><a href="tohead">返回</a></td>
+                        </tr>
+                    </form>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div id="bottomDiv"></div>
 </div>
 </body>
 </html>

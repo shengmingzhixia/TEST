@@ -16,6 +16,7 @@
     <base href="<%=basePath%>"/>
     <title>选择培训人员</title>
     <script src="js/jquery-1.7.2.js"></script>
+    <link href="css/main.css" rel="stylesheet" type="text/css"/>
     <script>
         var arr = new Array()
         var i = 0
@@ -31,7 +32,7 @@
         j++
         </c:if>
         </c:forEach>
-        if (arr[arr[i]].length == 0){
+        if (arr[arr[i]].length == 0) {
             arr[arr[i]][0] = 'null'
         }
         i++
@@ -58,23 +59,41 @@
     </script>
 </head>
 <body onload="init()">
-<div>
-    <table border="1" cellspacing="1" cellpadding="0">
-        <form action="addtrainandemployee" method="post">
-            <input type="hidden" value="${requestScope.t_id}" name="t_id">
-            <tr>
-                <td>选择部门</td>
-                <td>
-                    <select id="dep" onchange="changePos(this.value)" required></select>
-                </td>
-                <td>选择职位</td>
-                <td>
-                    <select id="pos" name="pos_name" required></select>
-                </td>
-            </tr>
-            <tr><input type="submit" value="提交"></tr>
-        </form>
-    </table>
+<div id="mainDiv">
+
+    <%@ include file="../../main/head.jsp" %>
+
+    <div id="centerDiv">
+
+        <%@ include file="../../main/left.jsp" %>
+
+
+        <div id="right">
+            <div id="current" align="center">&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 20px;font-weight: bold;">当前位置--->>>${title}</span>
+            </div>
+            <br/><br/>
+
+            <div>
+                <table border="1" cellspacing="1" cellpadding="0">
+                    <form action="addtrainandemployee" method="post">
+                        <input type="hidden" value="${requestScope.t_id}" name="t_id">
+                        <tr>
+                            <td>选择部门</td>
+                            <td>
+                                <select id="dep" onchange="changePos(this.value)" required></select>
+                            </td>
+                            <td>选择职位</td>
+                            <td>
+                                <select id="pos" name="pos_name" required></select>
+                            </td>
+                        </tr>
+                        <tr><input type="submit" value="提交"></tr>
+                    </form>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div id="bottomDiv"></div>
 </div>
 </body>
 </html>

@@ -30,7 +30,7 @@ public class LoginController {
         session.setAttribute("cust", null);
         if (employee.getE_type() == 0) {
             request.setAttribute("login", true);
-            return "admin/head";
+            return "main/main";
         } else {
             request.setAttribute("login", true);
             return "employee/index";
@@ -47,6 +47,6 @@ public class LoginController {
             request.getSession().setAttribute("employeeNow", null);
             request.setAttribute("touristLogin", true);
         }
-        return "../index";
+        return "jsp/index";
     }
 }

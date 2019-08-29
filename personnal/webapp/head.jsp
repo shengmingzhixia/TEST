@@ -53,12 +53,5 @@
     <a href="toRegister">游客注册</a>
 </div>
 <%
-} else {
-%>
-欢迎用户：<%=cust.getC_account()%>
-<a href="getCv">查看你的简历</a>
-<a href="getInter2">查看你的面试</a>
-<a href="#">修改密码</a>
-<%
     }
 %>

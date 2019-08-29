@@ -17,77 +17,96 @@
     <title>员工管理界面</title>
     <script src="js/index.js"></script>
     <script src="js/jquery-1.7.2.js"></script>
+    <link href="css/main.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-<%@ include file="../head.jsp" %>
-<%
-    Page<Employee> employeePage = (Page<Employee>) request.getAttribute("employeePage");
-    if (employeePage != null && employeePage.getList() != null &&
-            employeePage.getList().size() != 0) {
-%>
-<form action="getEmployeeByName" method="post" novalidate="novalidate">
-    <table>
-        <tbody>
-        <tr>
-            <td>
-                <input type="text" name="e_name" maxlength="20">
-                <input type="submit" value="搜 索">
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</form>
-<div class="prod">
-    <div>
-        <table border="1" cellspacing="1" cellpadding="0">
-            <tr>
-                <td>员工工号</td>
-                <td>员工姓名</td>
-                <td>员工状态</td>
-                <td>性别</td>
-                <td colspan="4" style="text-align: center">操作</td>
-            </tr>
-            <c:forEach items="${requestScope.employeePage.list}" var="employee">
-                <tr>
-                    <td>${employee.e_account}</td>
-                    <td>${employee.e_name}</td>
-                    <c:if test="${employee.e_state==1}">
-                        <td>在职</td>
-                    </c:if>
-                    <c:if test="${employee.e_state==0}">
-                        <td>离职</td>
-                    </c:if>
-                    <td>${employee.e_gender}</td>
-                    <td><a href="getEmployee?e_id=${employee.e_id}">查看基本信息</a></td>
-                    <td><a href="toChangePosition?e_id=${employee.e_id}">换岗</a></td>
-                    <td><a href="#?e_id=${employee.e_id}">查看考勤</a></td>
-                    <td><a href="#?e_id=${employee.e_id}">查看培训记录</a></td>
-                </tr>
-            </c:forEach>
-        </table>
-    </div>
-</div>
-<%
-} else {
-%>
-<div>没有信息</div>
-<%
-    }
-%>
+<div id="mainDiv">
 
-</div>
-<div class="div4">
-    <span>共 <%=employeePage.getTotalPage()%> 页</span>
-    <span>当前在第 <%=employeePage.getPageNo()%> 页</span>
-    <span><a href="getEmployees?pageNo=1&e_pos_id=${requestScope.e_pos_id}">首页</a></span>
-    <span><a href="getEmployees?pageNo=<%=employeePage.getPrevPage()%>&e_pos_id=${requestScope.e_pos_id}">上一页</a></span>
-    <span><a href="getEmployees?pageNo=<%=employeePage.getNextPage()%>&e_pos_id=${requestScope.e_pos_id}">下一页</a></span>
-    <span><a href="getEmployees?pageNo=<%=employeePage.getTotalPage()%>&e_pos_id=${requestScope.e_pos_id}">尾页</a></span>
-    <form action="getEmployees" onsubmit="return checkNum(this.children[2].value,<%=employeePage.getTotalPage()%>)">
-        <input type="hidden" name="e_pos_id" value="${requestScope.e_pos_id}">
-        <span>跳转到</span><input name="pageNo">
-        <input type="submit" value="跳转">
-    </form>
+    <%@ include file="../../main/head.jsp" %>
+
+    <div id="centerDiv">
+
+        <%@ include file="../../main/left.jsp" %>
+
+
+        <div id="right">
+            <div id="current" align="center">&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 20px;font-weight: bold;">当前位置--->>>${title}</span>
+            </div>
+            <br/><br/>
+            <%
+                Page<Employee> employeePage = (Page<Employee>) request.getAttribute("employeePage");
+                if (employeePage != null && employeePage.getList() != null &&
+                        employeePage.getList().size() != 0) {
+            %>
+            <div>
+                <form action="getEmployeeByName" method="post" novalidate="novalidate">
+                    <table>
+                        <tbody>
+                        <tr>
+                            <td>
+                                <input type="text" name="e_name" maxlength="20">
+                                <input type="submit" value="搜 索">
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </form>
+                <div class="prod">
+                    <div>
+                        <table border="1" cellspacing="1" cellpadding="0">
+                            <tr>
+                                <td>员工工号</td>
+                                <td>员工姓名</td>
+                                <td>员工状态</td>
+                                <td>性别</td>
+                                <td colspan="4" style="text-align: center">操作</td>
+                            </tr>
+                            <c:forEach items="${requestScope.employeePage.list}" var="employee">
+                                <tr>
+                                    <td>${employee.e_account}</td>
+                                    <td>${employee.e_name}</td>
+                                    <c:if test="${employee.e_state==1}">
+                                        <td>在职</td>
+                                    </c:if>
+                                    <c:if test="${employee.e_state==0}">
+                                        <td>离职</td>
+                                    </c:if>
+                                    <td>${employee.e_gender}</td>
+                                    <td><a href="getEmployee?e_id=${employee.e_id}">查看基本信息</a></td>
+                                    <td><a href="toChangePosition?e_id=${employee.e_id}">换岗</a></td>
+                                    <td><a href="#?e_id=${employee.e_id}">查看考勤</a></td>
+                                    <td><a href="#?e_id=${employee.e_id}">查看培训记录</a></td>
+                                </tr>
+                            </c:forEach>
+                        </table>
+                    </div>
+                </div>
+                <%
+                } else {
+                %>
+                <div>没有信息</div>
+                <%
+                    }
+                %>
+
+            </div>
+            <div class="div4">
+                <span>共 <%=employeePage.getTotalPage()%> 页</span>
+                <span>当前在第 <%=employeePage.getPageNo()%> 页</span>
+                <span><a href="getEmployees?pageNo=1&e_pos_id=${requestScope.e_pos_id}">首页</a></span>
+                <span><a href="getEmployees?pageNo=<%=employeePage.getPrevPage()%>&e_pos_id=${requestScope.e_pos_id}">上一页</a></span>
+                <span><a href="getEmployees?pageNo=<%=employeePage.getNextPage()%>&e_pos_id=${requestScope.e_pos_id}">下一页</a></span>
+                <span><a href="getEmployees?pageNo=<%=employeePage.getTotalPage()%>&e_pos_id=${requestScope.e_pos_id}">尾页</a></span>
+                <form action="getEmployees"
+                      onsubmit="return checkNum(this.children[2].value,<%=employeePage.getTotalPage()%>)">
+                    <input type="hidden" name="e_pos_id" value="${requestScope.e_pos_id}">
+                    <span>跳转到</span><input name="pageNo">
+                    <input type="submit" value="跳转">
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="bottomDiv"></div>
 </div>
 </body>
 </html>
