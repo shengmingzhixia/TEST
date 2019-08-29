@@ -34,6 +34,7 @@ public class TrainingController {
         return "admin/training/traininglist";
     }
 
+    //添加一条培训记录
     @RequestMapping("addtrain")
     public String addtrain(Training training, HttpServletRequest request) {
         String s_date = request.getParameter("t_start_time");
@@ -53,10 +54,11 @@ public class TrainingController {
         training.setT_end_time(date2);
         training.setT_is_publish(0);
         boolean addTrain = trainingService.addTrain(training);
-        request.setAttribute("addTrain",addTrain);
+        request.setAttribute("addTrain", addTrain);
         return "forward:totrain";
     }
 
+    //更新培训的状态（发布或下架）
     @RequestMapping("updatetrain")
     public String updatetrain(Training training, HttpServletRequest request) {
         boolean updateState = trainingService.updateState(training);
@@ -64,6 +66,7 @@ public class TrainingController {
         return "forward:totrain";
     }
 
+    //删除一条培训记录
     @RequestMapping("deletetrain")
     public String deletetrain(Training training, HttpServletRequest request) {
         boolean deletetrain = trainingService.delete(training.getT_id());
