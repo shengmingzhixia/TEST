@@ -19,6 +19,7 @@ public class TrainingController {
     @Resource
     private TrainingService trainingService;
 
+    //分页查询到所有的培训记录
     @RequestMapping("totrain")
     public String totrain(HttpServletRequest request) {
         String pageNoStr = request.getParameter("pageNo");
