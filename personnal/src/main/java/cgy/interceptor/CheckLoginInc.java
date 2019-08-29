@@ -10,12 +10,6 @@ import javax.servlet.http.HttpSession;
 public class CheckLoginInc implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object o) throws Exception {
-        return true;
-    }
-
-    @Override
-    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object o, ModelAndView modelAndView) throws Exception {
-        String servletPath = request.getServletPath();
         HttpSession session = request.getSession();
         System.out.println("进入拦截器功能主体");
         Object employeeNow = request.getSession().getAttribute("employeeNow");
@@ -24,8 +18,14 @@ public class CheckLoginInc implements HandlerInterceptor {
             request.setAttribute("message", "请先登录！");
             System.out.println("用户为空");
             request.getRequestDispatcher("index.jsp").forward(request, response);
-            return;
+            return false;
         }
+        return true;
+    }
+
+    @Override
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object o, ModelAndView modelAndView) throws Exception {
+
     }
 
     @Override

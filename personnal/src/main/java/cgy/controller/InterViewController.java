@@ -24,11 +24,6 @@ public class InterViewController {
     //游客投递简历
     @RequestMapping("insertInterView")
     public String insertInterView(InterView interView, HttpServletRequest request) {
-        Customer customer = (Customer) request.getSession().getAttribute("cust");
-        if (customer == null){
-            request.setAttribute("message","请先登录");
-            return "../index";
-        }
         interView.setIn_is_read(0);//0代表未读
         interView.setIn_is_accept(0);//0代表管理员未接受该简历
         interView.setIn_is_agree(0);//0代表该游客尚未同意来面试
@@ -42,11 +37,6 @@ public class InterViewController {
     //获得所有的面试信息
     @RequestMapping("getInter")
     public String getInter(HttpServletRequest request) {
-        Employee employee = (Employee) request.getSession().getAttribute("employeeNow");
-        if (employee == null){
-            request.setAttribute("message","请先登录");
-            return "../index";
-        }
         String pageNoStr = request.getParameter("pageNo");
         int pageNo = 1;
         if (pageNoStr != null && !"".equals(pageNoStr)) {
@@ -64,10 +54,6 @@ public class InterViewController {
     @RequestMapping("getInter2")
     public String getInter2(HttpServletRequest request) {
         Customer customer = (Customer) request.getSession().getAttribute("cust");
-        if (customer == null){
-            request.setAttribute("message","请先登录");
-            return "../index";
-        }
         List<InterView2> interViews = interViewService.getInterViews(customer.getC_id());
         request.setAttribute("interViews", interViews);
         return "jsp/interviewlist2";
@@ -77,11 +63,6 @@ public class InterViewController {
     //发送面试邀请
     @RequestMapping("sendInterView")
     public String sendInterView(InterView interView, HttpServletRequest request) {
-        Employee employee = (Employee) request.getSession().getAttribute("employeeNow");
-        if (employee == null){
-            request.setAttribute("message","请先登录");
-            return "../index";
-        }
         String f_date = request.getParameter( "in_date" );
         String replace = f_date.replace( "T", " " );
         SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -103,11 +84,6 @@ public class InterViewController {
     //接受面试或拒绝
     @RequestMapping("sendInterView2")
     public String sendInterView2(InterView interView, HttpServletRequest request) {
-        Customer customer = (Customer) request.getSession().getAttribute("cust");
-        if (customer == null){
-            request.setAttribute("message","请先登录");
-            return "../index";
-        }
         interView.setIn_is_agree(interView.getIn_is_agree());
         boolean view = interViewService.updateInterView(interView);
         if (interView.getIn_is_agree() == 0) view = false;
@@ -118,11 +94,6 @@ public class InterViewController {
     //面试过程跳过
     @RequestMapping("sendInterView3")
     public String sendInterView3(InterView interView, HttpServletRequest request) {
-        Employee employee = (Employee) request.getSession().getAttribute("employeeNow");
-        if (employee == null){
-            request.setAttribute("message","请先登录");
-            return "../index";
-        }
         interView.setIn_is_accept(interView.getIn_is_accept());
         boolean view = interViewService.updateInterView(interView);
         request.setAttribute("view3", view);
@@ -132,11 +103,6 @@ public class InterViewController {
     //录用
     @RequestMapping("sendInterView4")
     public String sendInterView4(InterView interView, HttpServletRequest request) {
-        Employee employee = (Employee) request.getSession().getAttribute("employeeNow");
-        if (employee == null){
-            request.setAttribute("message","请先登录");
-            return "../index";
-        }
         boolean view = interViewService.updateInterView(interView);
         if (interView.getIn_is_accept() == 4)
             view = false;
@@ -146,11 +112,6 @@ public class InterViewController {
 
     @RequestMapping("sendInterView5")
     public String sendInterView5(InterView interView, HttpServletRequest request) {
-        Employee employee = (Employee) request.getSession().getAttribute("employeeNow");
-        if (employee == null){
-            request.setAttribute("message","请先登录");
-            return "../index";
-        }
         boolean view = interViewService.updateInterView(interView);
         request.setAttribute("view5", view);
         return "main/main";
@@ -160,10 +121,6 @@ public class InterViewController {
     @RequestMapping("getMyInter")
     public String getMyInter(HttpServletRequest request) {
         Employee employee = (Employee) request.getSession().getAttribute("employeeNow");
-        if (employee == null){
-            request.setAttribute("message","请先登录");
-            return "../index";
-        }
         List<Recruit> recruits = recruitService.getRecruits(employee.getE_id());
         List<InterView2> list = new ArrayList<>();
         for (Recruit recruit : recruits) {

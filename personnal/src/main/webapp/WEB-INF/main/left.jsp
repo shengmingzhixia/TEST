@@ -26,10 +26,6 @@
                     <li><a href="xiaban">下班打卡</a></li>
                 </c:if>
             </c:if>
-            <c:if test="${sessionScope.cust!=null}">
-                <li><a href="getCv">查看你的简历</a></li>
-                <li><a href="getInter2">查看你的面试</a></li>
-            </c:if>
         </ul>
     </div>
 </div>

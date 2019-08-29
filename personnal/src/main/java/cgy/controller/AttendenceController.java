@@ -18,10 +18,6 @@ public class AttendenceController {
     @RequestMapping("shangban")
     public String shangban(HttpServletRequest request){
         Employee employee = (Employee) request.getSession().getAttribute("employeeNow");
-        if (employee == null){
-            request.setAttribute("message","请先登录");
-            return "../index";
-        }
         Attendence attendence = new Attendence();
         attendence.setAtd_e_id(employee.getE_id());
         attendence.setAtd_start_time(new Date());
@@ -33,10 +29,6 @@ public class AttendenceController {
     @RequestMapping("xiaban")
     public String xiaban(HttpServletRequest request){
         Employee employee = (Employee) request.getSession().getAttribute("employeeNow");
-        if (employee == null){
-            request.setAttribute("message","请先登录");
-            return "../index";
-        }
         Attendence attendence = new Attendence();
         attendence.setAtd_e_id(employee.getE_id());
         boolean update = attendenceService.update(attendence);

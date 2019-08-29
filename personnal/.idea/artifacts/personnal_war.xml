@@ -1,7 +1,7 @@
 <component name="ArtifactManager">
   <artifact type="war" build-on-make="true" name="personnal:war">
-    <output-path>$PROJECT_DIR$/out/artifacts/personnal_war</output-path>
-    <root id="archive" name="personnal_war.war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="personnal-0.0.1-SNAPSHOT.war">
       <element id="artifact" artifact-name="personnal:war exploded" />
     </root>
   </artifact>

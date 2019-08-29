@@ -27,11 +27,6 @@ public class SalaryController {
                 pageNo = 1;
             }
         }
-        Employee employee = (Employee) request.getSession().getAttribute("employeeNow");
-        if (employee == null){
-            request.setAttribute("message","请先登录");
-            return "../index";
-        }
         Page<Salary2> salaryPage = salaryService.getSalaryByPage(pageNo);
         request.setAttribute("salaryPage", salaryPage);
         return "admin/salaryManage";
@@ -39,11 +34,6 @@ public class SalaryController {
 
     @RequestMapping("insertAllSalary")
     public String insertAllSalary(HttpServletRequest request){
-        Employee employee = (Employee) request.getSession().getAttribute("employeeNow");
-        if (employee == null){
-            request.setAttribute("message","请先登录");
-            return "../index";
-        }
         boolean insertSalarys = salaryService.insertSalarys();
         request.setAttribute("insertSalarys", insertSalarys);
         return "admin/salaryManage";
@@ -52,10 +42,6 @@ public class SalaryController {
     @RequestMapping("getSalary")
     public String getSalary(HttpServletRequest request){
         Employee employee = (Employee) request.getSession().getAttribute("employeeNow");
-        if (employee == null){
-            request.setAttribute("message","请先登录");
-            return "../index";
-        }
         Salary salary = salaryService.getSalary(employee.getE_id());
         request.setAttribute("salary", salary);
         return "employee/salaryLook";
@@ -64,10 +50,6 @@ public class SalaryController {
     @RequestMapping("getSalaryOwnerAll")
     public String getSalaryOwnerAll(HttpServletRequest request){
         Employee employee = (Employee) request.getSession().getAttribute("employeeNow");
-        if (employee == null){
-            request.setAttribute("message","请先登录");
-            return "../index";
-        }
         List<Salary> salarys = salaryService.getSalarys(employee.getE_id());
         request.setAttribute("salarys", salarys);
         return "employee/salarylist";

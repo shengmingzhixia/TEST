@@ -30,11 +30,6 @@ public class TrainingController {
                 pageNo = 1;
             }
         }
-        Employee employee = (Employee) request.getSession().getAttribute("employeeNow");
-        if (employee == null){
-            request.setAttribute("message","请先登录");
-            return "../index";
-        }
         Page<Training> trainingPage = trainingService.getTrainsByPage(pageNo);
         request.setAttribute("trainingPage", trainingPage);
         return "admin/training/traininglist";
@@ -43,11 +38,6 @@ public class TrainingController {
     //添加一条培训记录
     @RequestMapping("addtrain")
     public String addtrain(Training training, HttpServletRequest request) {
-        Employee employee = (Employee) request.getSession().getAttribute("employeeNow");
-        if (employee == null){
-            request.setAttribute("message","请先登录");
-            return "../index";
-        }
         String s_date = request.getParameter("t_start_time");
         String e_date = request.getParameter("t_end_time");
         String replace1 = s_date.replace("T", " ");
@@ -72,11 +62,6 @@ public class TrainingController {
     //更新培训的状态（发布或下架）
     @RequestMapping("updatetrain")
     public String updatetrain(Training training, HttpServletRequest request) {
-        Employee employee = (Employee) request.getSession().getAttribute("employeeNow");
-        if (employee == null){
-            request.setAttribute("message","请先登录");
-            return "../index";
-        }
         boolean updateState = trainingService.updateState(training);
         request.setAttribute("updateState", updateState);
         return "forward:totrain";
@@ -85,11 +70,6 @@ public class TrainingController {
     //删除一条培训记录
     @RequestMapping("deletetrain")
     public String deletetrain(Training training, HttpServletRequest request) {
-        Employee employee = (Employee) request.getSession().getAttribute("employeeNow");
-        if (employee == null){
-            request.setAttribute("message","请先登录");
-            return "../index";
-        }
         boolean deletetrain = trainingService.delete(training.getT_id());
         request.setAttribute("deletetrain", deletetrain);
         return "forward:totrain";
@@ -99,10 +79,6 @@ public class TrainingController {
     @RequestMapping("gertOwnerTrain")
     public String gertOwnerTrain(HttpServletRequest request) {
         Employee employee = (Employee) request.getSession().getAttribute("employeeNow");
-        if (employee == null){
-            request.setAttribute("message","请先登录");
-            return "../index";
-        }
         List<Training> trains = trainingService.getEmployeeTrain(employee.getE_id());
         request.setAttribute("trains", trains);
         return "employee/traininglist";
