@@ -3,6 +3,8 @@ package cgy.service;
 import cgy.model.Employee;
 import cgy.model.Page;
 
+import java.util.List;
+
 public interface EmployeeService {
     //职员登录
     Employee login(Employee employee);
@@ -19,4 +21,6 @@ public interface EmployeeService {
     Page<Employee> getEmployeeByPage2(int pageNo);
 
     boolean updateEmployee(Employee employee);
+
+    List<Employee> getEmployees(Employee employee);
 }

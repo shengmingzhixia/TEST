@@ -13,6 +13,9 @@
             <if test="r_e_id!=null">
                 and R_E_ID = #{r_e_id}
             </if>
+            <if test="r_date!=null">
+                and r_date = #{r_date}
+            </if>
         </where>
     </select>
 </mapper>

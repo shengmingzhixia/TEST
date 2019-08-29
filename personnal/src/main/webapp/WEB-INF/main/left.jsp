@@ -13,7 +13,7 @@
                     <li><a href="torct">招聘信息管理</a></li>
                     <li><a href="totrain">培训管理</a></li>
                     <li><a href="toEmployeeManage">员工管理</a></li>
-                    <li><a href="">奖惩管理</a></li>
+                    <li><a href="getRewards">奖惩管理</a></li>
                     <li><a href="toSalaryManage">薪资管理</a></li>
                     <li><a href="getSalary">个人薪资查看</a></li>
                     <li><a href="">工资异议</a></li>

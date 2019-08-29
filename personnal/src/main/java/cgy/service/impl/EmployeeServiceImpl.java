@@ -69,4 +69,10 @@ public class EmployeeServiceImpl implements EmployeeService {
         if (employee.getE_pos_id() != null) return employeeDao.update2(employee);
         return employeeDao.update(employee);
     }
+
+    @Override
+    public List<Employee> getEmployees(Employee employee) {
+        if (employee == null) return null;
+        return employeeDao.getE(employee);
+    }
 }
