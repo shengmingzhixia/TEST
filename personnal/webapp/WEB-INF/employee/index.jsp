@@ -14,9 +14,8 @@
 <head>
     <base href="<%=basePath%>"/>
     <title>员工界面</title>
-    <%@ include file="head.jsp" %>
 </head>
 <body>
-
+<%@ include file="head.jsp" %>
 </body>
 </html>

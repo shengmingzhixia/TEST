@@ -13,4 +13,7 @@ public interface TrainingService {
     boolean delete(Integer t_id);
 
     boolean addTrain(Training training);
+
+    //获得某个员工的全部训练记录
+    List<Training> getEmployeeTrain(Integer e_id);
 }

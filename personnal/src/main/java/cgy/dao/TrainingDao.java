@@ -18,4 +18,6 @@ public interface TrainingDao {
     boolean addTrain(Training training);
 
     Date getEndTime(@Param(value="t_id")Integer t_id);
+
+    Training getTrain(@Param(value="t_id")Integer t_id);
 }

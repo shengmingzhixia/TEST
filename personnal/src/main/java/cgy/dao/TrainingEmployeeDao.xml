@@ -5,4 +5,7 @@
         insert into P_TRAINING_EMPLOYEE
         values (#{t_id}, #{e_id})
     </insert>
+    <select id="getTID" resultType="cgy.model.TrainingEmployee">
+        select * from P_TRAINING_EMPLOYEE where E_ID = #{e_id}
+    </select>
 </mapper>

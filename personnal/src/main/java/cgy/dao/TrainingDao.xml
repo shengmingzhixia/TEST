@@ -33,6 +33,13 @@
         from P_TRAINING
     </select>
     <select id="getEndTime" resultType="java.util.Date">
-        select T_END_TIME from P_TRAINING where T_ID = #{t_id}
+        select T_END_TIME
+        from P_TRAINING
+        where T_ID = #{t_id}
+    </select>
+    <select id="getTrain" resultType="cgy.model.Training">
+        select *
+        from P_TRAINING
+        where T_ID = #{t_id}
     </select>
 </mapper>

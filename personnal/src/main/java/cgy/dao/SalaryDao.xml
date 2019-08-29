@@ -25,7 +25,7 @@
                      S_INSURANCE,
                      S_TOTAL,
                      S_IS_TROUBLE
-              FROM (select * from P_SALARY order by S_DATE desc)
+              FROM (select * from P_SALARY order by S_DATE desc )
               WHERE ROWNUM &lt;= #{1})a
         WHERE a.rn > #{0}
     </select>
@@ -36,5 +36,8 @@
     <select id="getSalarys" resultType="cgy.model.Salary">
         select *
         from P_SALARY
+    </select>
+    <select id="getSalary" resultType="cgy.model.Salary">
+        select * from P_SALARY where S_E_ID = #{s_e_id}
     </select>
 </mapper>

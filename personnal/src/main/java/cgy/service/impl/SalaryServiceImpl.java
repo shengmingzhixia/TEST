@@ -56,7 +56,7 @@ public class SalaryServiceImpl implements SalaryService {
         String dateMonth = formatterMonth.format(date);
         String dateDay = formatterDay.format(date);
 
-        if (!dateDay.equals("28")) {
+        if (!dateDay.equals("29")) {
             System.out.println("今天不是结算日子");
             return false;
         }
@@ -112,8 +112,8 @@ public class SalaryServiceImpl implements SalaryService {
                 Reward reward = new Reward();
                 reward.setR_e_id(employee.getE_id());
                 reward.setR_date(dateNew);
-                reward.setR_reason("没上班的日子很爽吧？但是没钱！");
-                reward.setR_money(-(22 - i) * 200);
+                reward.setR_reason("没上班的日子很爽吧？但是没钱！上班天数：" + i + "天");
+                reward.setR_money(-(22 - i) * (employee.getE_salary() / 22));
                 rewardDao.insertReward(reward);
             } else if (i > 22) {
                 salary.setS_extra((i - 22) * 150);
@@ -128,7 +128,7 @@ public class SalaryServiceImpl implements SalaryService {
                 Reward reward = new Reward();
                 reward.setR_e_id(employee.getE_id());
                 reward.setR_date(dateNew);
-                reward.setR_reason("没上班的日子很爽吧？但是没钱啊！");
+                reward.setR_reason("一天都没来上班！胆子贼大");
                 reward.setR_money(-employee.getE_salary());//本月就扣掉了
                 rewardDao.insertReward(reward);
             }
@@ -159,5 +159,31 @@ public class SalaryServiceImpl implements SalaryService {
             salaryDao.insertSalary(salary);
         }
         return true;
+    }
+
+    @Override
+    public Salary getSalary(Integer s_e_id) {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM");
+
+        Date date = new Date();
+
+        String dateString = formatter.format(date);
+
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM");
+
+        List<Salary> salarys = salaryDao.getSalary(s_e_id);
+        for (Salary salary : salarys) {
+            Date date1 = salary.getS_date();
+            String ds = format.format(date1);
+            if (ds.equals(dateString)) {
+                return salary;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public List<Salary> getSalarys(Integer e_id) {
+        return salaryDao.getSalary(e_id);
     }
 }

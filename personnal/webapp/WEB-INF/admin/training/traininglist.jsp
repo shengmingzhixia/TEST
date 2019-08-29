@@ -1,5 +1,4 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ page import="cgy.model.Recruit" %>
 <%@ page import="cgy.model.Page" %>
 <%@ page import="cgy.model.Training" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>

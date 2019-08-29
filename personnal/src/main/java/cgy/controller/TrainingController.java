@@ -1,5 +1,6 @@
 package cgy.controller;
 
+import cgy.model.Employee;
 import cgy.model.Page;
 import cgy.model.Training;
 import cgy.service.TrainingService;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 public class TrainingController {
@@ -28,7 +30,6 @@ public class TrainingController {
             }
         }
         Page<Training> trainingPage = trainingService.getTrainsByPage(pageNo);
-        System.out.println(trainingPage.getList());
         request.setAttribute("trainingPage", trainingPage);
         return "admin/training/traininglist";
     }
@@ -68,5 +69,14 @@ public class TrainingController {
         boolean deletetrain = trainingService.delete(training.getT_id());
         request.setAttribute("deletetrain", deletetrain);
         return "forward:totrain";
+    }
+
+    //获得培训记录
+    @RequestMapping("gertOwnerTrain")
+    public String gertOwnerTrain(HttpServletRequest request) {
+        Employee employee = (Employee) request.getSession().getAttribute("employeeNow");
+        List<Training> trains = trainingService.getEmployeeTrain(employee.getE_id());
+        request.setAttribute("trains", trains);
+        return "employee/traininglist";
     }
 }

@@ -1,6 +1,7 @@
 package cgy.dao;
 
 import cgy.model.Salary;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -16,4 +17,5 @@ public interface SalaryDao {
 
     List<Salary> getSalarys();
 
+    List<Salary> getSalary(@Param(value="s_e_id")Integer s_e_id);
 }

@@ -56,8 +56,8 @@
     }
 %>
 <div>
-    <button>培训管理</button>
-    <button>薪资管理</button>
+    <button><a href="gertOwnerTrain">培训管理</a></button>
+    <button><a href="getSalary">薪资管理</a></button>
     <button>工资异议</button>
     <button><a href="javascript:history.go(-1)">返回上一步</a></button>
     <button style="float: right"><a href="xiaban">下班打卡</a></button>
