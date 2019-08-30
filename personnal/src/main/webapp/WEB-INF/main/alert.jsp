@@ -1,6 +1,26 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
+    if (request.getAttribute("touristLogin") != null) {
+        boolean touristLogin = (Boolean) request.getAttribute("touristLogin");
+        if (touristLogin) {
+%>
+<script>
+    alert("登录成功！")
+</script>
+<%
+        }
+        else {
+            %>
+<script>
+    alert("登录未成功！")
+</script>
+<%
+        }
+        request.setAttribute("touristLogin",null);
+    }
+%>
+<%
     if (request.getAttribute("login") != null) {
         boolean login = (Boolean) request.getAttribute("login");
         if (login) {
@@ -132,6 +152,25 @@
 <%
         }
         request.setAttribute("deletePosition",null);
+    }
+%>
+<%
+    if (request.getAttribute("view0") != null) {
+        boolean view0 = (Boolean) request.getAttribute("view0");
+        if (view0) {
+%>
+<script>
+    alert("简历投递成功！")
+</script>
+<%
+} else {
+%>
+<script>
+    alert("简历投递失败！")
+</script>
+<%
+        }
+        request.setAttribute("view",null);
     }
 %>
 <%
@@ -424,9 +463,9 @@
     }
 %>
 <%
-    if (request.getAttribute("insert") != null) {
-        boolean insert = (Boolean) request.getAttribute("insert");
-        if (insert) {
+    if (request.getAttribute("insertNewEmployee") != null) {
+        boolean insertNewEmployee = (Boolean) request.getAttribute("insertNewEmployee");
+        if (insertNewEmployee) {
 %>
 <script>
     alert("录入成功！")

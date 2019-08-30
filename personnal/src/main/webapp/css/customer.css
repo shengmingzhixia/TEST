@@ -109,3 +109,18 @@ ul, ol {
     font-size: 16px;
     text-align: center;
 }
+
+.mui-ellipsis-1 {
+    display: -webkit-box;
+    overflow: hidden;
+    white-space: normal !important;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+.innerCtn {
+    text-indent: 1rem;
+    line-height: 1.8rem;
+    font-size: 1.5rem;
+}

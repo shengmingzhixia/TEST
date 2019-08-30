@@ -16,6 +16,7 @@
 <head>
     <base href="<%=basePath%>"/>
     <title>员工查看培训记录</title>
+    <link href="css/main.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="mainDiv">

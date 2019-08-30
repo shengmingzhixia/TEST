@@ -30,7 +30,7 @@ public class InterViewController {
         interView.setIn_read_account(0);//代表尚未看过  所以阅读次数是0
         interView.setIn_date(new Date());
         boolean view = interViewService.insertInterView(interView);
-        request.setAttribute("view", view);
+        request.setAttribute("view0", view);
         return "forward:getRecruits";
     }
 

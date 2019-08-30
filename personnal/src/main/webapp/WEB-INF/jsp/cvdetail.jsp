@@ -49,13 +49,16 @@
     <%--<div class="row">--%>
     <div class="col-sm-2">
         <div class="list-group side-bar">
-            <a href="getRecruits" class="list-group-item active" id="addr" style="background-color:#2C2F33;color: #F3732A">查看招聘</a>
+            <a href="tocvadd" class="list-group-item active"
+               style="background-color:#2C2F33;color: #F3732A">新增简历</a>
+            <a href="getRecruits" class="list-group-item active" id="addr"
+               style="background-color:#2C2F33;color: #F3732A">查看招聘</a>
             <a href="getCv" class="list-group-item" style="background-color:#2C2F33;color: #F3732A">查看简历</a>
             <a href="getInter2" class="list-group-item" style="background-color:#2C2F33;color: #F3732A">我的投递</a>
         </div>
     </div>
     <div class="col-sm-10">
-        <div>
+        <div style="text-align: center">
             <table border="1" cellspacing="1" cellpadding="0">
                 <tr>
                     <td>简历名称：</td>

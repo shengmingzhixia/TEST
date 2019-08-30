@@ -79,7 +79,7 @@ public class EmployeeController {
         interView.setIn_is_accept(5);//已经结束
         interViewService.updateInterView(interView);
         boolean insert = employeeService.insertEmployee(employee);
-        request.setAttribute("insert", insert);
+        request.setAttribute("insertNewEmployee", insert);
         return "main/main";
     }
 

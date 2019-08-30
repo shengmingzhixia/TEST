@@ -35,7 +35,7 @@
                 <li><a class="current-cat">社会招聘</a></li>
                 <li><a href="https://job.alibaba.com/zhaopin/about.htm?spm=a2obv.11410903.0.0.5af844f6A10LlV">了解公司</a>
                 </li>
-                <li><a>联系我们</a></li>
+                <li><a href="http://www.zhizuobiao.com/">联系我们</a></li>
                 <li class="current-cat"><a>个人中心</a></li>
             </ul>
         </div>
@@ -50,7 +50,10 @@
     <%--<div class="row">--%>
     <div class="col-sm-2">
         <div class="list-group side-bar">
-            <a href="getRecruits" class="list-group-item active" id="addr" style="background-color:#2C2F33;color: #F3732A">查看招聘</a>
+            <a href="tocvadd" class="list-group-item active"
+               style="background-color:#2C2F33;color: #F3732A">新增简历</a>
+            <a href="getRecruits" class="list-group-item active" id="addr"
+               style="background-color:#2C2F33;color: #F3732A">查看招聘</a>
             <a href="getCv" class="list-group-item" style="background-color:#2C2F33;color: #F3732A">查看简历</a>
             <a href="getInter2" class="list-group-item" style="background-color:#2C2F33;color: #F3732A">我的投递</a>
         </div>
@@ -67,15 +70,24 @@
         <%
         } else {
         %>
-        <div>
+        <div style="text-align: center">
             <form action="insertInterView" method="post">
-                <input type="hidden" value="${requestScope.rct_id}" name="in_rct_id">
-                <select name="in_cv_id">
-                    <c:forEach items="${requestScope.cvList}" var="cv">
-                        <option value="${cv.cv_id}">简历名称==》${cv.cv_title}</option>
-                    </c:forEach>
-                </select>
-                <input type="submit" value="提交简历">
+                <div class="col-sm-6" style="margin-left: 220px">
+                    <div class="form-group">
+                        <label>请&emsp;选&emsp;择&emsp;一&emsp;份&emsp;简&emsp;历：</label>
+                        <select name="in_cv_id" class="form-control">
+                            <c:forEach items="${requestScope.cvList}" var="cv">
+                                <option value="${cv.cv_id}">简历名称==》${cv.cv_title}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <input type="hidden" value="${requestScope.rct_id}" name="in_rct_id">
+                        <input type="submit" value="提交简历" class="form-control btn btn-primary" style="width: 500px">
+                    </div>
+                </div>
             </form>
         </div>
         <%

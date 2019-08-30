@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="https://cdn.bootcss.com/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/customer.css" type="text/css"/>
     <script src="js/jquery-1.7.2.js"></script>
+    <script src="js/index.js"></script>
 </head>
 <div class="head">
     <div class="head-main">
@@ -49,7 +50,10 @@
     <%--<div class="row">--%>
     <div class="col-sm-2">
         <div class="list-group side-bar">
-            <a href="getRecruits" class="list-group-item active" id="addr" style="background-color:#2C2F33;color: #F3732A">查看招聘</a>
+            <a href="tocvadd" class="list-group-item active"
+               style="background-color:#2C2F33;color: #F3732A">新增简历</a>
+            <a href="getRecruits" class="list-group-item active"
+               style="background-color:#2C2F33;color: #F3732A">查看招聘</a>
             <a href="getCv" class="list-group-item" style="background-color:#2C2F33;color: #F3732A">查看简历</a>
             <a href="getInter2" class="list-group-item" style="background-color:#2C2F33;color: #F3732A">我的投递</a>
         </div>
@@ -115,36 +119,49 @@
     if (cvByPage != null && cvByPage.getList() != null &&
             cvByPage.getList().size() != 0) {
 %>
-
-        <c:forEach items="${requestScope.cvByPage.list}" var="cv">
-        <div class="prod">
-            <div>
-                <a href="cvdetail?id=${cv.cv_id}">简历==>${cv.cv_title}</a>
-                <a href="toCvUpdate?id=${cv.cv_id}">修改</a>
-                <a href="cvDelete?id=${cv.cv_id}">删除</a>
+        <fieldset>
+            <legend>简阅所有简历</legend>
+            <table class="table table-striped">
+                <c:forEach items="${requestScope.cvByPage.list}" var="cv">
+                    <tr>
+                        <td>简历==>${cv.cv_title}</td>
+                        <td>
+                            <button>
+                                <a href="cvdetail?id=${cv.cv_id}">查看详情</a>
+                            </button>
+                        </td>
+                        <td>
+                            <button>
+                                <a href="toCvUpdate?id=${cv.cv_id}">修改</a>
+                            </button>
+                        </td>
+                        <td>
+                            <button>
+                                <a href="cvDelete?id=${cv.cv_id}">删除</a>
+                            </button>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </table>
+        </fieldset>
+            <%
+        }
+    %>
+        <fieldset>
+            <div style="text-align: center">
+                <span>共 <%=cvByPage.getTotalPage()%> 页</span>
+                <span>当前在第 <%=cvByPage.getPageNo()%> 页</span>
+                <span><a href="GetCv?pageNo=1">首页</a></span>
+                <span><a href="GetCv?pageNo=<%=cvByPage.getPrevPage()%>">上一页</a></span>
+                <span><a href="GetCv?pageNo=<%=cvByPage.getNextPage()%>">下一页</a></span>
+                <span><a href="GetCv?pageNo=<%=cvByPage.getTotalPage()%>">尾页</a></span>
+                <form action="GetCv" onsubmit="return checkNum(this.children[1].value,<%=cvByPage.getTotalPage()%>)"
+                      style="display: inline;">
+                    <span>跳转到</span><input name="pageNo">
+                    <input type="submit" value="跳转">
+                </form>
             </div>
-        </div>
-        </c:forEach>
-            <%
-} else {
-%>
-        <div>没有简历 去<a href="tocvadd">添加</a>一个简历吧！</div>
-            <%
-    }
-%>
-        <div><a href="tocvadd">添加</a>一个简历</div>
-        <div class="div4">
-            <span>共 <%=cvByPage.getTotalPage()%> 页</span>
-            <span>当前在第 <%=cvByPage.getPageNo()%> 页</span>
-            <span><a href="GetCv?pageNo=1">首页</a></span>
-            <span><a href="GetCv?pageNo=<%=cvByPage.getPrevPage()%>">上一页</a></span>
-            <span><a href="GetCv?pageNo=<%=cvByPage.getNextPage()%>">下一页</a></span>
-            <span><a href="GetCv?pageNo=<%=cvByPage.getTotalPage()%>">尾页</a></span>
-            <form action="GetCv" onsubmit="return checkNum(this.children[1].value,<%=cvByPage.getTotalPage()%>)">
-                <span>跳转到</span><input name="pageNo">
-                <input type="submit" value="跳转">
-            </form>
-        </div>
+        </fieldset>
     </div>
 </div>
 </body>

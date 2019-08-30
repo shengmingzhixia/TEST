@@ -48,82 +48,120 @@
     <%--<div class="row">--%>
     <div class="col-sm-2">
         <div class="list-group side-bar">
-            <a href="getRecruits" class="list-group-item active" id="addr" style="background-color:#2C2F33;color: #F3732A">查看招聘</a>
+            <a href="tocvadd" class="list-group-item active"
+               style="background-color:#2C2F33;color: #F3732A">新增简历</a>
+            <a href="getRecruits" class="list-group-item active" id="addr"
+               style="background-color:#2C2F33;color: #F3732A">查看招聘</a>
             <a href="getCv" class="list-group-item" style="background-color:#2C2F33;color: #F3732A">查看简历</a>
             <a href="getInter2" class="list-group-item" style="background-color:#2C2F33;color: #F3732A">我的投递</a>
         </div>
     </div>
     <div class="col-sm-10">
-        <div>
-            <form action="cvadd" method="post">
-                <table>
-                    <tr>
-                        <td>简历名称：</td>
-                        <td><input type="text" name="cv_title" placeholder="简历1"></td>
-                    </tr>
-                    <tr>
-                        <td>真实姓名</td>
-                        <td><input type="text" name="cv_name"></td>
-                        <td>性别</td>
-                        <td>
-                            男<input type="radio" name="cv_gender" value="男">
-                            女<input type="radio" name="cv_gender" value="女">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>出生日期</td>
-                        <td><input type="date" name="cv_birth"></td>
-                        <td>家庭住址</td>
-                        <td><input type="text" name="cv_address"></td>
-                    </tr>
-                    <tr>
-                        <td>毕业院校</td>
-                        <td><input type="text" name="cv_school"></td>
-                        <td>学历</td>
-                        <td>
-                            <select name="cv_education">
-                                <option value="高中">高中</option>
-                                <option value="专科">专科</option>
-                                <option value="本科">本科</option>
-                                <option value="本科以上">本科以上</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>专业</td>
-                        <td><input type="text" name="cv_major"></td>
-                        <td>入学时间</td>
-                        <td><input type="date" name="cv_enroll_date"></td>
-                    </tr>
-                    <tr>
-                        <td>毕业时间</td>
-                        <td><input type="date" name="cv_graduation_date"></td>
-                        <td>期望薪资</td>
-                        <td>
-                            <select name="cv_salary">
-                                <option value="4500">4000-5000</option>
-                                <option value="5500">5000-6000</option>
-                                <option value="7500">7000-8000</option>
-                                <option value="8500">8000-9000</option>
-                                <option value="9500">9000-10000</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>工作经验</td>
-                        <td>
-                            <textarea name="cv_exprience" maxlength="100" style="height: 90px;resize: none"></textarea>
-                        </td>
-                        <td>联系电话</td>
-                        <td><input type="text" name="cv_phone"></td>
-                    </tr>
-                    <tr>
-                        <td><input type="submit" value="提交"></td>
-                        <td><input type="reset" value="重置"></td>
-                    </tr>
-                </table>
-            </form>
-        </div>
+        <form action="cvadd" method="post">
+            <br/>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>简&emsp;历&emsp;名&emsp;称：</label>
+                    <input type="text" name="cv_title" class="form-control" placeholder="简历1">
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>真&emsp;实&emsp;姓&emsp;名：</label>
+                    <input type="text" name="cv_name" class="form-control">
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>性&emsp;别：</label>
+                    <select name="cv_gender" class="form-control">
+                        <option hidden></option>
+                        <option value="男">男</option>
+                        <option value="女">女</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>出&emsp;生&emsp;日&emsp;期：</label>
+                    <input type="date" name="cv_birth" class="form-control">
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>家&emsp;庭&emsp;住&emsp;址：</label>
+                    <input type="text" name="cv_address" class="form-control">
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>毕&emsp;业&emsp;院&emsp;校：</label>
+                    <input type="text" name="cv_school" class="form-control">
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>学&emsp;历：</label>
+                    <select name="cv_education" class="form-control">
+                        <option hidden></option>
+                        <option value="高中">高中</option>
+                        <option value="专科">专科</option>
+                        <option value="本科">本科</option>
+                        <option value="本科以上">本科以上</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>专&emsp;业：</label>
+                    <input type="text" name="cv_major" class="form-control">
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>入&emsp;学&emsp;时&emsp;间：</label>
+                    <input type="date" name="cv_enroll_date" class="form-control">
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>毕&emsp;业&emsp;时&emsp;间：</label>
+                    <input type="date" name="cv_graduation_date" class="form-control">
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>期&emsp;望&emsp;薪&emsp;资：</label>
+                    <select name="cv_salary" class="form-control">
+                        <option hidden></option>
+                        <option value="4500">4000-5000</option>
+                        <option value="5500">5000-6000</option>
+                        <option value="7500">7000-8000</option>
+                        <option value="8500">8000-9000</option>
+                        <option value="9500">9000-10000</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>联&emsp;系&emsp;电&emsp;话：</label>
+                    <input type="text" name="cv_phone" class="form-control">
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label>工&emsp;作&emsp;经&emsp;验：</label>
+                    <textarea name="cv_exprience" maxlength="100" style="height: 90px;resize: none"
+                              class="form-control"></textarea>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <input type="submit" value="提交">
+                    <input type="reset" value="重置">
+                </div>
+            </div>
+        </form>
     </div>
 </div>
 </body>

@@ -51,95 +51,90 @@
     <%--<div class="row">--%>
     <div class="col-sm-2">
         <div class="list-group side-bar">
-            <a href="getRecruits" class="list-group-item active" id="addr" style="background-color:#2C2F33;color: #F3732A">查看招聘</a>
+            <a href="tocvadd" class="list-group-item active"
+               style="background-color:#2C2F33;color: #F3732A">新增简历</a>
+            <a href="getRecruits" class="list-group-item active" id="addr"
+               style="background-color:#2C2F33;color: #F3732A">查看招聘</a>
             <a href="getCv" class="list-group-item" style="background-color:#2C2F33;color: #F3732A">查看简历</a>
             <a href="getInter2" class="list-group-item" style="background-color:#2C2F33;color: #F3732A">我的投递</a>
         </div>
     </div>
-    <div class="col-sm-10">
+    <div class="col-sm-8" style="margin-top: 20px">
 
         <%
             List<InterView2> interViews = (List<InterView2>) request.getAttribute("interViews");
             if (interViews != null && interViews.size() != 0) {
         %>
-        <div class="prod">
-            <div>
-                <table border="1" cellspacing="1" cellpadding="0">
+        <fieldset>
+            <legend>查看部门</legend>
+            <table class="table table-striped">
+                <tr>
+                    <td>投递简历</td>
+                    <td>投递岗位</td>
+                    <td>投递面试时间</td>
+                    <td>查看状态</td>
+                    <td>面试状态</td>
+                    <td>面试情况</td>
+                    <td colspan="2" style="text-align: center">操作</td>
+                </tr>
+                <c:forEach items="${requestScope.interViews}" var="inter">
                     <tr>
-                        <td>投递简历</td>
-                        <td>投递岗位</td>
-                        <td>面试时间</td>
-                        <td>查看状态</td>
-                        <td>面试状态</td>
-                        <td>是否接受面试</td>
-                        <td colspan="2" style="text-align: center">操作</td>
-                    </tr>
-                    <c:forEach items="${requestScope.interViews}" var="inter">
-                        <tr>
-                            <td>${inter.in_cv_title}</td>
-                            <td>${inter.in_rct_name}</td>
+                        <td>${inter.in_cv_title}</td>
+                        <td>${inter.in_rct_name}</td>
+                        <td>
+                            <fmt:formatDate value="${inter.in_date}" pattern="yyyy-MM-dd HH:mm:ss"/>
+                        </td>
+                        <c:if test="${inter.in_is_read==0}">
+                            <td>未读</td>
+                        </c:if>
+                        <c:if test="${inter.in_is_read==1}">
+                            <td>已读</td>
+                        </c:if>
+                        <c:if test="${inter.in_is_accept==0}">
+                            <td>未邀请</td>
+                        </c:if>
+                        <c:if test="${inter.in_is_accept==1}">
+                            <td>已邀请</td>
+                        </c:if>
+                        <c:if test="${inter.in_is_accept==2}">
+                            <td>完成面试</td>
+                        </c:if>
+                        <c:if test="${inter.in_is_accept==3}">
+                            <td>已被录用</td>
+                        </c:if>
+                        <c:if test="${inter.in_is_accept==4}">
+                            <td>已拒绝</td>
+                        </c:if>
+                        <c:if test="${inter.in_is_accept==5}">
+                            <td>已经同意入职</td>
+                        </c:if>
+                        <c:if test="${inter.in_is_agree==0}">
+                            <td>未反馈</td>
+                        </c:if>
+                        <c:if test="${inter.in_is_agree==1}">
+                            <td>已同意</td>
+                        </c:if>
+                        <c:if test="${inter.in_is_agree==2}">
+                            <td>已拒绝</td>
+                        </c:if>
+                        <c:if test="${inter.in_is_agree==0 && inter.in_is_accept==1}">
+                            <td><a href="sendInterView2?in_is_agree=1&in_id=${inter.in_id}">同意</a></td>
+                            <td><a href="sendInterView2?in_is_agree=2&in_id=${inter.in_id}">拒绝</a></td>
+                        </c:if>
+                        <c:if test="${inter.in_is_accept==3}">
                             <td>
-                                <fmt:formatDate value="${inter.in_date}" pattern="yyyy-MM-dd HH:mm:ss"/>
+                                <a href="addnewemployee?cv_id=${inter.in_cv_id}&in_rct_id=${inter.in_rct_id}&in_id=${inter.in_id}">同意入职</a>
                             </td>
-                            <c:if test="${inter.in_is_read==0}">
-                                <td>未读</td>
-                            </c:if>
-                            <c:if test="${inter.in_is_read==1}">
-                                <td>已读</td>
-                            </c:if>
-
-                            <c:if test="${inter.in_is_accept==0}">
-                                <td>未邀请</td>
-                            </c:if>
-                            <c:if test="${inter.in_is_accept==1}">
-                                <td>已邀请</td>
-                            </c:if>
-                            <c:if test="${inter.in_is_accept==2}">
-                                <td>完成面试</td>
-                            </c:if>
-                            <c:if test="${inter.in_is_accept==3}">
-                                <td>已被录用</td>
-                            </c:if>
-                            <c:if test="${inter.in_is_accept==4}">
-                                <td>已拒绝</td>
-                            </c:if>
-                            <c:if test="${inter.in_is_accept==5}">
-                                <td>已经同意入职</td>
-                            </c:if>
-                            <c:if test="${inter.in_is_agree==0}">
-                                <td>未反馈</td>
-                            </c:if>
-                            <c:if test="${inter.in_is_agree==1}">
-                                <td>已同意</td>
-                            </c:if>
-                            <c:if test="${inter.in_is_agree==2}">
-                                <td>已拒绝</td>
-                            </c:if>
-                            <c:if test="${inter.in_is_agree==0 && inter.in_is_accept==1}">
-                                <td><a href="sendInterView2?in_is_agree=1&in_id=${inter.in_id}">同意</a></td>
-                                <td><a href="sendInterView2?in_is_agree=2&in_id=${inter.in_id}">拒绝</a></td>
-                            </c:if>
-                            <c:if test="${inter.in_is_accept==3}">
-                                <td>
-                                    <a href="addnewemployee?cv_id=${inter.in_cv_id}&in_rct_id=${inter.in_rct_id}&in_id=${inter.in_id}">同意入职</a>
-                                </td>
-                                <td><a href="sendInterView5?in_is_accept=4">拒绝入职</a></td>
-                            </c:if>
-                        </tr>
-                    </c:forEach>
-                </table>
-            </div>
-        </div>
-        <%
-        } else {
-        %>
-        <div>没有面试信息</div>
+                            <td><a href="sendInterView5?in_is_accept=4">拒绝入职</a></td>
+                        </c:if>
+                    </tr>
+                </c:forEach>
+            </table>
+        </fieldset>
         <%
             }
         %>
-
     </div>
 </div>
-
 </body>
 </html>
