@@ -474,3 +474,39 @@
         }
     }
 %>
+<%
+    if (request.getAttribute("updatesalary") != null) {
+        boolean updatesalary = (Boolean) request.getAttribute("updatesalary");
+        if (updatesalary) {
+%>
+<script>
+    alert("异议成功！")
+</script>
+<%
+        }
+    }
+%>
+<%
+    if (request.getAttribute("insert22") != null) {
+        boolean insert22 = (Boolean) request.getAttribute("insert22");
+        if (insert22) {
+%>
+<script>
+    alert("补偿成功！")
+</script>
+<%
+        }
+    }
+%>
+<%
+    if (request.getAttribute("update22") != null) {
+        boolean update22 = (Boolean) request.getAttribute("update22");
+        if (update22) {
+%>
+<script>
+    alert("驳回成功！")
+</script>
+<%
+        }
+    }
+%>

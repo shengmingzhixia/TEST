@@ -21,6 +21,7 @@ public class MyWebConfig implements WebMvcConfigurer {
         list.add("/register");
         list.add("/touristLogin");
         list.add("/getRecruits");
+        list.add("/checkName");
         registry.addInterceptor(new CheckLoginInc()).addPathPatterns("/**").excludePathPatterns(list);
     }
 }

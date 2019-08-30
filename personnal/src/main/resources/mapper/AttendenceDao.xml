@@ -15,4 +15,8 @@
         from P_ATTENDENCE
         where ATD_E_ID = #{atd_e_id}
     </select>
+    <select id="getAllAtd" resultType="cgy.model.Attendence">
+        select *
+        from P_ATTENDENCE
+    </select>
 </mapper>

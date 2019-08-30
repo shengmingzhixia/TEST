@@ -18,6 +18,18 @@
     <link rel="stylesheet" href="https://cdn.bootcss.com/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/customer.css" type="text/css"/>
     <script src="js/jquery-1.7.2.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        td {
+            width: 160px;
+            height: 30px;
+            font-size: 20px;
+        }
+    </style>
 </head>
 <body>
 <div class="head">
@@ -59,46 +71,84 @@
     </div>
     <div class="col-sm-10">
         <div style="text-align: center">
-            <table border="1" cellspacing="1" cellpadding="0">
-                <tr>
-                    <td>简历名称：</td>
-                    <td>${requestScope.cv.cv_title}</td>
+            <table border=1; cellpadding=12; cellspacing=0; align=center>
+                <tr align=center>
+                    <td colspan="5">${requestScope.cv.cv_title}</td>
                 </tr>
-                <tr>
-                    <td>真实姓名</td>
+                <tr align=center>
+                    <td>姓名:</td>
                     <td>${requestScope.cv.cv_name}</td>
-                    <td>性别</td>
+                    <td>性别:</td>
                     <td>${requestScope.cv.cv_gender}</td>
+                    <td rowspan="7"><img src="" alt=""></td>
                 </tr>
-                <tr>
-                    <td>出生日期</td>
-                    <td><fmt:formatDate value="${requestScope.cv.cv_birth}" pattern="yyyy-MM-dd"/></td>
-                    <td>家庭住址</td>
-                    <td>${requestScope.cv.cv_address}</td>
-                </tr>
-                <tr>
-                    <td>毕业院校</td>
+                <tr align=center>
+                    <td>毕业院校:</td>
                     <td>${requestScope.cv.cv_school}</td>
-                    <td>学历</td>
+                    <td>民族:</td>
+                    <td>汉族</td>
+                </tr>
+                <tr align=center>
+                    <td>最高学历:</td>
                     <td>${requestScope.cv.cv_education}</td>
+                    <td>政治面貌:</td>
+                    <td>共青团员</td>
                 </tr>
-                <tr>
-                    <td>专业</td>
+                <tr align=center>
+                    <td>专业:</td>
                     <td>${requestScope.cv.cv_major}</td>
-                    <td>入学时间</td>
+                    <td>出生年月:</td>
+                    <td><fmt:formatDate value="${requestScope.cv.cv_birth}" pattern="yyyy-MM-dd"/></td>
+                </tr>
+                <tr align=center>
+                    <td>入学时间:</td>
                     <td><fmt:formatDate value="${requestScope.cv.cv_enroll_date}" pattern="yyyy-MM-dd"/></td>
-                </tr>
-                <tr>
-                    <td>毕业时间</td>
+                    <td>毕业时间:</td>
                     <td><fmt:formatDate value="${requestScope.cv.cv_graduation_date}" pattern="yyyy-MM-dd"/></td>
-                    <td>期望薪资</td>
+                </tr>
+                <tr align=center>
+                    <td>籍贯:</td>
+                    <td>${requestScope.cv.cv_address}</td>
+                    <td>手机号码:</td>
+                    <td>${requestScope.cv.cv_phone}</td>
+                </tr>
+                <tr align=center>
+                    <td>期望薪资：</td>
                     <td>${requestScope.cv.cv_salary}</td>
+                    <td>期望行业</td>
+                    <td>计算机软件</td>
+                </tr>
+                <tr align=center>
+                    <td>通讯地址:</td>
+                    <td colspan="4">${requestScope.cv.cv_phone}</td>
+                </tr>
+                <tr align=center>
+                    <td>电子信箱:</td>
+                    <td colspan="4">1461129779@qq.com</td>
+                </tr>
+                <tr align=center>
+                    <td colspan="5">教育背景</td>
+                </tr>
+                <tr align=center>
+                    <td colspan="5" style="height:100px"></td>
+                </tr>
+                <tr align=center>
+                    <td colspan="5">专业课程</td>
                 </tr>
                 <tr>
-                    <td>工作经验</td>
-                    <td><textarea name="cv_exprience" maxlength="100" style="height: 90px;resize: none">${requestScope.cv.cv_exprience}</textarea></td>
-                    <td>联系电话</td>
-                    <td>${requestScope.cv.cv_phone}</td>
+                    <td colspan="5" style="height:100px"></td>
+                </tr>
+                <tr align=center>
+                    <td colspan="5">主要技能</td>
+                </tr>
+                <tr>
+                    <td colspan="5" style="height:100px"></td>
+                </tr>
+                <tr align=center>
+                    <td colspan="5">项目经验</td>
+                </tr>
+                <tr>
+                    <td colspan="5" style="height:100px">${requestScope.cv.cv_exprience}</td>
                 </tr>
             </table>
         </div>

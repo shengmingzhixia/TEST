@@ -1,6 +1,7 @@
 package cgy.dao;
 
 import cgy.model.Attendence;
+import cgy.model.Employee;
 
 import java.util.List;
 
@@ -13,4 +14,7 @@ public interface AttendenceDao {
 
     //根据id 更新下班打卡时间
     boolean update(Attendence attendence);
+
+    List<Attendence> getAllAtd();
+
 }

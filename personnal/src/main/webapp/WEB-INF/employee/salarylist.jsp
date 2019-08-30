@@ -17,6 +17,7 @@
     <base href="<%=basePath%>"/>
     <title>所有的薪资结算</title>
     <link href="css/main.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
 <div id="mainDiv">
@@ -33,16 +34,15 @@
             </div>
             <br/><br/>
             <div>
-                <table>
+                <table class="table table-striped">
                     <tr>
-                        <td>姓名</td>
-                        <td>结算日期</td>
-                        <td>基本薪资</td>
-                        <td>加班费</td>
-                        <td>奖惩</td>
-                        <td>社保</td>
-                        <td>总计</td>
-                        <td>操作</td>
+                        <th>姓名</th>
+                        <th>结算日期</th>
+                        <th>基本薪资</th>
+                        <th>加班费</th>
+                        <th>奖惩</th>
+                        <th>社保</th>
+                        <th>总计</th>
                     </tr>
                     <c:forEach items="${requestScope.salarys}" var="salary">
                         <tr>
@@ -53,7 +53,6 @@
                             <td>${salary.s_reward}</td>
                             <td>${salary.s_insurance}</td>
                             <td>${salary.s_total}</td>
-                            <td>异议</td>
                         </tr>
                     </c:forEach>
                 </table>

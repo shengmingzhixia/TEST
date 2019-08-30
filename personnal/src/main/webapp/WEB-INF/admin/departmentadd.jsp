@@ -16,6 +16,7 @@
     <title>$</title>
     <script src="js/jquery-1.7.2.js"></script>
     <link href="css/main.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <script>
         $(function () {
             $("input[name=dep_name]").blur(function () {
@@ -45,17 +46,17 @@
             <div id="current" align="center">&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 20px;font-weight: bold;">当前位置--->>>${title}</span>
             </div>
             <br/><br/>
-
-            <div>
-                <table>
-                    <tr>请输入部门名称</tr>
-                    <tr>
+            <div class="container" style="max-width: 1100px;">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-8" style="margin-top: 20px">
+                    <fieldset>
+                        <legend>新增部门</legend>
                         <form action="insertDepart" method="post">
-                            <input type="text" name="dep_name">
-                            <input type="submit" value="提交" id="sub1">
+                            部门名称：<input type="text" name="dep_name" required class="form-control" maxlength="55">
+                            &emsp;<input type="submit" value="提交" id="sub1" class="form-control btn btn-primary">
                         </form>
-                    </tr>
-                </table>
+                    </fieldset>
+                </div>
             </div>
         </div>
     </div>

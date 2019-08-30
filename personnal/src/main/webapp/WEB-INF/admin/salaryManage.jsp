@@ -19,6 +19,7 @@
     <base href="<%=basePath%>"/>
     <title>薪资结算界面</title>
     <link href="css/main.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <%
         if (request.getAttribute("insertSalarys") != null) {
             boolean insertSalarys = (Boolean) request.getAttribute("insertSalarys");
@@ -69,16 +70,16 @@
                 %>
                 <div class="prod">
                     <div>
-                        <table border="1" cellspacing="1" cellpadding="0">
+                        <table class="table table-striped">
                             <tr>
-                                <td>员工姓名</td>
-                                <td>结算日期</td>
-                                <td>基本工资</td>
-                                <td>加班费用</td>
-                                <td>奖惩费用</td>
-                                <td>社保</td>
-                                <td>你的薪水</td>
-                                <td>复议</td>
+                                <th>员工姓名</th>
+                                <th>结算日期</th>
+                                <th>基本工资</th>
+                                <th>加班费用</th>
+                                <th>奖惩费用</th>
+                                <th>社保</th>
+                                <th>你的薪水</th>
+                                <th>复议</th>
                             </tr>
                             <c:forEach items="${requestScope.salaryPage.list}" var="salary">
                                 <tr>

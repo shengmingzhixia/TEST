@@ -25,4 +25,6 @@ public interface DepartmentDao {
 
     //根据id找到部门
     Department getDepart(Integer pos_dep_id);
+
+    List<Department> getDepartAll();
 }

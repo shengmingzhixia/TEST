@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cgy.dao.TroubleDao">
+    <insert id="insertTrouble">
+        insert into P_TROUBLE
+        values (#{s_id}, #{s_reason}, 1)
+    </insert>
+    <update id="updateState">
+        update P_TROUBLE
+        set t_state = 0
+        where S_ID = #{s_id}
+    </update>
+    <select id="getTrouble" resultType="cgy.model.Trouble">
+        select *
+        from P_TROUBLE
+        where S_ID = #{s_id}
+    </select>
+    <select id="getTroubles" resultType="cgy.model.Trouble">
+        select *
+        from P_TROUBLE
+        where t_state = 1
+    </select>
+</mapper>

@@ -20,6 +20,7 @@
     <script src="js/index.js"></script>
     <script src="js/jquery-1.7.2.js"></script>
     <link href="css/main.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
 <div id="mainDiv">
@@ -42,15 +43,15 @@
             %>
             <div class="prod">
                 <div>
-                    <table border="1" cellspacing="1" cellpadding="0">
+                    <table class="table table-striped">
                         <tr>
-                            <td>应聘者</td>
-                            <td>投递岗位</td>
-                            <td>面试时间</td>
-                            <td>查看状态</td>
-                            <td>面试状态</td>
-                            <td>是否接受面试</td>
-                            <td colspan="2" style="text-align: center">操作</td>
+                            <th>应聘者</th>
+                            <th>投递岗位</th>
+                            <th>面试时间</th>
+                            <th>查看状态</th>
+                            <th>面试状态</th>
+                            <th>是否接受面试</th>
+                            <th colspan="2" style="text-align: center">操作</th>
                         </tr>
                         <c:forEach items="${requestScope.interViewPage.list}" var="inter">
                             <tr>
@@ -100,9 +101,7 @@
             <%
                 }
             %>
-
-
-            <div class="div4">
+            <div style="text-align: center">
                 <span>共 <%=interViewPage.getTotalPage()%> 页</span>
                 <span>当前在第 <%=interViewPage.getPageNo()%> 页</span>
                 <span><a href="getInter?pageNo=1">首页</a></span>

@@ -17,6 +17,7 @@
     <title>换岗操作</title>
     <script src="js/jquery-1.7.2.js"></script>
     <link href="css/main.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <script>
         var arr = new Array()
         var i = 0
@@ -73,26 +74,32 @@
             <div id="current" align="center">&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 20px;font-weight: bold;">当前位置--->>>${title}</span>
             </div>
             <br/><br/>
-            <div>
-                <table border="1" cellspacing="1" cellpadding="0">
-                    <form action="updatePos" method="post">
-                        <input type="hidden" value="${requestScope.employee.e_id}" name="e_id">
-                        <tr>
-                            <td>选择部门</td>
-                            <td>
-                                <select id="dep" onchange="changePos(this.value)" required></select>
-                            </td>
-                            <td>选择职位</td>
-                            <td>
-                                <select id="pos" name="pos_name" required></select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="submit" value="确定更改"></td>
-                            <td><a href="tohead">返回</a></td>
-                        </tr>
-                    </form>
-                </table>
+            <div class="container" style="max-width: 1100px;">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-8" style="margin-top: 20px">
+                    <fieldset>
+                        <legend>换岗</legend>
+                        <form action="updatePos" method="post">
+                            <input type="hidden" value="${requestScope.employee.e_id}" name="e_id">
+                            <div class="col-sm-4">
+                                选择部门：
+                                <select id="dep" onchange="changePos(this.value)" required class="form-control">
+
+                                </select>
+                            </div>
+                            <div class="col-sm-4">
+                                选择职位：
+                                <select id="pos" name="pos_name" required class="form-control">
+
+                                </select>
+                            </div>
+                            <div class="col-sm-4">
+                                &emsp;<input type="submit" value="确定更改" class="form-control btn btn-primary">
+                                <a href="tohead">返回</a>
+                            </div>
+                        </form>
+                    </fieldset>
+                </div>
             </div>
         </div>
     </div>

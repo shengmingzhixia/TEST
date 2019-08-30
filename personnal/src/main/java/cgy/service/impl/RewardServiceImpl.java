@@ -2,8 +2,12 @@ package cgy.service.impl;
 
 import cgy.dao.EmployeeDao;
 import cgy.dao.RewardDao;
+import cgy.dao.SalaryDao;
+import cgy.dao.TroubleDao;
 import cgy.model.Employee;
 import cgy.model.Reward;
+import cgy.model.Salary;
+import cgy.model.Trouble;
 import cgy.service.RewardService;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +25,10 @@ public class RewardServiceImpl implements RewardService {
     private RewardDao rewardDao;
     @Resource
     private EmployeeDao employeeDao;
+    @Resource
+    private TroubleDao troubleDao;
+    @Resource
+    private SalaryDao salaryDao;
 
     @Override
     public List<Reward> getRewards(String name, Date date) {
@@ -37,12 +45,19 @@ public class RewardServiceImpl implements RewardService {
                 list.addAll(rewards);
             else {
                 for (Reward reward1 : rewards) {
-                    if (format.format(date).equals(format.format(reward1.getR_date()))){
+                    if (format.format(date).equals(format.format(reward1.getR_date()))) {
                         list.add(reward1);
                     }
                 }
             }
         }
         return list;
+    }
+
+    @Override
+    public boolean insert(Reward reward, Salary salary, Trouble trouble) {
+        salaryDao.updateState(salary);
+        troubleDao.updateState(trouble);
+        return rewardDao.insertReward(reward);
     }
 }

@@ -37,7 +37,7 @@
     <link href="//fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900iSlabo+27px&subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese"
           rel="stylesheet">
     <!--//online-fonts -->
-
+    <link rel="stylesheet" href="css/bootstrap.min.css">
 
     <script>
         function fun1() {
@@ -93,13 +93,12 @@
                     <input type="password" name="e_password" onblur="fun2()" placeholder="密码" required=""/>
                     <%--<span class="icon3" id="td2"></span>--%>
                 </div>
-                <div class="w3ls-password">
-                    <select name="e_type">
+                <div class="form-group">
+                    <select name="e_type" class="form-control" style="width: 120px;margin-left: 150px">
                         <option value="0">管理员</option>
                         <option value="1">普通职员</option>
                     </select>
                 </div>
-                <input type="checkbox" name="cookie"/>Remember Me
                 <div class="clear"></div>
                 <input type="submit" value="login">
             </form>

@@ -1,8 +1,10 @@
 package cgy.service.impl;
 
 import cgy.dao.AttendenceDao;
+import cgy.dao.EmployeeDao;
 import cgy.dao.RewardDao;
 import cgy.model.Attendence;
+import cgy.model.Employee;
 import cgy.model.Reward;
 import cgy.service.AttendenceService;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,8 @@ public class AttendenceServiceImpl implements AttendenceService {
     private AttendenceDao attendenceDao;
     @Resource
     private RewardDao rewardDao;
+    @Resource
+    private EmployeeDao employeeDao;
 
     @Override
     public boolean insert(Attendence attendence) {
@@ -52,7 +56,7 @@ public class AttendenceServiceImpl implements AttendenceService {
         try {
             Date date = format1.parse(dateString);
             long a = atd_start_time.getTime() - date.getTime();
-            if (a > 0){
+            if (a > 0) {
                 Reward reward = new Reward();
                 reward.setR_e_id(attendence.getAtd_e_id());
                 reward.setR_date(atd_start_time);
@@ -93,7 +97,7 @@ public class AttendenceServiceImpl implements AttendenceService {
                 Attendence attendence1 = attendences.get(i);
                 attendence1.setAtd_end_time(new Date());
                 boolean update = attendenceDao.update(attendence1);
-                System.out.println("更新："+update);
+                System.out.println("更新：" + update);
                 //判断时间  添加奖惩
 
                 Date atd_end_time = attendence1.getAtd_end_time();
@@ -104,7 +108,7 @@ public class AttendenceServiceImpl implements AttendenceService {
                 try {
                     Date date1 = format1.parse(dateString);
                     long a = atd_end_time.getTime() - date1.getTime();
-                    if (a < 0){
+                    if (a < 0) {
                         Reward reward = new Reward();
                         reward.setR_e_id(attendence.getAtd_e_id());
                         reward.setR_date(atd_end_time);
@@ -120,5 +124,18 @@ public class AttendenceServiceImpl implements AttendenceService {
             }
         }
         return false;
+    }
+
+    @Override
+    public List<Attendence> getList(Employee employee) {
+        if (employee == null || employee.getE_name() == null || employee.getE_name() == "") {
+            return attendenceDao.getAllAtd();
+        } else {
+            List<Employee> e = employeeDao.getE(employee);
+            Attendence attendence = new Attendence();
+            if (e == null || e.size() == 0) return null;
+            attendence.setAtd_e_id(e.get(0).getE_id());
+            return attendenceDao.getAtd(attendence);
+        }
     }
 }

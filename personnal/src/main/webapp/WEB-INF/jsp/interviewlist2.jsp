@@ -69,13 +69,13 @@
             <legend>查看部门</legend>
             <table class="table table-striped">
                 <tr>
-                    <td>投递简历</td>
-                    <td>投递岗位</td>
-                    <td>投递面试时间</td>
-                    <td>查看状态</td>
-                    <td>面试状态</td>
-                    <td>面试情况</td>
-                    <td colspan="2" style="text-align: center">操作</td>
+                    <th>投递简历</th>
+                    <th>投递岗位</th>
+                    <th>投递面试时间</th>
+                    <th>查看状态</th>
+                    <th>面试状态</th>
+                    <th>面试情况</th>
+                    <th colspan="2" style="text-align: center">操作</th>
                 </tr>
                 <c:forEach items="${requestScope.interViews}" var="inter">
                     <tr>

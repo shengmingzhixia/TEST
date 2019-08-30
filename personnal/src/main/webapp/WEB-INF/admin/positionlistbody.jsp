@@ -4,6 +4,7 @@
 <%@ page import="cgy.model.Page" %>
 <script src="js/index.js"></script>
 <script src="js/jquery-1.7.2.js"></script>
+<link rel="stylesheet" href="css/bootstrap.min.css">
 <%
     Page<Position> positionByPage = (Page<Position>) request.getAttribute("positionByPage");
     if (positionByPage != null && positionByPage.getList() != null &&
@@ -11,11 +12,11 @@
 %>
 <div class="prod">
     <div>
-        <table border="1" cellspacing="1" cellpadding="0">
+        <table class="table table-striped">
             <tr>
-                <td>部门名称</td>
-                <td>职位名称</td>
-                <td colspan="3">操作</td>
+                <th>部门名称</th>
+                <th>职位名称</th>
+                <th colspan="3" style="text-align: center">操作</th>
             </tr>
             <c:forEach items="${requestScope.positionByPage.list}" var="pos">
                 <tr>
@@ -31,17 +32,15 @@
         </table>
     </div>
 </div>
-<a href="toaddposition?dep_id=${requestScope.positionByPage.list.get(0).pos_dep_id}">添加一个新的职位</a>
+<a href="toaddposition">添加一个新的职位</a>
 <%
 } else {
 %>
-<div>没有职位信息<a href="toaddposition?dep_id=${requestScope.positionByPage.list.get(0).pos_dep_id}">添加一个新的职位</a></div>
+<div>没有职位信息<a href="toaddposition">添加一个新的职位</a></div>
 <%
     }
 %>
-
-</div>
-<div class="div4">
+<div class="div4" style="text-align: center">
     <span>共 <%=positionByPage.getTotalPage()%> 页</span>
     <span>当前在第 <%=positionByPage.getPageNo()%> 页</span>
     <span><a href="getPositions?pageNo=1&pos_dep_id=${requestScope.pos_dep_id}">首页</a></span>

@@ -16,12 +16,11 @@
                     <li><a href="getRewards">奖惩管理</a></li>
                     <li><a href="toSalaryManage">薪资管理</a></li>
                     <li><a href="getSalary">个人薪资查看</a></li>
-                    <li><a href="">工资异议</a></li>
+                    <li><a href="getTroubles">工资异议审核</a></li>
                 </c:if>
                 <c:if test="${sessionScope.employeeNow.e_type==1}">
                     <li><a href="gertOwnerTrain">培训管理</a></li>
                     <li><a href="getSalary">薪资管理</a></li>
-                    <li><a href="">工资异议</a></li>
                     <li><a href="shangban">上班打卡</a></li>
                     <li><a href="xiaban">下班打卡</a></li>
                 </c:if>

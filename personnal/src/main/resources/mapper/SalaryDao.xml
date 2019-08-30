@@ -13,6 +13,11 @@
                 #{s_total},
                 #{s_is_trouble})
     </insert>
+    <update id="updateState">
+        update P_SALARY
+        set S_IS_TROUBLE = #{s_is_trouble}
+        where s_id = #{s_id}
+    </update>
     <select id="getSalarysByPage" resultType="cgy.model.Salary">
         SELECT *
         FROM (SELECT ROWNUM rn,
@@ -25,7 +30,7 @@
                      S_INSURANCE,
                      S_TOTAL,
                      S_IS_TROUBLE
-              FROM (select * from P_SALARY order by S_DATE desc )
+              FROM (select * from P_SALARY order by S_DATE desc)
               WHERE ROWNUM &lt;= #{1})a
         WHERE a.rn > #{0}
     </select>
@@ -38,6 +43,8 @@
         from P_SALARY
     </select>
     <select id="getSalary" resultType="cgy.model.Salary">
-        select * from P_SALARY where S_E_ID = #{s_e_id}
+        select *
+        from P_SALARY
+        where S_E_ID = #{s_e_id}
     </select>
 </mapper>

@@ -14,7 +14,7 @@
 <head>
     <base href="<%=basePath%>"/>
     <title>新增简历</title>
-    <link rel="stylesheet" href="https://cdn.bootcss.com/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/customer.css" type="text/css"/>
     <script src="js/jquery-1.7.2.js"></script>
 </head>
@@ -74,7 +74,7 @@
             <div class="col-sm-6">
                 <div class="form-group">
                     <label>性&emsp;别：</label>
-                    <select name="cv_gender" class="form-control">
+                    <select name="cv_gender" class="form-control" required>
                         <option hidden></option>
                         <option value="男">男</option>
                         <option value="女">女</option>

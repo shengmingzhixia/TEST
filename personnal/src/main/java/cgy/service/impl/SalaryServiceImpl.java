@@ -1,9 +1,6 @@
 package cgy.service.impl;
 
-import cgy.dao.AttendenceDao;
-import cgy.dao.EmployeeDao;
-import cgy.dao.RewardDao;
-import cgy.dao.SalaryDao;
+import cgy.dao.*;
 import cgy.model.*;
 import cgy.service.SalaryService;
 import org.springframework.stereotype.Service;
@@ -26,6 +23,8 @@ public class SalaryServiceImpl implements SalaryService {
     private RewardDao rewardDao;
     @Resource
     AttendenceDao attendenceDao;
+    @Resource
+    TroubleDao troubleDao;
 
     @Override
     public Page<Salary2> getSalaryByPage(int pageNo) {
@@ -185,5 +184,17 @@ public class SalaryServiceImpl implements SalaryService {
     @Override
     public List<Salary> getSalarys(Integer e_id) {
         return salaryDao.getSalary(e_id);
+    }
+
+    @Override
+    public boolean update(Salary salary, String reason) {
+        boolean a = troubleDao.insertTrouble(new Trouble(salary.getS_id(),reason,1));
+        a = salaryDao.updateState(salary);
+        return a;
+    }
+
+    @Override
+    public boolean update2(Salary salary) {
+        return salaryDao.updateState(salary);
     }
 }

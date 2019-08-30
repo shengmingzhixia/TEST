@@ -16,6 +16,13 @@
     <base href="<%=basePath%>"/>
     <title>查看薪资表</title>
     <link href="css/main.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script>
+        function addReason() {
+            document.getElementById("button1").style.display = "none"
+            document.getElementById("button2").style.display = "block"
+        }
+    </script>
 </head>
 <body>
 <div id="mainDiv">
@@ -33,16 +40,16 @@
             </div>
             <br/><br/>
             <div>
-                <table border="1" cellspacing="1" cellpadding="0">
+                <table class="table table-striped">
                     <tr>
-                        <td>姓名</td>
-                        <td>结算日期</td>
-                        <td>基本薪资</td>
-                        <td>加班费</td>
-                        <td>奖惩</td>
-                        <td>社保</td>
-                        <td>总计</td>
-                        <td>操作</td>
+                        <th>姓名</th>
+                        <th>结算日期</th>
+                        <th>基本薪资</th>
+                        <th>加班费</th>
+                        <th>奖惩</th>
+                        <th>应缴社保</th>
+                        <th>总计</th>
+                        <th>操作</th>
                     </tr>
                     <tr>
                         <td>${sessionScope.employeeNow.e_name}</td>
@@ -52,7 +59,28 @@
                         <td>${requestScope.salary.s_reward}</td>
                         <td>${requestScope.salary.s_insurance}</td>
                         <td>${requestScope.salary.s_total}</td>
-                        <td>异议</td>
+                        <c:if test="${requestScope.salary.s_is_trouble==0}">
+                            <td id="button1">
+                                <button onclick="addReason()">异议</button>
+                            </td>
+                        </c:if>
+                        <c:if test="${requestScope.salary.s_is_trouble==1}">
+                            <td>异议中</td>
+                        </c:if>
+                        <c:if test="${requestScope.salary.s_is_trouble==2}">
+                            <td>被驳回</td>
+                        </c:if>
+                        <c:if test="${requestScope.salary.s_is_trouble==3}">
+                            <td>异议成功</td>
+                        </c:if>
+                        <td id="button2" hidden>
+                            <form action="updateSalary" method="post">
+                                <input type="hidden" name="s_id" value="${requestScope.salary.s_id}">
+                                <input type="hidden" name="s_is_trouble" value="1">
+                                <input type="text" name="reason" placeholder="请填写异议理由">
+                                <input type="submit" value="提交">
+                            </form>
+                        </td>
                     </tr>
                 </table>
             </div>

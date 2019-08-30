@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Administrator
@@ -16,6 +17,7 @@
     <title>添加职位</title>
     <script src="js/jquery-1.7.2.js"></script>
     <link href="css/main.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <script>
         $(function () {
             $("input[name=pos_name]").blur(function () {
@@ -45,17 +47,29 @@
             <div id="current" align="center">&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 20px;font-weight: bold;">当前位置--->>>${title}</span>
             </div>
             <br/><br/>
-            <div>
-                <table>
-                    <tr>请输入职位名称</tr>
-                    <tr>
+            <div class="container" style="max-width: 1100px;">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-8" style="margin-top: 20px">
+                    <fieldset>
+                        <legend>新增职位</legend>
                         <form action="addPosition" method="post">
-                            <input type="text" name="pos_name">
-                            <input type="hidden" value="${requestScope.dep_id}" name="pos_dep_id">
-                            <input type="submit" value="提交" id="sub1">
+                            <div class="col-sm-4">
+                                选择部门：
+                                <select name="pos_dep_id" class="form-control">
+                                    <c:forEach items="${requestScope.departments}" var="department">
+                                        <option value=${department.dep_id}>${department.dep_name}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                            <div class="col-sm-4">
+                                请输入职位名：<input type="text" name="pos_name" required class="form-control" maxlength="55">
+                            </div>
+                            <div class="col-sm-4">
+                                &emsp;<input type="submit" value="提交" id="sub1" class="form-control btn btn-primary">
+                            </div>
                         </form>
-                    </tr>
-                </table>
+                    </fieldset>
+                </div>
             </div>
         </div>
     </div>

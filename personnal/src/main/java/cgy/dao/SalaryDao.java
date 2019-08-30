@@ -18,4 +18,7 @@ public interface SalaryDao {
     List<Salary> getSalarys();
 
     List<Salary> getSalary(@Param(value="s_e_id")Integer s_e_id);
+
+    //更新薪资的异议状态
+    boolean updateState(Salary salary);
 }

@@ -86,6 +86,6 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public List<Department> getDeparts() {
-        return departmentDao.getDeparts(null);
+        return departmentDao.getDepartAll();
     }
 }

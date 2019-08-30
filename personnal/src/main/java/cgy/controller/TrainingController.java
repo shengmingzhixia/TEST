@@ -83,4 +83,12 @@ public class TrainingController {
         request.setAttribute("trains", trains);
         return "employee/traininglist";
     }
+
+    //获得培训记录
+    @RequestMapping("gertTrain")
+    public String gertTrain(int e_id,HttpServletRequest request) {
+        List<Training> trains = trainingService.getEmployeeTrain(e_id);
+        request.setAttribute("trains", trains);
+        return "admin/employee/traininglist";
+    }
 }

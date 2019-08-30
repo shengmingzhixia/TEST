@@ -21,6 +21,7 @@
     <script src="js/index.js"></script>
     <script src="js/jquery-1.7.2.js"></script>
     <link href="css/main.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
 <div id="mainDiv">
@@ -44,15 +45,15 @@
             %>
             <div class="prod">
                 <div>
-                    <table border="1" cellspacing="1" cellpadding="0">
+                    <table class="table table-striped">
                         <tr>
-                            <td>培训主题</td>
-                            <td>培训内容</td>
-                            <td>开始时间</td>
-                            <td>结束时间</td>
-                            <td>培训地点</td>
-                            <td>状态</td>
-                            <td colspan="3">操作</td>
+                            <th>培训主题</th>
+                            <th>培训内容</th>
+                            <th>开始时间</th>
+                            <th>结束时间</th>
+                            <th>培训地点</th>
+                            <th>状态</th>
+                            <th colspan="3" style="text-align: center">操作</th>
                         </tr>
                         <c:forEach items="${requestScope.trainingPage.list}" var="train">
                             <tr>

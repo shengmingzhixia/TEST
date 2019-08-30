@@ -40,7 +40,7 @@ public class PositionController {
         }
         Page<Position> positionByPage = positionService.getPositionByPage(pageNo, position.getPos_dep_id());
         Department department = departmentService.getDepartment(position.getPos_dep_id());
-        request.setAttribute("dep_name",department.getDep_name());
+        request.setAttribute("dep_name", department.getDep_name());
         request.setAttribute("pos_dep_id", position.getPos_dep_id());
         request.setAttribute("positionByPage", positionByPage);
         return "admin/positionlist";
@@ -97,7 +97,14 @@ public class PositionController {
         List<Department> departs = departmentService.getDeparts();
         request.setAttribute("departs", departs);
         List<Position> positions = positionService.getPositionByDep_id(null);
-        request.setAttribute("positions",positions);
+        request.setAttribute("positions", positions);
         return "admin/training/trainingtopos";
+    }
+
+    @RequestMapping("toaddposition")
+    public String toaddposition(HttpServletRequest request) {
+        List<Department> departments = departmentService.getDeparts();
+        request.setAttribute("departments", departments);
+        return "admin/positionadd";
     }
 }

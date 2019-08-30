@@ -1,5 +1,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ page import="cgy.model.Reward" %><%--
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="cgy.model.Attendence" %><%--
   Created by IntelliJ IDEA.
   User: Administrator
   Date: 2019\8\27 0027
@@ -14,7 +15,7 @@
 <html>
 <head>
     <base href="<%=basePath%>"/>
-    <title>奖惩管理界面</title>
+    <title>考勤管理界面</title>
     <script src="js/jquery-1.7.2.js"></script>
     <link href="css/main.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -34,13 +35,13 @@
             </div>
             <br/><br/>
             <div>
-                <form action="getRewards" method="post" novalidate="novalidate">
+                <form action="getAttends" method="post" novalidate="novalidate">
                     <table>
                         <tbody>
                         <tr>
                             <td>
                                 <input type="text" name="e_name" maxlength="20" placeholder="按姓名查找">
-                                <input type="date" name="r_date">
+                                <input type="date" name="date">
                                 <input type="submit" value="搜 索">
                             </td>
                         </tr>
@@ -49,7 +50,7 @@
                 </form>
             </div>
             <%
-                List<Reward> list = (List<Reward>) request.getAttribute("rewards");
+                List<Attendence> list = (List<Attendence>) request.getAttribute("list");
                 if (list != null && list.size() != 0) {
             %>
             <div>
@@ -59,22 +60,21 @@
                             <tr>
                                 <th>员工工号</th>
                                 <th>员工姓名</th>
-                                <th>奖惩日期</th>
-                                <th>奖惩理由</th>
-                                <th>奖惩金额</th>
+                                <th>上班打卡</th>
+                                <th>下班打卡</th>
                             </tr>
-                            <c:forEach items="${requestScope.rewards}" var="reward">
+                            <c:forEach items="${requestScope.list}" var="attendence">
                                 <tr>
-                                    <c:forEach items="${requestScope.list}" var="employee">
-                                        <c:if test="${employee.e_id==reward.r_e_id}">
+                                    <c:forEach items="${requestScope.employees}" var="employee">
+                                        <c:if test="${employee.e_id==attendence.atd_e_id}">
                                             <td>${employee.e_account}</td>
                                             <td>${employee.e_name}</td>
+                                            <td><fmt:formatDate value="${attendence.atd_start_time}"
+                                                                pattern="yyyy-MM-dd HH:mm:ss"/></td>
+                                            <td><fmt:formatDate value="${attendence.atd_end_time}"
+                                                                pattern="yyyy-MM-dd HH:mm:ss"/></td>
                                         </c:if>
                                     </c:forEach>
-                                    <td><fmt:formatDate value="${reward.r_date}"
-                                                        pattern="yyyy-MM-dd HH:mm:ss"/></td>
-                                    <td>${reward.r_reason}</td>
-                                    <td>${reward.r_money}</td>
                                 </tr>
                             </c:forEach>
                         </table>

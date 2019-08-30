@@ -17,6 +17,7 @@
     <title>添加一个招聘信息</title>
     <script src="js/jquery-1.7.2.js"></script>
     <link href="css/main.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <script>
         var arr = new Array()
         var i = 0
@@ -72,32 +73,49 @@
             <div id="current" align="center">&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 20px;font-weight: bold;">当前位置--->>>${title}</span>
             </div>
             <br/><br/>
-            <div>
-                <table border="1" cellspacing="1" cellpadding="0">
-                    <form action="addRecruit" method="post">
-                        <tr>
-                            <td>选择部门</td>
-                            <td>
-                                <select id="dep" onchange="changePos(this.value)" required></select>
-                            </td>
-                            <td>选择职位</td>
-                            <td>
-                                <select id="pos" name="rct_title" required></select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>详情描述</td>
-                            <td><textarea name="rct_introduaction"></textarea></td>
-                            <td>招聘地址</td>
-                            <td><input type="text" name="rct_address"></td>
-                        </tr>
-                        <tr>
-                            <td>薪资待遇</td>
-                            <td><input type="text" name="rct_salary"></td>
-                        </tr>
-                        <tr><input type="submit" value="提交草稿"></tr>
-                    </form>
-                </table>
+            <div class="col-sm-10">
+                <legend>添加招聘信息</legend>
+                <form action="addRecruit" method="post">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>选&emsp;择&emsp;部&emsp;门：</label>
+                            <select id="dep" onchange="changePos(this.value)" required class="form-control">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>选&emsp;择&emsp;职&emsp;位：</label>
+                            <select id="pos" name="rct_title" required class="form-control">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>详&emsp;情&emsp;描&emsp;述：</label>
+                            <textarea name="rct_introduaction" required class="form-control" maxlength="100"
+                                      style="height: 90px;resize: none"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>招&emsp;聘&emsp;地&emsp;址：</label>
+                            <input type="text" name="rct_address" required class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>薪&emsp;资&emsp;待&emsp;遇：</label>
+                            <input type="text" name="rct_salary" required class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            &emsp;<input type="submit" value="提交草稿" class="form-control btn btn-primary">
+                        </div>
+                    </div>
+                </form>
+
             </div>
         </div>
     </div>

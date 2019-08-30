@@ -41,12 +41,6 @@ public class ToUrl {
         return "admin/positionupdate";
     }
 
-    @RequestMapping("toaddposition")
-    public String toaddposition(Integer dep_id, HttpServletRequest request) {
-        request.setAttribute("dep_id", dep_id);
-        return "admin/positionadd";
-    }
-
     @RequestMapping("torct")
     public String torct(HttpServletRequest request) {
         return "admin/recruit/recruitlist";

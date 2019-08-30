@@ -38,4 +38,8 @@
         from P_DEPARTMENT
         where DEP_ID = #{pos_dep_id}
     </select>
+    <select id="getDepartAll" resultType="cgy.model.Department">
+        select *
+        from P_DEPARTMENT
+    </select>
 </mapper>

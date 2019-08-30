@@ -54,4 +54,11 @@ public class SalaryController {
         request.setAttribute("salarys", salarys);
         return "employee/salarylist";
     }
+
+    @RequestMapping("updateSalary")
+    public String updateSalary(Salary salary,String reason,HttpServletRequest request){
+        boolean updatesalary = salaryService.update(salary,reason);
+        request.setAttribute("updatesalary", updatesalary);
+        return "employee/index";
+    }
 }

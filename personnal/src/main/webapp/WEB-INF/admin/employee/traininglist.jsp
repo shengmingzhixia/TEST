@@ -15,7 +15,7 @@
 <html>
 <head>
     <base href="<%=basePath%>"/>
-    <title>员工查看培训记录</title>
+    <title>管理员查看个人培训记录</title>
     <link href="css/main.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="https://cdn.bootcss.com/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
@@ -23,11 +23,11 @@
 <div id="mainDiv">
 
 
-    <%@ include file="../main/head.jsp" %>
+    <%@ include file="../../main/head.jsp" %>
 
     <div id="centerDiv">
 
-        <%@ include file="../main/left.jsp" %>
+        <%@ include file="../../main/left.jsp" %>
 
 
         <div id="right">

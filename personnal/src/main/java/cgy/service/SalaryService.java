@@ -14,4 +14,8 @@ public interface SalaryService {
     Salary getSalary(Integer s_e_id);
 
     List<Salary> getSalarys(Integer e_id);
+
+    boolean update(Salary salary, String reason);
+
+    boolean update2(Salary salary);
 }

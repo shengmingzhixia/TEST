@@ -18,6 +18,7 @@
     <base href="<%=basePath%>"/>
     <title>查看面试</title>
     <link href="css/main.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
 <div id="mainDiv">
@@ -39,12 +40,12 @@
             %>
             <div class="prod">
                 <div>
-                    <table border="1" cellspacing="1" cellpadding="0">
+                    <table class="table table-striped">
                         <tr>
-                            <td>投递简历</td>
-                            <td>投递岗位</td>
-                            <td>面试时间</td>
-                            <td>操作</td>
+                            <th>投递简历</th>
+                            <th>投递岗位</th>
+                            <th>面试时间</th>
+                            <th>操作</th>
                         </tr>
                         <c:forEach items="${requestScope.list}" var="inter">
                             <tr>

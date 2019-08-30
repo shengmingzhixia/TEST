@@ -18,6 +18,18 @@
     <title>简历详情(管理员)</title>
     <script src="js/jquery-1.7.2.js"></script>
     <link href="css/main.css" rel="stylesheet" type="text/css"/>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        td {
+            width: 160px;
+            height: 30px;
+            font-size: 20px;
+        }
+    </style>
 </head>
 <body>
 <div id="mainDiv">
@@ -33,49 +45,85 @@
             <div id="current" align="center">&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 20px;font-weight: bold;">当前位置--->>>${title}</span>
             </div>
             <br/><br/>
-            <div>
-                <table border="1" cellspacing="1" cellpadding="0">
-                    <tr>
-                        <td>简历名称：</td>
-                        <td>${requestScope.cv.cv_title}</td>
+            <div style="text-align: center;margin-left: 200px">
+                <table border=1; cellpadding=12; cellspacing=0; align=center>
+                    <tr align=center>
+                        <td colspan="5">${requestScope.cv.cv_title}</td>
+                    </tr>
+                    <tr align=center>
+                        <td>姓名:</td>
+                        <td>${requestScope.cv.cv_name}</td>
+                        <td>性别:</td>
+                        <td>${requestScope.cv.cv_gender}</td>
+                        <td rowspan="7"><img src="" alt=""></td>
+                    </tr>
+                    <tr align=center>
+                        <td>毕业院校:</td>
+                        <td>${requestScope.cv.cv_school}</td>
+                        <td>民族:</td>
+                        <td>汉族</td>
+                    </tr>
+                    <tr align=center>
+                        <td>最高学历:</td>
+                        <td>${requestScope.cv.cv_education}</td>
+                        <td>政治面貌:</td>
+                        <td>共青团员</td>
+                    </tr>
+                    <tr align=center>
+                        <td>专业:</td>
+                        <td>${requestScope.cv.cv_major}</td>
+                        <td>出生年月:</td>
+                        <td><fmt:formatDate value="${requestScope.cv.cv_birth}" pattern="yyyy-MM-dd"/></td>
+                    </tr>
+                    <tr align=center>
+                        <td>入学时间:</td>
+                        <td><fmt:formatDate value="${requestScope.cv.cv_enroll_date}" pattern="yyyy-MM-dd"/></td>
+                        <td>毕业时间:</td>
+                        <td><fmt:formatDate value="${requestScope.cv.cv_graduation_date}" pattern="yyyy-MM-dd"/></td>
+                    </tr>
+                    <tr align=center>
+                        <td>籍贯:</td>
+                        <td>${requestScope.cv.cv_address}</td>
+                        <td>手机号码:</td>
+                        <td>${requestScope.cv.cv_phone}</td>
+                    </tr>
+                    <tr align=center>
+                        <td>期望薪资：</td>
+                        <td>${requestScope.cv.cv_salary}</td>
                         <td>面试职位</td>
                         <td>${requestScope.interView2.in_rct_name}</td>
                     </tr>
-                    <tr>
-                        <td>真实姓名</td>
-                        <td>${requestScope.cv.cv_name}</td>
-                        <td>性别</td>
-                        <td>${requestScope.cv.cv_gender}</td>
+                    <tr align=center>
+                        <td>通讯地址:</td>
+                        <td colspan="4">${requestScope.cv.cv_phone}</td>
+                    </tr>
+                    <tr align=center>
+                        <td>电子信箱:</td>
+                        <td colspan="4">1461129779@qq.com</td>
+                    </tr>
+                    <tr align=center>
+                        <td colspan="5">教育背景</td>
+                    </tr>
+                    <tr align=center>
+                        <td colspan="5" style="height:100px"></td>
+                    </tr>
+                    <tr align=center>
+                        <td colspan="5">专业课程</td>
                     </tr>
                     <tr>
-                        <td>出生日期</td>
-                        <td><fmt:formatDate value="${requestScope.cv.cv_birth}" pattern="yyyy-MM-dd"/></td>
-                        <td>家庭住址</td>
-                        <td>${requestScope.cv.cv_address}</td>
+                        <td colspan="5" style="height:100px"></td>
+                    </tr>
+                    <tr align=center>
+                        <td colspan="5">主要技能</td>
                     </tr>
                     <tr>
-                        <td>毕业院校</td>
-                        <td>${requestScope.cv.cv_school}</td>
-                        <td>学历</td>
-                        <td>${requestScope.cv.cv_education}</td>
+                        <td colspan="5" style="height:100px"></td>
+                    </tr>
+                    <tr align=center>
+                        <td colspan="5">项目经验</td>
                     </tr>
                     <tr>
-                        <td>专业</td>
-                        <td>${requestScope.cv.cv_major}</td>
-                        <td>入学时间</td>
-                        <td><fmt:formatDate value="${requestScope.cv.cv_enroll_date}" pattern="yyyy-MM-dd"/></td>
-                    </tr>
-                    <tr>
-                        <td>毕业时间</td>
-                        <td><fmt:formatDate value="${requestScope.cv.cv_graduation_date}" pattern="yyyy-MM-dd"/></td>
-                        <td>期望薪资</td>
-                        <td>${requestScope.cv.cv_salary}</td>
-                    </tr>
-                    <tr>
-                        <td>工作经验</td>
-                        <td>${requestScope.cv.cv_exprience}</td>
-                        <td>联系电话</td>
-                        <td>${requestScope.cv.cv_phone}</td>
+                        <td colspan="5" style="height:100px">${requestScope.cv.cv_exprience}</td>
                     </tr>
                 </table>
                 <c:if test="${requestScope.interView2.in_is_accept==2}">
@@ -98,7 +146,6 @@
                         <input type="submit" value="邀请面试">
                     </form>
                 </c:if>
-                <a href="javascript:history.go(-1)">返回</a>
             </div>
         </div>
     </div>

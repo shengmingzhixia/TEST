@@ -18,6 +18,7 @@
     <script src="js/index.js"></script>
     <script src="js/jquery-1.7.2.js"></script>
     <link href="css/main.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
 <div id="mainDiv">
@@ -40,14 +41,14 @@
             %>
             <div class="prod">
                 <div>
-                    <table border="1" cellspacing="1" cellpadding="0">
+                    <table class="table table-striped">
                         <tr>
-                            <td>员工工号</td>
-                            <td>员工姓名</td>
-                            <td>员工状态</td>
-                            <td>性别</td>
-                            <td>职位</td>
-                            <td colspan="4">操作</td>
+                            <th>员工工号</th>
+                            <th>员工姓名</th>
+                            <th>员工状态</th>
+                            <th>性别</th>
+                            <th>职位</th>
+                            <th colspan="4" style="text-align: center">操作</th>
                         </tr>
 
                         <c:forEach items="${requestScope.employeePage.list}" var="employee">
@@ -63,9 +64,9 @@
                                 <td>${employee.e_gender}</td>
                                 <td>${requestScope.pos_name}</td>
                                 <td><a href="getEmployee?e_id=${employee.e_id}">查看</a></td>
-                                <td><a href="#?e_id=${employee.e_id}">换岗</a></td>
-                                <td><a href="#?e_id=${employee.e_id}">查看考勤</a></td>
-                                <td><a href="#?e_id=${employee.e_id}">查看培训记录</a></td>
+                                <td><a href="toChangePosition?e_id=${employee.e_id}">换岗</a></td>
+                                <td><a href="getAttends?e_id=${employee.e_id}">查看考勤</a></td>
+                                <td><a href="gertTrain?e_id=${employee.e_id}">查看培训记录</a></td>
                             </tr>
                         </c:forEach>
                     </table>

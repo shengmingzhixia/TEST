@@ -19,6 +19,7 @@
     <script src="js/index.js"></script>
     <script src="js/jquery-1.7.2.js"></script>
     <link href="css/main.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
 <div id="mainDiv">
@@ -49,11 +50,11 @@
                         departmentPage.getList().size() != 0) {
             %>
             <div>
-                <table border="1" cellspacing="1" cellpadding="0">
+                <table class="table table-striped">
                     <tr>
-                        <td>部门名称</td>
-                        <td>启用时间</td>
-                        <td colspan="3">操作</td>
+                        <th>部门名称</th>
+                        <th>启用时间</th>
+                        <th colspan="3" style="text-align: center">操作</th>
                     </tr>
                     <c:forEach items="${requestScope.departmentPage.list}" var="depart">
                         <tr>
@@ -76,7 +77,7 @@
                 %>
 
 
-                <div class="div4">
+                <div class="div4" style="text-align: center">
                     <span>共 <%=departmentPage.getTotalPage()%> 页</span>
                     <span>当前在第 <%=departmentPage.getPageNo()%> 页</span>
                     <span><a href="getDepart?pageNo=1">首页</a></span>

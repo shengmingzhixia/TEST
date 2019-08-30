@@ -20,6 +20,7 @@
     <script src="js/index.js"></script>
     <script src="js/jquery-1.7.2.js"></script>
     <link href="css/main.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
 <div id="mainDiv">
@@ -52,14 +53,14 @@
             %>
             <div class="prod">
                 <div>
-                    <table border="1" cellspacing="1" cellpadding="0">
+                    <table class="table table-striped">
                         <tr>
-                            <td>招聘主题</td>
-                            <td>招聘描述</td>
-                            <td>地址</td>
-                            <td>薪资</td>
-                            <td>发布时间</td>
-                            <td colspan="3">操作</td>
+                            <th>招聘主题</th>
+                            <th>招聘描述</th>
+                            <th>地址</th>
+                            <th>薪资</th>
+                            <th>发布时间</th>
+                            <th colspan="3" style="text-align: center">操作</th>
                         </tr>
                         <c:forEach items="${requestScope.recruitPage.list}" var="rct">
                             <tr>
@@ -96,7 +97,7 @@
                 }
             %>
 
-            <div class="div4">
+            <div class="div4" style="text-align: center">
                 <span>共 <%=recruitPage.getTotalPage()%> 页</span>
                 <span>当前在第 <%=recruitPage.getPageNo()%> 页</span>
                 <span><a href="getRecruits?pageNo=1">首页</a></span>
