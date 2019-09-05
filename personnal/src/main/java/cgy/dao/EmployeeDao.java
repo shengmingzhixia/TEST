@@ -22,4 +22,6 @@ public interface EmployeeDao {
     boolean update(Employee employee);
 
     boolean update2(Employee employee);
+
+    boolean update3(Employee employee);
 }

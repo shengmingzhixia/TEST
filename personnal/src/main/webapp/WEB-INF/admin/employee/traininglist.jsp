@@ -31,8 +31,7 @@
 
 
         <div id="right">
-            <div id="current" align="center">&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 20px;font-weight: bold;">当前位置--->>>${title}</span>
-            </div>
+            <%@ include file="../../main/clock.jsp" %>
             <br/><br/>
             <div>
                 <table class="table table-striped">
@@ -43,15 +42,22 @@
                         <th>结束时间</th>
                         <th>培训地点</th>
                     </tr>
-                    <c:forEach items="${requestScope.trains}" var="train">
+                    <c:if test="${requestScope.trains==null}">
                         <tr>
-                            <td>${train.t_title}</td>
-                            <td>${train.t_context}</td>
-                            <td><fmt:formatDate value="${train.t_start_time}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
-                            <td><fmt:formatDate value="${train.t_end_time}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
-                            <td>${train.t_address}</td>
+                            <td colspan="5">没有数据</td>
                         </tr>
-                    </c:forEach>
+                    </c:if>
+                    <c:if test="${requestScope.trains!=null}">
+                        <c:forEach items="${requestScope.trains}" var="train">
+                            <tr>
+                                <td>${train.t_title}</td>
+                                <td>${train.t_context}</td>
+                                <td><fmt:formatDate value="${train.t_start_time}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+                                <td><fmt:formatDate value="${train.t_end_time}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+                                <td>${train.t_address}</td>
+                            </tr>
+                        </c:forEach>
+                    </c:if>
                 </table>
             </div>
         </div>

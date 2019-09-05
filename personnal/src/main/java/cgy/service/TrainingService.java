@@ -16,4 +16,8 @@ public interface TrainingService {
 
     //获得某个员工的全部训练记录
     List<Training> getEmployeeTrain(Integer e_id);
+
+    Training getTrain(int t_id);
+
+    boolean updateState2(Training training);
 }

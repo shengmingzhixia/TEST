@@ -68,4 +68,15 @@ public class TrainingServiceImpl implements TrainingService {
         trainings.sort(((o1, o2) -> Long.compare(o2.getT_start_time().getTime(),o1.getT_start_time().getTime())));
         return trainings;
     }
+
+    @Override
+    public Training getTrain(int t_id) {
+        return trainingDao.getTrain(t_id);
+    }
+
+    @Override
+    public boolean updateState2(Training training) {
+        if (training == null || training.getT_id() == null) return false;
+        return trainingDao.updateState2(training);
+    }
 }

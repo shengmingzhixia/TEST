@@ -70,8 +70,7 @@
 
 
         <div id="right">
-            <div id="current" align="center">&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 20px;font-weight: bold;">当前位置--->>>${title}</span>
-            </div>
+            <%@ include file="../../main/clock.jsp" %>
             <br/><br/>
             <div class="col-sm-10">
                 <legend>添加招聘信息</legend>

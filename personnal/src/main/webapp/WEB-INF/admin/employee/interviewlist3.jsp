@@ -31,13 +31,8 @@
 
 
         <div id="right">
-            <div id="current" align="center">&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 20px;font-weight: bold;">当前位置--->>>${title}</span>
-            </div>
+            <%@ include file="../../main/clock.jsp" %>
             <br/><br/>
-            <%
-                List<InterView2> interViews = (List<InterView2>) request.getAttribute("list");
-                if (interViews != null && interViews.size() != 0) {
-            %>
             <div class="prod">
                 <div>
                     <table class="table table-striped">
@@ -47,6 +42,10 @@
                             <th>面试时间</th>
                             <th>操作</th>
                         </tr>
+                        <%
+                            List<InterView2> interViews = (List<InterView2>) request.getAttribute("list");
+                            if (interViews != null && interViews.size() != 0) {
+                        %>
                         <c:forEach items="${requestScope.list}" var="inter">
                             <tr>
                                 <td>${inter.in_cv_title}</td>
@@ -59,16 +58,18 @@
                                 </td>
                             </tr>
                         </c:forEach>
+                        <%
+                        } else {
+                        %>
+                       <tr>
+                           <td colspan="4">没有数据</td>
+                       </tr>
+                        <%
+                            }
+                        %>
                     </table>
                 </div>
             </div>
-            <%
-            } else {
-            %>
-            <div>没有面试信息</div>
-            <%
-                }
-            %>
         </div>
     </div>
     <div id="bottomDiv"></div>

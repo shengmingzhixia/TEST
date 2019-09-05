@@ -42,15 +42,14 @@
 
 
         <div id="right">
-            <div id="current" align="center">&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 20px;font-weight: bold;">当前位置--->>>${title}</span>
-            </div>
+            <%@ include file="../main/clock.jsp" %>
             <br/><br/>
             <div>
                 <table>
                     <tr>请输入职位名称</tr>
                     <tr>
                         <form action="updatePosition" method="post">
-                            <input type="text" name="pos_name" value="${requestScope.position.pos_name}">
+                            <input type="text" name="pos_name" value="${requestScope.position.pos_name}" required>
                             <input type="hidden" value="${requestScope.position.pos_id}" name="pos_id">
                             <input type="hidden" value="${requestScope.position.pos_dep_id}" name="pos_dep_id">
                             <input type="submit" value="提交" id="sub1">

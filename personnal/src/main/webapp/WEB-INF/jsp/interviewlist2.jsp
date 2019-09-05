@@ -125,7 +125,7 @@
                             <td>
                                 <a href="addnewemployee?cv_id=${inter.in_cv_id}&in_rct_id=${inter.in_rct_id}&in_id=${inter.in_id}">同意入职</a>
                             </td>
-                            <td><a href="sendInterView5?in_is_accept=4">拒绝入职</a></td>
+                            <td><a href="sendInterView5?in_is_accept=4&in_id=${inter.in_id}">拒绝入职</a></td>
                         </c:if>
                     </tr>
                 </c:forEach>

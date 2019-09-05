@@ -3,6 +3,7 @@ package cgy.service.impl;
 import cgy.dao.*;
 import cgy.model.*;
 import cgy.service.SalaryService;
+import cgy.utils.GetUnWeekendDays;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -55,7 +56,7 @@ public class SalaryServiceImpl implements SalaryService {
         String dateMonth = formatterMonth.format(date);
         String dateDay = formatterDay.format(date);
 
-        if (!dateDay.equals("29")) {
+        if (!dateDay.equals("25")) {
             System.out.println("今天不是结算日子");
             return false;
         }
@@ -91,7 +92,14 @@ public class SalaryServiceImpl implements SalaryService {
                 return false;
             }
         }
-        List<Employee> employees = employeeDao.getE(null);
+        Employee employee0 = new Employee();
+        employee0.setE_state(1);
+        List<Employee> employees0 = employeeDao.getE(employee0);
+        employee0.setE_state(2);
+        List<Employee> employees1 = employeeDao.getE(employee0);
+        List<Employee> employees = new ArrayList<>();
+        employees.addAll(employees0);
+        employees.addAll(employees1);
         for (Employee employee : employees) {
             Salary salary = new Salary();
             salary.setS_extra(0);
@@ -106,21 +114,26 @@ public class SalaryServiceImpl implements SalaryService {
                     i++;
                 }
             }
-
-            if (i < 22 && i > 0) {
+            int count = 0;
+            try {
+                count = GetUnWeekendDays.getAttendance();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            if (i < count && i > 0) {
                 Reward reward = new Reward();
                 reward.setR_e_id(employee.getE_id());
                 reward.setR_date(dateNew);
                 reward.setR_reason("没上班的日子很爽吧？但是没钱！上班天数：" + i + "天");
-                reward.setR_money(-(22 - i) * (employee.getE_salary() / 22));
+                reward.setR_money(-(count - i) * (employee.getE_salary() / count));
                 rewardDao.insertReward(reward);
-            } else if (i > 22) {
-                salary.setS_extra((i - 22) * 150);
+            } else if (i > count) {
+                salary.setS_extra((i - count) * 150);
                 Reward reward = new Reward();
                 reward.setR_e_id(employee.getE_id());
                 reward.setR_date(dateNew);
                 reward.setR_reason("加班就加钱！");
-                reward.setR_money((i - 22) * 150);
+                reward.setR_money((count - 22) * 150);
                 rewardDao.insertReward(reward);
             } else if (i == 0) {
                 System.out.println("不上班死路一条！");
@@ -162,6 +175,7 @@ public class SalaryServiceImpl implements SalaryService {
 
     @Override
     public Salary getSalary(Integer s_e_id) {
+        //只能查看自己当月的薪资
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM");
 
         Date date = new Date();
@@ -188,7 +202,7 @@ public class SalaryServiceImpl implements SalaryService {
 
     @Override
     public boolean update(Salary salary, String reason) {
-        boolean a = troubleDao.insertTrouble(new Trouble(salary.getS_id(),reason,1));
+        boolean a = troubleDao.insertTrouble(new Trouble(salary.getS_id(), reason, 1));
         a = salaryDao.updateState(salary);
         return a;
     }

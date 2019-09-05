@@ -5,6 +5,7 @@ import cgy.model.Page;
 import cgy.model.Position;
 import cgy.service.DepartmentService;
 import cgy.service.PositionService;
+import cgy.utils.CheckType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -28,6 +29,8 @@ public class DepartmentController {
     //管理员添加部门信息
     @RequestMapping("insertDepart")
     public String insertDepart(Department department, HttpServletRequest request) {
+        boolean type = CheckType.getType(request);
+        if (type == false) return "jsp/login";
         department.setDep_date(new Date());
         boolean insertDepart = departmentService.insertDepart(department);
         //给出是否添加成功的判别信息
@@ -38,6 +41,8 @@ public class DepartmentController {
     //查看部门信息
     @RequestMapping("getDepart")
     public String getDepart(HttpServletRequest request) {
+        boolean type = CheckType.getType(request);
+        if (type == false) return "jsp/login";
         String pageNoStr = request.getParameter("pageNo");
         int pageNo = 1;
         if (pageNoStr != null && !"".equals(pageNoStr)) {
@@ -54,6 +59,8 @@ public class DepartmentController {
     //去更新界面
     @RequestMapping("toupdateDepart")
     public String toupdateDepart(Department department, HttpServletRequest request) {
+        boolean type = CheckType.getType(request);
+        if (type == false) return "jsp/login";
         //给出是否添加成功的判别信息
         request.setAttribute("department", department);
         return "admin/departmentupdate";
@@ -62,6 +69,8 @@ public class DepartmentController {
     //管理员更新部门信息
     @RequestMapping("updateDepart")
     public String updateDepart(Department department, HttpServletRequest request) {
+        boolean type = CheckType.getType(request);
+        if (type == false) return "jsp/login";
         boolean updateDepart = departmentService.updateDepart(department);
         //给出是否添加成功的判别信息
         request.setAttribute("updateDepart", updateDepart);
@@ -71,6 +80,8 @@ public class DepartmentController {
     //管理员删除部门信息
     @RequestMapping("deleteDepart")
     public String deleteDepart(int dep_id, HttpServletRequest request) {
+        boolean type = CheckType.getType(request);
+        if (type == false) return "jsp/login";
         boolean deleteDepart = departmentService.deleteDepart(dep_id);
         request.setAttribute("deleteDepart", deleteDepart);
         return "forward:getDepart";
@@ -96,6 +107,8 @@ public class DepartmentController {
 
     @RequestMapping("toaddrecruit")
     public String toaddrecruit(HttpServletRequest request) {
+        boolean type = CheckType.getType(request);
+        if (type == false) return "jsp/login";
         List<Department> departs = departmentService.getDeparts();
         request.setAttribute("departs", departs);
         List<Position> positions = positionService.getPositionByDep_id(null);

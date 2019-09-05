@@ -23,7 +23,7 @@ public class CvServiceImpl implements CvService {
     @Override
     public Page<Cv> getCvByPage(int pageNo, int c_id) {
         Page page = new Page<>();
-        int totalRows = cvDao.getTotalRows();
+        int totalRows = cvDao.getTotalRows(c_id);
         List<Cv> cvList = cvDao.getCvByPage((pageNo - 1) * page.getPageSize(), pageNo * page.getPageSize(), c_id);
         page.setPageNo(pageNo);
         page.setTotalRows(totalRows);

@@ -19,6 +19,12 @@
     <script src="js/jquery-1.7.2.js"></script>
     <link href="css/main.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script>
+        function addReason(num) {
+            document.getElementById("button1").style.display = "none"
+            document.getElementById("button"+num).style.display = "block"
+        }
+    </script>
 </head>
 <body>
 <div id="mainDiv">
@@ -31,14 +37,8 @@
 
 
         <div id="right">
-            <div id="current" align="center">&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 20px;font-weight: bold;">当前位置--->>>${title}</span>
-            </div>
+            <%@ include file="../../main/clock.jsp" %>
             <br/><br/>
-            <%
-                Page<Employee> employeePage = (Page<Employee>) request.getAttribute("employeePage");
-                if (employeePage != null && employeePage.getList() != null &&
-                        employeePage.getList().size() != 0) {
-            %>
             <div>
                 <form action="getEmployeeByName" method="post" novalidate="novalidate">
                     <table>
@@ -60,12 +60,20 @@
                                 <th>员工姓名</th>
                                 <th>员工状态</th>
                                 <th>性别</th>
-                                <th colspan="4" style="text-align: center">操作</th>
+                                <th colspan="6" style="text-align: center">操作</th>
                             </tr>
+                            <%
+                                Page<Employee> employeePage = (Page<Employee>) request.getAttribute("employeePage");
+                                if (employeePage != null && employeePage.getList() != null &&
+                                        employeePage.getList().size() != 0) {
+                            %>
                             <c:forEach items="${requestScope.employeePage.list}" var="employee">
                                 <tr>
                                     <td>${employee.e_account}</td>
                                     <td>${employee.e_name}</td>
+                                    <c:if test="${employee.e_state==2}">
+                                        <td>试用期</td>
+                                    </c:if>
                                     <c:if test="${employee.e_state==1}">
                                         <td>在职</td>
                                     </c:if>
@@ -74,24 +82,66 @@
                                     </c:if>
                                     <td>${employee.e_gender}</td>
                                     <td><a href="getEmployee?e_id=${employee.e_id}">查看基本信息</a></td>
-                                    <td><a href="toChangePosition?e_id=${employee.e_id}">换岗</a></td>
+                                    <c:choose>
+                                        <c:when test="${employee.e_state==0}">
+                                            <td></td>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <td><a href="toChangePosition?e_id=${employee.e_id}">换岗</a></td>
+                                        </c:otherwise>
+                                    </c:choose>
                                     <td><a href="getAttends?e_id=${employee.e_id}">查看考勤</a></td>
-                                    <td><a href="gertTrain?e_id=${employee.e_id}">查看培训记录</a></td>
+                                    <c:choose>
+                                        <c:when test="${employee.e_state==2}">
+                                            <td><a href="gertTrain?e_id=${employee.e_id}">查看培训记录</a></td>
+                                            <td><a href="changestate?e_id=${employee.e_id}">转正</a></td>
+                                            <td id="button1">
+                                                <button onclick="addReason(${employee.e_id})">离职</button>
+                                            </td>
+                                            <td id="button${employee.e_id}" hidden style="position: relative;left: -500px">
+                                                <form action="goAnywhere" method="post">
+                                                    <input type="hidden" name="e_id" value="${employee.e_id}">
+                                                    <textarea name="r_reason" placeholder="请填写离职理由"
+                                                              class="form-control" required></textarea><br>
+                                                    <input type="submit" value="确认">
+                                                </form>
+                                            </td>
+                                        </c:when>
+                                        <c:when test="${employee.e_state==1}">
+                                            <td><a href="gertTrain?e_id=${employee.e_id}">查看培训记录</a></td>
+                                            <td id="button1">
+                                                <button onclick="addReason(${employee.e_id})">离职</button>
+                                            </td>
+                                            <td id="button${employee.e_id}" hidden style="position: relative;left: -500px">
+                                                <form action="goAnywhere" method="post">
+                                                    <input type="hidden" name="e_id" value="${employee.e_id}">
+                                                    <textarea name="r_reason" placeholder="请填写离职理由"
+                                                              class="form-control" required></textarea><br>
+                                                    <input type="submit" value="确认">
+                                                </form>
+                                            </td>
+                                            <td></td>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <td colspan="3"><a href="gertTrain?e_id=${employee.e_id}">查看培训记录</a></td>
+                                        </c:otherwise>
+                                    </c:choose>
                                 </tr>
                             </c:forEach>
+                            <%
+                            } else {
+                            %>
+                            <tr>
+                                <td colspan="9">没有数据</td>
+                            </tr>
+                            <%
+                                }
+                            %>
                         </table>
                     </div>
                 </div>
-                <%
-                } else {
-                %>
-                <div>没有信息</div>
-                <%
-                    }
-                %>
-
             </div>
-            <div class="div4">
+            <div class="div4" style="text-align: center">
                 <span>共 <%=employeePage.getTotalPage()%> 页</span>
                 <span>当前在第 <%=employeePage.getPageNo()%> 页</span>
                 <span><a href="getEmployees?pageNo=1&e_pos_id=${requestScope.e_pos_id}">首页</a></span>

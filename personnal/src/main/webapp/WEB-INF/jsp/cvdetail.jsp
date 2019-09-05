@@ -15,7 +15,7 @@
 <head>
     <base href="<%=basePath%>"/>
     <title>详细简历</title>
-    <link rel="stylesheet" href="https://cdn.bootcss.com/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/customer.css" type="text/css"/>
     <script src="js/jquery-1.7.2.js"></script>
     <style>
@@ -130,19 +130,31 @@
                     <td colspan="5">教育背景</td>
                 </tr>
                 <tr align=center>
-                    <td colspan="5" style="height:100px"></td>
+                    <td colspan="5" style="height:100px">
+                        ${requestScope.cv.cv_school} ${requestScope.cv.cv_major} <fmt:formatDate
+                            value="${requestScope.cv.cv_enroll_date}" pattern="yyyy-MM-dd"/>~<fmt:formatDate
+                            value="${requestScope.cv.cv_graduation_date}" pattern="yyyy-MM-dd"/>
+                            <br><br>某高中 物化班 2011-09-01~2014-06-09
+                    </td>
                 </tr>
                 <tr align=center>
                     <td colspan="5">专业课程</td>
                 </tr>
                 <tr>
-                    <td colspan="5" style="height:100px"></td>
+                    <td colspan="5" style="height:100px">
+                        软件工程学&nbsp;&nbsp;&nbsp;&nbsp;计算机网络&nbsp;&nbsp;&nbsp;&nbsp;软件设计<br>
+                        中间件结构&nbsp;&nbsp;&nbsp;&nbsp;操作系统&nbsp;&nbsp;&nbsp;&nbsp;软件概述
+                    </td>
                 </tr>
                 <tr align=center>
                     <td colspan="5">主要技能</td>
                 </tr>
                 <tr>
-                    <td colspan="5" style="height:100px"></td>
+                    <td colspan="5" style="height:100px">
+                        (1)Java<br>
+                        (2).net<br>
+                        (3)Spring
+                    </td>
                 </tr>
                 <tr align=center>
                     <td colspan="5">项目经验</td>

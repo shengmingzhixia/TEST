@@ -14,8 +14,9 @@
 <head>
     <base href="<%=basePath%>"/>
     <title>管理员界面</title>
-    <script language="javascript" src="jquery.js"></script>
+    <script language="javascript" src="js/jquery.js"></script>
     <link href="css/main.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
 <div id="mainDiv">
@@ -28,8 +29,7 @@
 
 
         <div id="right">
-            <div id="current" align="center">&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 20px;font-weight: bold;">当前位置--->>>${title}</span>
-            </div>
+            <%@ include file="../main/clock.jsp" %>
             <br/><br/>
 
         </div>

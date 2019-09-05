@@ -59,14 +59,14 @@
                      CV_GRADUATION_DATE,
                      CV_SALARY,
                      CV_EXPRIENCE
-              FROM P_CV
+              FROM (select * from P_CV where cv_c_id = #{2})
               WHERE ROWNUM &lt;= #{1})a
         WHERE a.rn > #{0}
-          and cv_c_id = #{2}
     </select>
     <select id="getTotalRows" resultType="java.lang.Integer">
         select count(*)
         from P_CV
+        where CV_C_ID = #{c_id}
     </select>
     <select id="getCv" resultType="cgy.model.Cv">
         select *

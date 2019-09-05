@@ -50,27 +50,17 @@
 
 
         <div id="right">
-            <div id="current" align="center">&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 20px;font-weight: bold;">当前位置--->>>${title}</span>
-            </div>
+            <%@ include file="../main/clock.jsp" %>
             <br/><br/>
             <div>
-                <button><a href="insertAllSalary">一键结算</a></button>
-                <%
-                    Page<Salary2> salaryPage = (Page<Salary2>) request.getAttribute("salaryPage");
-                    if (salaryPage == null) {
-                %>
-                <script>
-                    top.location = "getSalarys";
-                </script>
-                <%
-                        return;
-                    }
-                    if (salaryPage != null && salaryPage.getList() != null &&
-                            salaryPage.getList().size() != 0) {
-                %>
                 <div class="prod">
                     <div>
                         <table class="table table-striped">
+                            <tr>
+                                <td colspan="8">
+                                    <a href="insertAllSalary">一键结算</a>
+                                </td>
+                            </tr>
                             <tr>
                                 <th>员工姓名</th>
                                 <th>结算日期</th>
@@ -81,6 +71,19 @@
                                 <th>你的薪水</th>
                                 <th>复议</th>
                             </tr>
+                            <%
+                                Page<Salary2> salaryPage = (Page<Salary2>) request.getAttribute("salaryPage");
+                                if (salaryPage == null) {
+                            %>
+                            <script>
+                                top.location = "getSalarys";
+                            </script>
+                            <%
+                                    return;
+                                }
+                                if (salaryPage != null && salaryPage.getList() != null &&
+                                        salaryPage.getList().size() != 0) {
+                            %>
                             <c:forEach items="${requestScope.salaryPage.list}" var="salary">
                                 <tr>
                                     <td>${salary.s_e_name}</td>
@@ -93,17 +96,19 @@
                                     <td><a>对此疑问</a></td>
                                 </tr>
                             </c:forEach>
+                            <%
+                            } else {
+                            %>
+                            <tr>
+                                <td colspan="8">暂无数据</td>
+                            </tr>
+                            <%
+                                }
+                            %>
                         </table>
                     </div>
                 </div>
-                <%
-                } else {
-                %>
-                <div>null</div>
-                <%
-                    }
-                %>
-                <div class="div4">
+                <div class="div4" style="text-align: center">
                     <span>共 <%=salaryPage.getTotalPage()%> 页</span>
                     <span>当前在第 <%=salaryPage.getPageNo()%> 页</span>
                     <span><a href="getSalarys?pageNo=1">首页</a></span>

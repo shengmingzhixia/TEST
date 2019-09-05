@@ -3,6 +3,7 @@ package cgy.controller;
 import cgy.model.*;
 import cgy.service.InterViewService;
 import cgy.service.RecruitService;
+import cgy.utils.CheckType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -37,6 +38,8 @@ public class InterViewController {
     //获得所有的面试信息
     @RequestMapping("getInter")
     public String getInter(HttpServletRequest request) {
+        boolean type = CheckType.getType(request);
+        if (type == false) return "jsp/login";
         String pageNoStr = request.getParameter("pageNo");
         int pageNo = 1;
         if (pageNoStr != null && !"".equals(pageNoStr)) {
@@ -63,6 +66,8 @@ public class InterViewController {
     //发送面试邀请
     @RequestMapping("sendInterView")
     public String sendInterView(InterView interView, HttpServletRequest request) {
+        boolean type = CheckType.getType(request);
+        if (type == false) return "jsp/login";
         String f_date = request.getParameter( "in_date" );
         String replace = f_date.replace( "T", " " );
         SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -94,6 +99,8 @@ public class InterViewController {
     //面试过程跳过
     @RequestMapping("sendInterView3")
     public String sendInterView3(InterView interView, HttpServletRequest request) {
+        boolean type = CheckType.getType(request);
+        if (type == false) return "jsp/login";
         interView.setIn_is_accept(interView.getIn_is_accept());
         boolean view = interViewService.updateInterView(interView);
         request.setAttribute("view3", view);
@@ -103,6 +110,8 @@ public class InterViewController {
     //录用
     @RequestMapping("sendInterView4")
     public String sendInterView4(InterView interView, HttpServletRequest request) {
+        boolean type = CheckType.getType(request);
+        if (type == false) return "jsp/login";
         boolean view = interViewService.updateInterView(interView);
         if (interView.getIn_is_accept() == 4)
             view = false;
@@ -110,16 +119,19 @@ public class InterViewController {
         return "main/main";
     }
 
+    //拒绝入职
     @RequestMapping("sendInterView5")
     public String sendInterView5(InterView interView, HttpServletRequest request) {
         boolean view = interViewService.updateInterView(interView);
         request.setAttribute("view5", view);
-        return "main/main";
+        return "../index";
     }
 
     //员工查看自己发布的招聘信息下所有的面试通知
     @RequestMapping("getMyInter")
     public String getMyInter(HttpServletRequest request) {
+        boolean type = CheckType.getType(request);
+        if (type == false) return "jsp/login";
         Employee employee = (Employee) request.getSession().getAttribute("employeeNow");
         List<Recruit> recruits = recruitService.getRecruits(employee.getE_id());
         List<InterView2> list = new ArrayList<>();

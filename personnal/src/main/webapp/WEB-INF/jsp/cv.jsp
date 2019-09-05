@@ -151,11 +151,11 @@
             <div style="text-align: center">
                 <span>共 <%=cvByPage.getTotalPage()%> 页</span>
                 <span>当前在第 <%=cvByPage.getPageNo()%> 页</span>
-                <span><a href="GetCv?pageNo=1">首页</a></span>
-                <span><a href="GetCv?pageNo=<%=cvByPage.getPrevPage()%>">上一页</a></span>
-                <span><a href="GetCv?pageNo=<%=cvByPage.getNextPage()%>">下一页</a></span>
-                <span><a href="GetCv?pageNo=<%=cvByPage.getTotalPage()%>">尾页</a></span>
-                <form action="GetCv" onsubmit="return checkNum(this.children[1].value,<%=cvByPage.getTotalPage()%>)"
+                <span><a href="getCv?pageNo=1">首页</a></span>
+                <span><a href="getCv?pageNo=<%=cvByPage.getPrevPage()%>">上一页</a></span>
+                <span><a href="getCv?pageNo=<%=cvByPage.getNextPage()%>">下一页</a></span>
+                <span><a href="getCv?pageNo=<%=cvByPage.getTotalPage()%>">尾页</a></span>
+                <form action="getCv" onsubmit="return checkNum(this.children[1].value,<%=cvByPage.getTotalPage()%>)"
                       style="display: inline;">
                     <span>跳转到</span><input name="pageNo">
                     <input type="submit" value="跳转">

@@ -62,13 +62,13 @@
             <div class="col-sm-6">
                 <div class="form-group">
                     <label>简&emsp;历&emsp;名&emsp;称：</label>
-                    <input type="text" name="cv_title" class="form-control" placeholder="简历1">
+                    <input type="text" name="cv_title" class="form-control" placeholder="简历1" required>
                 </div>
             </div>
             <div class="col-sm-6">
                 <div class="form-group">
                     <label>真&emsp;实&emsp;姓&emsp;名：</label>
-                    <input type="text" name="cv_name" class="form-control">
+                    <input type="text" name="cv_name" class="form-control" required>
                 </div>
             </div>
             <div class="col-sm-6">
@@ -84,25 +84,25 @@
             <div class="col-sm-6">
                 <div class="form-group">
                     <label>出&emsp;生&emsp;日&emsp;期：</label>
-                    <input type="date" name="cv_birth" class="form-control">
+                    <input type="date" name="cv_birth" class="form-control" required>
                 </div>
             </div>
             <div class="col-sm-6">
                 <div class="form-group">
                     <label>家&emsp;庭&emsp;住&emsp;址：</label>
-                    <input type="text" name="cv_address" class="form-control">
+                    <input type="text" name="cv_address" class="form-control" required>
                 </div>
             </div>
             <div class="col-sm-6">
                 <div class="form-group">
                     <label>毕&emsp;业&emsp;院&emsp;校：</label>
-                    <input type="text" name="cv_school" class="form-control">
+                    <input type="text" name="cv_school" class="form-control" required>
                 </div>
             </div>
             <div class="col-sm-6">
                 <div class="form-group">
                     <label>学&emsp;历：</label>
-                    <select name="cv_education" class="form-control">
+                    <select name="cv_education" class="form-control" required>
                         <option hidden></option>
                         <option value="高中">高中</option>
                         <option value="专科">专科</option>
@@ -114,25 +114,25 @@
             <div class="col-sm-6">
                 <div class="form-group">
                     <label>专&emsp;业：</label>
-                    <input type="text" name="cv_major" class="form-control">
+                    <input type="text" name="cv_major" class="form-control" required>
                 </div>
             </div>
             <div class="col-sm-6">
                 <div class="form-group">
                     <label>入&emsp;学&emsp;时&emsp;间：</label>
-                    <input type="date" name="cv_enroll_date" class="form-control">
+                    <input type="date" name="cv_enroll_date" class="form-control" required>
                 </div>
             </div>
             <div class="col-sm-6">
                 <div class="form-group">
                     <label>毕&emsp;业&emsp;时&emsp;间：</label>
-                    <input type="date" name="cv_graduation_date" class="form-control">
+                    <input type="date" name="cv_graduation_date" class="form-control" required>
                 </div>
             </div>
             <div class="col-sm-6">
                 <div class="form-group">
                     <label>期&emsp;望&emsp;薪&emsp;资：</label>
-                    <select name="cv_salary" class="form-control">
+                    <select name="cv_salary" class="form-control" required>
                         <option hidden></option>
                         <option value="4500">4000-5000</option>
                         <option value="5500">5000-6000</option>
@@ -145,14 +145,14 @@
             <div class="col-sm-6">
                 <div class="form-group">
                     <label>联&emsp;系&emsp;电&emsp;话：</label>
-                    <input type="text" name="cv_phone" class="form-control">
+                    <input type="text" name="cv_phone" class="form-control" required>
                 </div>
             </div>
             <div class="col-sm-12">
                 <div class="form-group">
                     <label>工&emsp;作&emsp;经&emsp;验：</label>
                     <textarea name="cv_exprience" maxlength="100" style="height: 90px;resize: none"
-                              class="form-control"></textarea>
+                              class="form-control" required></textarea>
                 </div>
             </div>
             <div class="col-sm-12">

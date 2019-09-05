@@ -31,8 +31,7 @@
 
 
         <div id="right">
-            <div id="current" align="center">&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 20px;font-weight: bold;">当前位置--->>>${title}</span>
-            </div>
+            <%@ include file="../../main/clock.jsp" %>
             <br/><br/>
             <div>
                 <form action="getAttends" method="post" novalidate="novalidate">
@@ -49,10 +48,6 @@
                     </table>
                 </form>
             </div>
-            <%
-                List<Attendence> list = (List<Attendence>) request.getAttribute("list");
-                if (list != null && list.size() != 0) {
-            %>
             <div>
                 <div class="prod">
                     <div>
@@ -63,6 +58,10 @@
                                 <th>上班打卡</th>
                                 <th>下班打卡</th>
                             </tr>
+                            <%
+                                List<Attendence> list = (List<Attendence>) request.getAttribute("list");
+                                if (list != null && list.size() != 0) {
+                            %>
                             <c:forEach items="${requestScope.list}" var="attendence">
                                 <tr>
                                     <c:forEach items="${requestScope.employees}" var="employee">
@@ -77,16 +76,19 @@
                                     </c:forEach>
                                 </tr>
                             </c:forEach>
+                            <%
+                            } else {
+                            %>
+                            <tr>
+                                <td colspan="4">没有记录</td>
+                            </tr>
+                            <%
+                                }
+                            %>
+                            </tr>
                         </table>
                     </div>
                 </div>
-                <%
-                } else {
-                %>
-                <div>没有信息</div>
-                <%
-                    }
-                %>
 
             </div>
         </div>

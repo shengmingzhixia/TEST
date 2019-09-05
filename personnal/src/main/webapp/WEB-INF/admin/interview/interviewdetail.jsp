@@ -18,6 +18,7 @@
     <title>简历详情(管理员)</title>
     <script src="js/jquery-1.7.2.js"></script>
     <link href="css/main.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <style>
         body {
             margin: 0;
@@ -42,8 +43,7 @@
 
 
         <div id="right">
-            <div id="current" align="center">&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 20px;font-weight: bold;">当前位置--->>>${title}</span>
-            </div>
+            <%@ include file="../../main/clock.jsp" %>
             <br/><br/>
             <div style="text-align: center;margin-left: 200px">
                 <table border=1; cellpadding=12; cellspacing=0; align=center>
@@ -105,19 +105,31 @@
                         <td colspan="5">教育背景</td>
                     </tr>
                     <tr align=center>
-                        <td colspan="5" style="height:100px"></td>
+                        <td colspan="5" style="height:100px">
+                            ${requestScope.cv.cv_school} ${requestScope.cv.cv_major} <fmt:formatDate
+                                value="${requestScope.cv.cv_enroll_date}" pattern="yyyy-MM-dd"/>~<fmt:formatDate
+                                value="${requestScope.cv.cv_graduation_date}" pattern="yyyy-MM-dd"/>
+                            <br><br>某高中 物化班 2011-09-01~2014-06-09
+                        </td>
                     </tr>
                     <tr align=center>
                         <td colspan="5">专业课程</td>
                     </tr>
                     <tr>
-                        <td colspan="5" style="height:100px"></td>
+                        <td colspan="5" style="height:100px">
+                            软件工程学&nbsp;&nbsp;&nbsp;&nbsp;计算机网络&nbsp;&nbsp;&nbsp;&nbsp;软件设计<br>
+                            中间件结构&nbsp;&nbsp;&nbsp;&nbsp;操作系统&nbsp;&nbsp;&nbsp;&nbsp;软件概述
+                        </td>
                     </tr>
                     <tr align=center>
                         <td colspan="5">主要技能</td>
                     </tr>
                     <tr>
-                        <td colspan="5" style="height:100px"></td>
+                        <td colspan="5" style="height:100px">
+                            (1)Java<br>
+                            (2).net<br>
+                            (3)Spring
+                        </td>
                     </tr>
                     <tr align=center>
                         <td colspan="5">项目经验</td>
@@ -129,9 +141,14 @@
                 <c:if test="${requestScope.interView2.in_is_accept==2}">
                     <form action="sendInterView4" method="post">
                         <input type="hidden" value="${requestScope.interView2.in_id}" name="in_id">
-                        录用：<input type="radio" value="3" name="in_is_accept"><br>
-                        不录用：<input type="radio" value="4" name="in_is_accept">
-                        <input type="submit" value="提交">
+
+                        <select name="in_is_accept" required class="form-control" style="width: 200px;margin-left: 300px">
+                            <option hidden></option>
+                            <option value="3">录用</option>
+                            <option value="4">不录用</option>
+                        </select>
+                        <input type="submit" value="提交" class="form-control btn btn-primary" style="width: 200px;margin-left: -340px">
+
                     </form>
                     <script>
                         $(function () {
@@ -142,7 +159,7 @@
                 <c:if test="${requestScope.interView2.in_is_accept==0}">
                     <form action="sendInterView" method="post" id="action1">
                         <input type="hidden" value="${requestScope.interView2.in_id}" name="in_id">
-                        <input type="datetime-local" name="in_date">
+                        <input type="datetime-local" name="in_date" required>
                         <input type="submit" value="邀请面试">
                     </form>
                 </c:if>

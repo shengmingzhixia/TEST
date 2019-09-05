@@ -42,15 +42,14 @@
 
 
         <div id="right">
-            <div id="current" align="center">&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 20px;font-weight: bold;">当前位置--->>>${title}</span>
-            </div>
+            <%@ include file="../main/clock.jsp" %>
             <br/><br/>
             <div>
                 <table>
                     <tr>请输入部门名称</tr>
                     <tr>
                         <form action="updateDepart" method="post">
-                            <input type="text" name="dep_name" value="${requestScope.department.dep_name}">
+                            <input type="text" name="dep_name" value="${requestScope.department.dep_name}" required>
                             <input type="hidden" value="${requestScope.department.dep_id}" name="dep_id">
                             <input type="submit" value="提交" id="sub1">
                         </form>

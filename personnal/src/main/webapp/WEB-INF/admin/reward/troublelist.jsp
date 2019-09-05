@@ -37,13 +37,8 @@
 
 
         <div id="right">
-            <div id="current" align="center">&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 20px;font-weight: bold;">当前位置--->>>${title}</span>
-            </div>
+            <%@ include file="../../main/clock.jsp" %>
             <br/><br/>
-            <%
-                List<Trouble> list = (List<Trouble>) request.getAttribute("troubles");
-                if (list != null && list.size() != 0) {
-            %>
             <div>
                 <div class="prod">
                     <div>
@@ -55,6 +50,10 @@
                                 <th>异议理由</th>
                                 <th colspan="3" style="text-align: center">操作</th>
                             </tr>
+                            <%
+                                List<Trouble> list = (List<Trouble>) request.getAttribute("troubles");
+                                if (list != null && list.size() != 0) {
+                            %>
                             <c:forEach items="${requestScope.troubles}" var="trouble">
                                 <tr>
                                     <td>${trouble.employee.e_id}</td>
@@ -66,6 +65,7 @@
                                         <button>
                                             <a href="getRewards">去核实</a>
                                         </button>
+                                    </td>
                                     <td id="button1">
                                         <button onclick="addMoney()">补偿</button>
                                     </td>
@@ -73,8 +73,8 @@
                                         <form action="addReward" method="post">
                                             <input type="hidden" name="s_id" value="${trouble.salary.s_id}">
                                             <input type="hidden" name="r_e_id" value="${trouble.salary.s_e_id}">
-                                            <input type="text" name="r_money" placeholder="请填写补偿金额"><br>
-                                            <input type="text" name="r_reason" placeholder="请填写补偿理由"><br>
+                                            <input type="text" name="r_money" placeholder="请填写补偿金额" required><br>
+                                            <input type="text" name="r_reason" placeholder="请填写补偿理由" required><br>
                                             <input type="submit" value="提交">
                                         </form>
                                     </td>
@@ -85,12 +85,17 @@
                                     </td>
                                 </tr>
                             </c:forEach>
+                            <%
+                                }
+                            %>
+                            <tr>
+                                <td colspan="7">暂无数据</td>
+                            </tr>
                         </table>
+
                     </div>
                 </div>
-                <%
-                    }
-                %>
+
             </div>
         </div>
     </div>

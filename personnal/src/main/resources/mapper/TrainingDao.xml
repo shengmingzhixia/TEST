@@ -16,6 +16,15 @@
         set T_IS_PUBLISH = #{t_is_publish}
         where t_id = #{t_id}
     </update>
+    <update id="updateState2">
+        update P_TRAINING
+        set T_TITLE      = #{t_title},
+            t_address    = #{t_address},
+            t_context    = #{t_context},
+            t_start_time = #{t_start_time},
+            t_end_time   = #{t_end_time}
+        where t_id = #{t_id}
+    </update>
     <delete id="delete">
         delete
         from P_TRAINING

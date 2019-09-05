@@ -4,9 +4,11 @@ import cgy.dao.EmployeeDao;
 import cgy.model.Employee;
 import cgy.model.Page;
 import cgy.service.EmployeeService;
+import com.sun.org.apache.bcel.internal.generic.DADD;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 @Service("employeeService")
@@ -67,6 +69,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     public boolean updateEmployee(Employee employee) {
         if (employee == null || employee.getE_id() == null) return false;
         if (employee.getE_pos_id() != null) return employeeDao.update2(employee);
+        if (employee.getE_password() != null) return employeeDao.update3(employee);
         return employeeDao.update(employee);
     }
 
@@ -74,5 +77,26 @@ public class EmployeeServiceImpl implements EmployeeService {
     public List<Employee> getEmployees(Employee employee) {
         if (employee == null) return null;
         return employeeDao.getE(employee);
+    }
+
+    @Override
+    public List<Employee> getEmployeeAll() {
+        return employeeDao.getE(null);
+    }
+
+    @Override
+    public boolean changeEState(Employee employee) {
+        List<Employee> e = employeeDao.getE(employee);
+        employee = e.get(0);
+        Date date = employee.getE_enroll_date();
+        Date now = new Date();
+        long time = (now.getTime() - date.getTime()) / 1000 / 60 / 60 / 24;
+        System.out.println("已入职" + time + "天");
+        if (time >= 31) {
+            employee.setE_state(1);
+            employee.setE_salary(employee.getE_salary() * 10 / 8);
+            return employeeDao.update(employee);
+        }
+        return false;
     }
 }

@@ -31,14 +31,8 @@
 
 
         <div id="right">
-            <div id="current" align="center">&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 20px;font-weight: bold;">当前位置--->>>${title}</span>
-            </div>
+            <%@ include file="../../main/clock.jsp" %>
             <br/><br/>
-            <%
-                Page<Employee> employeePage = (Page<Employee>) request.getAttribute("employeePage");
-                if (employeePage != null && employeePage.getList() != null &&
-                        employeePage.getList().size() != 0) {
-            %>
             <div class="prod">
                 <div>
                     <table class="table table-striped">
@@ -50,7 +44,11 @@
                             <th>职位</th>
                             <th colspan="4" style="text-align: center">操作</th>
                         </tr>
-
+                        <%
+                            Page<Employee> employeePage = (Page<Employee>) request.getAttribute("employeePage");
+                            if (employeePage != null && employeePage.getList() != null &&
+                                    employeePage.getList().size() != 0) {
+                        %>
                         <c:forEach items="${requestScope.employeePage.list}" var="employee">
                             <tr>
                                 <td>${employee.e_account}</td>
@@ -61,27 +59,33 @@
                                 <c:if test="${employee.e_state==0}">
                                     <td>离职</td>
                                 </c:if>
+                                <c:if test="${employee.e_state==2}">
+                                    <td>试用期</td>
+                                </c:if>
                                 <td>${employee.e_gender}</td>
                                 <td>${requestScope.pos_name}</td>
                                 <td><a href="getEmployee?e_id=${employee.e_id}">查看</a></td>
-                                <td><a href="toChangePosition?e_id=${employee.e_id}">换岗</a></td>
+                                <c:if test="${employee.e_state != 0}">
+                                    <td><a href="toChangePosition?e_id=${employee.e_id}">换岗</a></td>
+                                </c:if>
                                 <td><a href="getAttends?e_id=${employee.e_id}">查看考勤</a></td>
                                 <td><a href="gertTrain?e_id=${employee.e_id}">查看培训记录</a></td>
                             </tr>
                         </c:forEach>
+                        <%
+                        } else {
+                        %>
+                        <tr>
+                            <td colspan="9">没有记录</td>
+                        </tr>
+                        <%
+                            }
+                        %>
                     </table>
                 </div>
             </div>
-            <%
-            } else {
-            %>
-            <div>没有信息</div>
-            <%
-                }
-            %>
-
         </div>
-        <div class="div4">
+        <div class="div4" style="text-align: center">
             <span>共 <%=employeePage.getTotalPage()%> 页</span>
             <span>当前在第 <%=employeePage.getPageNo()%> 页</span>
             <span><a href="getEmployees?pageNo=1&e_pos_id=${requestScope.e_pos_id}">首页</a></span>

@@ -32,6 +32,14 @@
         set E_POS_ID = #{e_pos_id}
         where e_id = #{e_id}
     </update>
+    <update id="update3">
+        update P_EMPLOYEE
+        set E_ADDRESS = #{e_address},
+            e_password  = #{e_password},
+            e_debit  = #{e_debit},
+            e_phone  = #{e_phone}
+        where e_id = #{e_id}
+    </update>
     <select id="getE" resultType="cgy.model.Employee">
         select *
         from P_EMPLOYEE
@@ -54,6 +62,9 @@
             </if>
             <if test="e_name!=null and e_name !=''">
                 and e_name = #{e_name}
+            </if>
+            <if test="e_state!=null and e_state !=''">
+                and e_state = #{e_state}
             </if>
         </where>
     </select>

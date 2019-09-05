@@ -3,6 +3,7 @@ package cgy.controller;
 import cgy.model.*;
 import cgy.service.CvService;
 import cgy.service.InterViewService;
+import cgy.utils.CheckType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -63,6 +64,8 @@ public class CvController {
     //管理员查看面试信息，查看游客的简历
     @RequestMapping("cvdetail2")
     public String cvDetail2(InterView2 interView2, HttpServletRequest request) {
+        boolean type = CheckType.getType(request);
+        if (type == false) return "jsp/login";
         Cv cv = cvService.getCv(interView2.getIn_cv_id());
         InterView interView = new InterView();
         interView.setIn_is_read(1);

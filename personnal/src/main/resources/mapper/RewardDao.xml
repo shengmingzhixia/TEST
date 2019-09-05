@@ -5,6 +5,11 @@
         insert into P_REWARD
         values (SEQ_REWARD.nextval, #{r_e_id}, #{r_date}, #{r_reason}, #{r_money})
     </insert>
+    <delete id="delete">
+        delete
+        from P_REWARD
+        where R_ID = #{r_id}
+    </delete>
     <select id="getRewards" resultType="cgy.model.Reward">
         select *
         from P_REWARD

@@ -34,15 +34,10 @@
 
 
         <div id="right">
-            <div id="current" align="center">&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 20px;font-weight: bold;">当前位置--->>>${title}</span>
-            </div>
+            <%@ include file="../../main/clock.jsp" %>
             <br/><br/>
 
-            <%
-                Page<Training> trainingPage = (Page<Training>) request.getAttribute("trainingPage");
-                if (trainingPage != null && trainingPage.getList() != null &&
-                        trainingPage.getList().size() != 0) {
-            %>
+
             <div class="prod">
                 <div>
                     <table class="table table-striped">
@@ -55,6 +50,11 @@
                             <th>状态</th>
                             <th colspan="3" style="text-align: center">操作</th>
                         </tr>
+                        <%
+                            Page<Training> trainingPage = (Page<Training>) request.getAttribute("trainingPage");
+                            if (trainingPage != null && trainingPage.getList() != null &&
+                                    trainingPage.getList().size() != 0) {
+                        %>
                         <c:forEach items="${requestScope.trainingPage.list}" var="train">
                             <tr>
                                 <td>${train.t_title}</td>
@@ -64,31 +64,34 @@
                                 <td>${train.t_address}</td>
                                 <c:if test="${train.t_is_publish == 0}">
                                     <td>未发布</td>
-                                    <td><a href="">修改</a></td>
+                                    <td><a href="toupdatetrain?t_id=${train.t_id}">修改</a></td>
                                     <td><a href="updatetrain?&t_is_publish=1&t_id=${train.t_id}">发布</a></td>
                                     <td><a href="deletetrain?t_id=${train.t_id}">删除</a></td>
                                 </c:if>
                                 <c:if test="${train.t_is_publish == 1}">
                                     <td>已发布</td>
-                                    <td colspan="2"><a href="updatetrain?&t_is_publish=0&t_id=${train.t_id}">下架</a></td>
+                                    <td><a href="updatetrain?&t_is_publish=0&t_id=${train.t_id}">下架</a></td>
                                     <td><a href="toChoosePos?t_id=${train.t_id}">选择培训部门</a></td>
+                                    <td></td>
                                 </c:if>
                             </tr>
                         </c:forEach>
+                        <%
+                        } else {
+                        %>
+                        <tr>
+                            <td colspan="9">没有培训信息</td>
+                        </tr>
+                        <%
+                            }
+                        %>
                     </table>
                 </div>
             </div>
-            <%
-            } else {
-            %>
-            <div>没有培训信息</div>
-            <%
-                }
-            %>
             <div>
                 <a href="toaddtrain">添加一个培训信息</a>
             </div>
-            <div class="div4">
+            <div class="div4" style="text-align: center">
                 <span>共 <%=trainingPage.getTotalPage()%> 页</span>
                 <span>当前在第 <%=trainingPage.getPageNo()%> 页</span>
                 <span><a href="totrain?pageNo=1">首页</a></span>

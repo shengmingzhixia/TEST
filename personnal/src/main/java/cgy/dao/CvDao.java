@@ -1,6 +1,7 @@
 package cgy.dao;
 
 import cgy.model.Cv;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -9,7 +10,7 @@ public interface CvDao {
     List<Cv> getCvByPage(int firstPageNo, int endPageNo,int c_id);
 
     //得出简历的记录数
-    int getTotalRows();
+    int getTotalRows(@Param(value = "c_id") Integer c_id);
 
     //添加新的简历
     boolean insertCv(Cv cv);

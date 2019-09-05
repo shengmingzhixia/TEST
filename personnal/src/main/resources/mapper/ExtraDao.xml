@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cgy.dao.ExtraDao">
+    <insert id="insert">
+        insert into P_EXTRA (EX_ID, EX_E_ID, EX_START_DATE, EX_END_DATE, EX_E_STATE, EX_REASON)
+        values (SEQ_EXTRA.nextval, #{ex_e_id}, #{ex_start_date}, #{ex_end_date}, #{ex_e_state}, #{ex_reason})
+    </insert>
+    <update id="update">
+        update P_EXTRA
+        set EX_E_STATE = #{ex_e_state}
+        where ex_id = #{ex_id}
+    </update>
+    <select id="getList" resultType="cgy.model.Extra">
+        select *
+        from P_EXTRA
+    </select>
+</mapper>

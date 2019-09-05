@@ -3,7 +3,7 @@
 <mapper namespace="cgy.dao.AttendenceDao">
     <insert id="insert">
         insert into P_ATTENDENCE
-        values (SEQ_ATTENDENCE.nextval, #{atd_e_id}, #{atd_start_time}, null)
+        values (SEQ_ATTENDENCE.nextval, #{atd_e_id}, #{atd_start_time}, #{atd_end_time})
     </insert>
     <update id="update">
         update P_ATTENDENCE

@@ -1,11 +1,11 @@
 package cgy.controller;
 
+import cgy.model.Department;
 import cgy.model.Position;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -67,4 +67,10 @@ public class ToUrl {
         request.getSession().setAttribute("cust", null);
         return "../index";
     }
+
+    @RequestMapping("toaddextra")
+    public String toaddextra(HttpServletRequest request) {
+        return "employee/addextra";
+    }
+
 }

@@ -33,14 +33,8 @@
 
 
         <div id="right">
-            <div id="current" align="center">&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 20px;font-weight: bold;">当前位置--->>>${title}</span>
-            </div>
+            <%@ include file="../../main/clock.jsp" %>
             <br/><br/>
-            <%
-                Page<InterView> interViewPage = (Page<InterView>) request.getAttribute("interViewPage");
-                if (interViewPage != null && interViewPage.getList() != null &&
-                        interViewPage.getList().size() != 0) {
-            %>
             <div class="prod">
                 <div>
                     <table class="table table-striped">
@@ -53,6 +47,11 @@
                             <th>是否接受面试</th>
                             <th colspan="2" style="text-align: center">操作</th>
                         </tr>
+                        <%
+                            Page<InterView> interViewPage = (Page<InterView>) request.getAttribute("interViewPage");
+                            if (interViewPage != null && interViewPage.getList() != null &&
+                                    interViewPage.getList().size() != 0) {
+                        %>
                         <c:forEach items="${requestScope.interViewPage.list}" var="inter">
                             <tr>
                                 <td>${inter.in_cv_title}</td>
@@ -91,16 +90,19 @@
                                 <td>删除</td>
                             </tr>
                         </c:forEach>
+                        <%
+                        } else {
+                        %>
+                        <tr>
+                            <td colspan="8">没有面试信息</td>
+                        </tr>
+                        <%
+                            }
+                        %>
                     </table>
                 </div>
             </div>
-            <%
-            } else {
-            %>
-            <div>没有面试信息</div>
-            <%
-                }
-            %>
+
             <div style="text-align: center">
                 <span>共 <%=interViewPage.getTotalPage()%> 页</span>
                 <span>当前在第 <%=interViewPage.getPageNo()%> 页</span>

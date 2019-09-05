@@ -20,4 +20,6 @@ public interface TrainingDao {
     Date getEndTime(@Param(value="t_id")Integer t_id);
 
     Training getTrain(@Param(value="t_id")Integer t_id);
+
+    boolean updateState2(Training training);
 }

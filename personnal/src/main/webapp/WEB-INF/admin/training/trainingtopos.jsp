@@ -17,6 +17,7 @@
     <title>选择培训人员</title>
     <script src="js/jquery-1.7.2.js"></script>
     <link href="css/main.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <script>
         var arr = new Array()
         var i = 0
@@ -69,27 +70,33 @@
 
 
         <div id="right">
-            <div id="current" align="center">&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 20px;font-weight: bold;">当前位置--->>>${title}</span>
-            </div>
+            <%@ include file="../../main/clock.jsp" %>
             <br/><br/>
+            <div class="container" style="max-width: 1100px;">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-8" style="margin-top: 20px">
+                    <fieldset>
+                        <legend>选择培训部门</legend>
+                        <form action="addtrainandemployee" method="post">
+                            <input type="hidden" value="${requestScope.t_id}" name="t_id">
+                            <div class="col-sm-4">
+                                选择部门：
+                                <select id="dep" onchange="changePos(this.value)" required class="form-control">
 
-            <div>
-                <table border="1" cellspacing="1" cellpadding="0">
-                    <form action="addtrainandemployee" method="post">
-                        <input type="hidden" value="${requestScope.t_id}" name="t_id">
-                        <tr>
-                            <td>选择部门</td>
-                            <td>
-                                <select id="dep" onchange="changePos(this.value)" required></select>
-                            </td>
-                            <td>选择职位</td>
-                            <td>
-                                <select id="pos" name="pos_name" required></select>
-                            </td>
-                        </tr>
-                        <tr><input type="submit" value="提交"></tr>
-                    </form>
-                </table>
+                                </select>
+                            </div>
+                            <div class="col-sm-4">
+                                选择职位：
+                                <select id="pos" name="pos_name" required class="form-control">
+
+                                </select>
+                            </div>
+                            <div class="col-sm-4">
+                                &emsp;<input type="submit" value="提交" class="form-control btn btn-primary">
+                            </div>
+                        </form>
+                    </fieldset>
+                </div>
             </div>
         </div>
     </div>

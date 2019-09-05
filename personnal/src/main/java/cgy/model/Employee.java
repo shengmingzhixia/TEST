@@ -18,7 +18,7 @@ public class Employee {
     private long e_debit;
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date e_enroll_date;
-    private Integer e_state;
+    private Integer e_state; //0 离职 1 在职 2 试用期
     private double e_salary;
     private Integer e_pos_id;
 

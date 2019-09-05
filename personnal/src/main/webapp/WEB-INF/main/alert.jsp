@@ -9,15 +9,14 @@
     alert("登录成功！")
 </script>
 <%
-        }
-        else {
-            %>
+} else {
+%>
 <script>
     alert("登录未成功！")
 </script>
 <%
         }
-        request.setAttribute("touristLogin",null);
+        request.setAttribute("touristLogin", null);
     }
 %>
 <%
@@ -30,14 +29,7 @@
 </script>
 <%
         }
-        request.setAttribute("login",null);
-    }
-%>
-<%
-    if (session.getAttribute("employeeNow") != null) {
-%>
-<div><span>当前用户===》${sessionScope.employeeNow.e_name}</span></div>
-<%
+        request.setAttribute("login", null);
     }
 %>
 <%
@@ -56,7 +48,7 @@
 </script>
 <%
         }
-        request.setAttribute("insertDepart",null);
+        request.setAttribute("insertDepart", null);
     }
 %>
 <%
@@ -75,7 +67,7 @@
 </script>
 <%
         }
-        request.setAttribute("deleteDepart",null);
+        request.setAttribute("deleteDepart", null);
     }
 %>
 <%
@@ -94,7 +86,7 @@
 </script>
 <%
         }
-        request.setAttribute("updateDepart",null);
+        request.setAttribute("updateDepart", null);
     }
 %>
 <%
@@ -113,7 +105,7 @@
 </script>
 <%
         }
-        request.setAttribute("insertPosition",null);
+        request.setAttribute("insertPosition", null);
     }
 %>
 <%
@@ -132,7 +124,7 @@
 </script>
 <%
         }
-        request.setAttribute("updatePosition",null);
+        request.setAttribute("updatePosition", null);
     }
 %>
 <%
@@ -151,7 +143,7 @@
 </script>
 <%
         }
-        request.setAttribute("deletePosition",null);
+        request.setAttribute("deletePosition", null);
     }
 %>
 <%
@@ -170,7 +162,7 @@
 </script>
 <%
         }
-        request.setAttribute("view",null);
+        request.setAttribute("view", null);
     }
 %>
 <%
@@ -189,7 +181,7 @@
 </script>
 <%
         }
-        request.setAttribute("view",null);
+        request.setAttribute("view", null);
     }
 %>
 <%
@@ -202,7 +194,7 @@
 </script>
 <%
         }
-        request.setAttribute("view3",null);
+        request.setAttribute("view3", null);
     }
 %>
 <%
@@ -221,7 +213,7 @@
 </script>
 <%
         }
-        request.setAttribute("view4",null);
+        request.setAttribute("view4", null);
     }
 %>
 <%
@@ -240,7 +232,7 @@
 </script>
 <%
         }
-        request.setAttribute("insertRct",null);
+        request.setAttribute("insertRct", null);
     }
 %>
 
@@ -260,7 +252,7 @@
 </script>
 <%
         }
-        request.setAttribute("deleteRct",null);
+        request.setAttribute("deleteRct", null);
     }
 %>
 <%
@@ -286,7 +278,7 @@
 <%
             }
         }
-        request.setAttribute("updateRct",null);
+        request.setAttribute("updateRct", null);
     }
 %>
 <%
@@ -305,7 +297,7 @@
 </script>
 <%
         }
-        request.setAttribute("updateEmployee",null);
+        request.setAttribute("updateEmployee", null);
     }
 %>
 <%
@@ -324,7 +316,26 @@
 </script>
 <%
         }
-        request.setAttribute("updateState",null);
+        request.setAttribute("updateState", null);
+    }
+%>
+<%
+    if (request.getAttribute("updateTraining") != null) {
+        boolean updateTraining = (Boolean) request.getAttribute("updateTraining");
+        if (updateTraining) {
+%>
+<script>
+    alert("更新成功！")
+</script>
+<%
+} else {
+%>
+<script>
+    alert("更新失败！")
+</script>
+<%
+        }
+        request.setAttribute("updateState", null);
     }
 %>
 <%
@@ -343,7 +354,7 @@
 </script>
 <%
         }
-        request.setAttribute("deletetrain",null);
+        request.setAttribute("deletetrain", null);
     }
 %>
 <%
@@ -362,7 +373,7 @@
 </script>
 <%
         }
-        request.setAttribute("addTrain",null);
+        request.setAttribute("addTrain", null);
     }
 %>
 <%
@@ -381,7 +392,7 @@
 </script>
 <%
         }
-        request.setAttribute("insertTrainEmployee",null);
+        request.setAttribute("insertTrainEmployee", null);
     }
 %>
 <%
@@ -398,17 +409,23 @@
 %>
 <%
     if (request.getAttribute("insert") != null) {
-        boolean insert = (Boolean) request.getAttribute("insert");
-        if (insert) {
+        int insert = (int) request.getAttribute("insert");
+        if (insert == 1) {
 %>
 <script>
     alert("打卡成功！")
 </script>
 <%
-} else {
+} else if (insert == 2) {
 %>
 <script>
     alert("打卡失败，今天已经打过卡")
+</script>
+<%
+} else if (insert == 0) {
+%>
+<script>
+    alert("迟到2小时以上，记为旷工")
 </script>
 <%
         }
@@ -505,6 +522,73 @@
 %>
 <script>
     alert("驳回成功！")
+</script>
+<%
+        }
+    }
+%>
+<%
+    if (request.getAttribute("insertExtra") != null) {
+        boolean insertExtra = (Boolean) request.getAttribute("insertExtra");
+        if (insertExtra) {
+%>
+<script>
+    alert("申请成功！")
+</script>
+<%
+        }
+    }
+%>
+<%
+    if (request.getAttribute("updateExtra") != null) {
+        boolean insertExtra = (Boolean) request.getAttribute("updateExtra");
+        if (insertExtra) {
+%>
+<script>
+    alert("审核成功！")
+</script>
+<%
+        }
+    }
+%>
+<%
+    if (request.getAttribute("defExtra") != null) {
+        boolean defExtra = (Boolean) request.getAttribute("defExtra");
+        if (defExtra) {
+%>
+<script>
+    alert("驳回！")
+</script>
+<%
+        }
+    }
+%>
+
+<%
+    if (request.getAttribute("changeSuccess") != null) {
+        boolean changeSuccess = (Boolean) request.getAttribute("changeSuccess");
+        if (changeSuccess) {
+%>
+<script>
+    alert("转正成功！")
+</script>
+<%
+} else {
+%>
+<script>
+    alert("入职未到一个月，无法转正！")
+</script>
+<%
+        }
+    }
+%>
+<%
+    if (request.getAttribute("goAnywhere") != null) {
+        boolean goAnywhere = (Boolean) request.getAttribute("goAnywhere");
+        if (goAnywhere) {
+%>
+<script>
+    alert("离职成功！")
 </script>
 <%
         }

@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface AttendenceService {
     //插入新的打卡记录
-    boolean insert(Attendence attendence);
+    int insert(Attendence attendence);
 
     //获取到某员工的所有打卡记录
     List<Attendence> getAtd(Attendence attendence);

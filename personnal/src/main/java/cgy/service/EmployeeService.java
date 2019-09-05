@@ -23,4 +23,9 @@ public interface EmployeeService {
     boolean updateEmployee(Employee employee);
 
     List<Employee> getEmployees(Employee employee);
+
+    //查询所有的
+    List<Employee> getEmployeeAll();
+
+    boolean changeEState(Employee employee);
 }

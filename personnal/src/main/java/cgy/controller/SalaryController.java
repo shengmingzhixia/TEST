@@ -5,6 +5,7 @@ import cgy.model.Page;
 import cgy.model.Salary;
 import cgy.model.Salary2;
 import cgy.service.SalaryService;
+import cgy.utils.CheckType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -19,6 +20,8 @@ public class SalaryController {
 
     @RequestMapping("getSalarys")
     public String getSalarys(HttpServletRequest request){
+        boolean type = CheckType.getType(request);
+        if (type == false) return "jsp/login";
         String pageNoStr = request.getParameter("pageNo");
         int pageNo = 1;
         if (pageNoStr != null && !"".equals(pageNoStr)) {
@@ -34,6 +37,8 @@ public class SalaryController {
 
     @RequestMapping("insertAllSalary")
     public String insertAllSalary(HttpServletRequest request){
+        boolean type = CheckType.getType(request);
+        if (type == false) return "jsp/login";
         boolean insertSalarys = salaryService.insertSalarys();
         request.setAttribute("insertSalarys", insertSalarys);
         return "admin/salaryManage";
@@ -41,6 +46,8 @@ public class SalaryController {
 
     @RequestMapping("getSalary")
     public String getSalary(HttpServletRequest request){
+        boolean type = CheckType.getType(request);
+        if (type == false) return "jsp/login";
         Employee employee = (Employee) request.getSession().getAttribute("employeeNow");
         Salary salary = salaryService.getSalary(employee.getE_id());
         request.setAttribute("salary", salary);
@@ -49,6 +56,8 @@ public class SalaryController {
 
     @RequestMapping("getSalaryOwnerAll")
     public String getSalaryOwnerAll(HttpServletRequest request){
+        boolean type = CheckType.getType(request);
+        if (type == false) return "jsp/login";
         Employee employee = (Employee) request.getSession().getAttribute("employeeNow");
         List<Salary> salarys = salaryService.getSalarys(employee.getE_id());
         request.setAttribute("salarys", salarys);
@@ -57,6 +66,8 @@ public class SalaryController {
 
     @RequestMapping("updateSalary")
     public String updateSalary(Salary salary,String reason,HttpServletRequest request){
+        boolean type = CheckType.getType(request);
+        if (type == false) return "jsp/login";
         boolean updatesalary = salaryService.update(salary,reason);
         request.setAttribute("updatesalary", updatesalary);
         return "employee/index";

@@ -30,8 +30,7 @@
 
 
         <div id="right">
-            <div id="current" align="center">&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 20px;font-weight: bold;">当前位置--->>>${title}</span>
-            </div>
+            <%@ include file="../../main/clock.jsp" %>
             <br/><br/>
             <div>
                 <form action="getRewards" method="post" novalidate="novalidate">
@@ -48,10 +47,6 @@
                     </table>
                 </form>
             </div>
-            <%
-                List<Reward> list = (List<Reward>) request.getAttribute("rewards");
-                if (list != null && list.size() != 0) {
-            %>
             <div>
                 <div class="prod">
                     <div>
@@ -63,6 +58,10 @@
                                 <th>奖惩理由</th>
                                 <th>奖惩金额</th>
                             </tr>
+                            <%
+                                List<Reward> list = (List<Reward>) request.getAttribute("rewards");
+                                if (list != null && list.size() != 0) {
+                            %>
                             <c:forEach items="${requestScope.rewards}" var="reward">
                                 <tr>
                                     <c:forEach items="${requestScope.list}" var="employee">
@@ -78,16 +77,17 @@
                                 </tr>
                             </c:forEach>
                         </table>
+                        <%
+                        } else {
+                        %>
+                        <tr>
+                            <td colspan="5">没有信息</td>
+                        </tr>
+                        <%
+                            }
+                        %>
                     </div>
                 </div>
-                <%
-                } else {
-                %>
-                <div>没有信息</div>
-                <%
-                    }
-                %>
-
             </div>
         </div>
     </div>

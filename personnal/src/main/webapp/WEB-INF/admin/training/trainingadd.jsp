@@ -15,6 +15,8 @@
     <base href="<%=basePath%>"/>
     <title>添加新的培训信息</title>
     <link href="css/main.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/jquery-1.7.2.js"></script>
 </head>
 <body>
 <div id="mainDiv">
@@ -27,17 +29,48 @@
 
 
         <div id="right">
-            <div id="current" align="center">&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 20px;font-weight: bold;">当前位置--->>>${title}</span>
-            </div>
+            <%@ include file="../../main/clock.jsp" %>
             <br/><br/>
-            <div>
+            <div class="col-sm-10">
+                <legend>添加培训信息</legend>
                 <form action="addtrain" method="post">
-                    <input type="text" name="t_title" placeholder="标题">
-                    <textarea placeholder="内容" name="t_context"></textarea>
-                    <br/>开始时间<input type="datetime-local" name="t_start_time">
-                    <br/>结束时间<input type="datetime-local" name="t_end_time">
-                    <input type="text" name="t_address" placeholder="地址">
-                    <input type="submit" value="提交">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>标&emsp;题：</label>
+                            <input type="text" name="t_title" placeholder="标题" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>选&emsp;择&emsp;地&emsp;址：</label>
+                            <input type="text" name="t_address" placeholder="地址" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>详&emsp;情&emsp;描&emsp;述：</label>
+                            <textarea placeholder="内容" name="t_context" class="form-control"
+                                      maxlength="100" required
+                                      style="height: 90px;resize: none"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>开始时间：</label>
+                            <input type="datetime-local" name="t_start_time" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>结束时间：</label>
+                            <input type="datetime-local" name="t_end_time" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            &emsp;<input type="submit" value="提交草稿" class="form-control btn btn-primary">
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>

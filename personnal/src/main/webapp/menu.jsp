@@ -1,4 +1,16 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
+<%
+    if (request.getAttribute("view5") != null) {
+        boolean view5 = (Boolean) request.getAttribute("view5");
+        if (view5) {
+%>
+<script>
+    alert("拒绝成功！")
+</script>
+<%
+        }
+    }
+%>
 <div class="span10 last">
     <div class="topNav clearfix">
         <ul>

@@ -12,4 +12,6 @@ public interface RewardDao {
     //判断MM等于现在时间的月份的
     //查询奖惩也使用了该方法
     List<Reward> getRewards(Reward reward);
+
+    void delete(Reward reward);
 }

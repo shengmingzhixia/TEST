@@ -8,6 +8,7 @@ import cgy.service.EmployeeService;
 import cgy.service.RewardService;
 import cgy.service.SalaryService;
 import cgy.service.TroubleService;
+import cgy.utils.CheckType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -31,6 +32,8 @@ public class RewardController {
 
     @RequestMapping("getRewards")
     public String getRewards(Employee employee, Reward reward, HttpServletRequest request) {
+        boolean type = CheckType.getType(request);
+        if (type == false) return "jsp/login";
         String name = null;
         Date date = null;
         if (employee != null && employee.getE_name() != null) {
@@ -48,6 +51,8 @@ public class RewardController {
 
     @RequestMapping("addReward")
     public String addReward(int s_id, Reward reward, HttpServletRequest request) {
+        boolean type = CheckType.getType(request);
+        if (type == false) return "jsp/login";
         reward.setR_date(new Date());
         Salary salary = new Salary();
         salary.setS_id(s_id);
@@ -58,5 +63,19 @@ public class RewardController {
         boolean insert22 = rewardService.insert(reward, salary, trouble);
         request.setAttribute("insert22", insert22);
         return "main/main";
+    }
+
+    @RequestMapping("getRewards2")
+    public String getRewards2(Reward reward, HttpServletRequest request) {
+        boolean type = CheckType.getType(request);
+        if (type == false) return "jsp/login";
+        Employee employee = (Employee) request.getSession().getAttribute("employeeNow");
+        Date date = null;
+        if (reward != null && reward.getR_date() != null) {
+            date = reward.getR_date();
+        }
+        List<Reward> rewards = rewardService.getRewards(employee.getE_name(), date);
+        request.setAttribute("rewards", rewards);
+        return "employee/rewardlist";
     }
 }
